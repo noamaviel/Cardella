@@ -3,8 +3,6 @@ import app from './app.vue'
 import './registerServiceWorker'
 import router from './router/router'
 import store from './store/store'
-// import boardService from './services/board-service'
-
 
 import '@/styles/styles.scss';
 
