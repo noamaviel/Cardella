@@ -1,4 +1,4 @@
-// import { boardService } from '@/services/board-service.js';
+import { boardService } from '@/services/board-service.js';
 
 export const boardStore = {
     strict: true,
@@ -6,7 +6,7 @@ export const boardStore = {
         currBoard: {},
     },
     getters: {
-        getBoard(state) {
+        getCurrBoard(state) {
             return state.currBoard;
         }
     },
@@ -29,9 +29,9 @@ export const boardStore = {
         },
     },
     actions: {
-        // async loadBoard({ commit }) {
-        //     const board = await boardService.query()
-        //     commit({ type: 'setCurrBoard', board })
-        // },
+        async loadBoard({ commit }, { boardId }) {
+            const board = await boardService.getBoardById(boardId)
+            commit({ type: 'setCurrBoard', board })
+        },
     }
 }
