@@ -5,7 +5,8 @@ import publicBoard from '../views/board.vue'
 import createBoard from '../views/board-create.vue'
 import login from '../views/login-signup.vue'
 import userDetails from '../views/user-details.vue'
-import listCmp from '../cmps/list/list.cmp.vue'  //temp
+// import listCmp from '../cmps/list/list.cmp.vue'  
+import CardEdit from '../cmps/card/card-edit.cmp.vue'
 
 Vue.use(VueRouter)
 
@@ -16,14 +17,19 @@ const routes = [
     component: homePage
   },
   {
-    path: '/list',  //temp
-    name: 'List',
-    component: listCmp
-  },
-  {
-    path: '/board/:id?',
+    path: '/board/:boardId?',
     name: 'Public Board',
     component: publicBoard
+  },
+  // {
+  //   path: '/board/:boardId/list/:listId', 
+  //   name: 'List',
+  //   component: listCmp
+  // },
+  {
+    path: '/board/:boardId/card/:cardId', 
+    name: 'Card',
+    component: CardEdit
   },
   {
     path: '/board/create',

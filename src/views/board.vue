@@ -28,7 +28,7 @@ export default {
         // listAdd,
     },
     created() {
-        const boardId = this.$route.params.id;
+        const boardId = this.$route.params.boardId;
         this.$store.dispatch({ type: "loadBoard", boardId });
     },
 };
