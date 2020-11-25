@@ -4,8 +4,8 @@ export default {
     getBoards,
     getBoardById,
     addBoard,
-    remove,
-    update
+    removeBoard,
+    updateBoard
 }
 
 function getBoards() {
@@ -18,11 +18,11 @@ function getBoardById(boardId) {
 function addBoard(board) {
     return HttpService.post('boards', board)
 }
-function remove(boardId) {
+function removeBoard(boardId) {
     return HttpService.delete(`boards/${boardId}`)
 }
 
-function update(board) {
+function updateBoard(board) {
     return HttpService.put(`boards/${board._id}`, board)
 }
 
