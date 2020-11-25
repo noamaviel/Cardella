@@ -2,14 +2,14 @@
     <section class="board">
         <h1>This is the public board!!!</h1>
         <board-header :board="board" />
-        <!-- <list-cmp /> -->
+        <list-cmp v-for="list in board.lists" :key="list.id" :list="list" />
         <!-- <list-add /> -->
     </section>
 </template>
 
 <script>
 import boardHeader from "@/cmps/board/board-header.cmp.vue";
-// import listCmp from "@/cmps/list/list.cmp.vue";
+import listCmp from "@/cmps/list/list.cmp.vue";
 // import listAdd from "@/cmps/list/list-add.cmp.vue";
 
 export default {
@@ -24,7 +24,7 @@ export default {
     methods: {},
     components: {
         boardHeader,
-        // listCmp,
+        listCmp,
         // listAdd,
     },
     created() {
