@@ -1,0 +1,84 @@
+<template>
+    <section
+        class="card-edit"
+        style="
+            display: inline-block;
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid black;
+            width: 200px;
+            height: 400px;
+        "
+    >
+        <div class="main-area">
+            <button @click="closeCard">x</button>
+            <h1>CARD EDIT!</h1>
+            <h2>card.title</h2>
+            <h4>list.title</h4>
+            <h3>Members</h3>
+            <!-- <members-cmp></members-cmp> -->
+            <h3>Labels</h3>
+            <!-- <labels-cmp>{{card.labels}}</labels-cmp> -->
+            <h3>Due date</h3>
+            <!-- <due-date-cmp>
+            <label>
+			<my-checkbox
+				:value=""
+				v-model=""
+			/>
+            date-picker input (consider a npm package)
+		</label>            
+        </due-date-cmp> -->
+            <h3>Checklist</h3>
+            <!-- <checklist-cmp>
+            status bar
+            todo list
+            <button>Add an item</button>
+        </checklist-cmp> -->
+            <h3>Description</h3>
+            <!-- <input
+      type="textarea"
+      v-model=""
+      placeholder="Add a more detailed description..."
+      rows="3" (consider)
+      max-rows="6" (consider)
+    /> -->
+            <h3>Image</h3>
+            <img src="" />
+            <h3>Activity</h3>
+            <!-- consider change to "Comments" as these are not activities -->
+            <!-- <input type="text" placeholder="Write a comment... v-model="comment""/> -->
+            <!-- <ul>
+            <li v-for="comment in comments" :key="comment.id">{{ comment }}</li>
+        </ul> -->
+        </div>
+
+        <div class="menu-area">
+            <button>Members</button>
+            <button>Labels</button>
+            <button>Checklist</button>
+            <button>Due Date</button>
+            <button>Upload Image</button>
+            <button>Card Color</button>
+            <button>Delete card</button>
+        </div>
+
+        <button @click="updateCard">save</button>
+        <button @click="closeCard">cancel</button>
+    </section>
+</template>
+
+<script>
+export default {
+    props: {},
+    data() {
+        return {
+            // comment: "",
+        };
+    },
+    methods: {
+        closeCard() {},
+        updateCard() {},
+    },
+};
+</script>
