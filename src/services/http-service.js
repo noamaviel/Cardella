@@ -6,10 +6,10 @@ const BASE_URL = process.env.NODE_ENV === 'production'
     : '//localhost:3000/'
 
 
-import Axios from 'axios';
-var axios = Axios.create({
-    withCredentials: true
-});
+// import Axios from 'axios';
+// var axios = Axios.create({
+//     withCredentials: true
+// });
 
 export default {
     get(endpoint, data){

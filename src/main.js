@@ -6,6 +6,8 @@ import store from './store/store'
 // import boardService from './services/board-service'
 
 
+import '@/styles/styles.scss';
+
 Vue.config.productionTip = false
 
 new Vue({
