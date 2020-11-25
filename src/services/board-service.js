@@ -1,6 +1,6 @@
 import HttpService from './http-service'
 
-export default {
+export const boardService = {
     getBoards,
     getBoardById,
     addBoard,

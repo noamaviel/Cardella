@@ -1,12 +1,14 @@
 <template>
     <section class="side-menu">
         <button>Menu</button>
-        <ul>
+        <ul class="menu-actions">
             <li>Change background</li>
             <li>Delete board</li>
             <h4>Activity Log</h4>
         </ul>
-        <h4>{{board.title}}</h4>
+        <ul class="activity-log">
+            <!-- <li v-for="activity in activities" :key="activity.id"></li> -->
+        </ul>
     </section>
 </template>
 
@@ -18,7 +20,8 @@ export default {
     data() {
         return {};
     },
-    computed: {},
+    computed: {
+    },
     methods: {
         getActivities() {
             //     this.

@@ -14,15 +14,13 @@ import boardHeader from "@/cmps/board/board-header.cmp.vue";
 
 export default {
     data() {
-        return {
-            board: {
-                _id: "b101",
-                title: "Robot dev proj",
-                createdAt: 1589983468418,
-            },
-        };
+        return {};
     },
-    computed: {},
+    computed: {
+        board() {
+            return this.$store.getters.getCurrBoard;
+        },
+    },
     methods: {},
     components: {
         boardHeader,
@@ -30,7 +28,8 @@ export default {
         // listAdd,
     },
     created() {
-        // this.$store.dispatch({ type: "loadBoard" });
+        const boardId = this.$route.params.id;
+        this.$store.dispatch({ type: "loadBoard", boardId });
     },
 };
 </script>
