@@ -1,7 +1,13 @@
 
 <template>
     <section class="list-container">
-        <h1>list</h1>
+        <h1
+            contenteditable="true"
+            @keypress.enter.prevent="updateListTitle"
+            @blur="updateListTitle"
+        >
+            {{ list.title }}
+        </h1>
         <card-preview v-for="card in list.cards" :key="card.id" :card="card" />
     </section>
 </template>
@@ -17,6 +23,17 @@ export default {
         return {};
     },
     computed: {},
+    methods: {
+         updateListTitle(ev) {
+            if (this.list.title === ev.target.innerText) return;
+            if (!ev.target.innerText) {
+                ev.target.innerText = this.list.title;
+                return;
+            }
+            this.list.title = ev.target.innerText;
+            ev.target.blur();
+        },
+    },
     components: {
         cardPreview,
     },
