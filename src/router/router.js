@@ -5,6 +5,7 @@ import publicBoard from '../views/board.vue'
 import createBoard from '../views/board-create.vue'
 import login from '../views/login-signup.vue'
 import userDetails from '../views/user-details.vue'
+import listCmp from '../cmps/list/list.cmp.vue'  //temp
 
 Vue.use(VueRouter)
 
@@ -13,6 +14,11 @@ const routes = [
     path: '/',
     name: 'Home Page',
     component: homePage
+  },
+  {
+    path: '/list',  //temp
+    name: 'List',
+    component: listCmp
   },
   {
     path: '/board/:id?',
@@ -33,7 +39,9 @@ const routes = [
     path: '/user/:id?',
     name: 'User Details',
     component: userDetails
-  }
+  },
+
+
 ]
 
 const router = new VueRouter({
