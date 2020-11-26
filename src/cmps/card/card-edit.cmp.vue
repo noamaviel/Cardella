@@ -100,14 +100,12 @@ export default {
             console.log('color button clicked')
           this.isDisplayColorPallette = !this.isDisplayColorPallette;
         },
-        // updateCard() {},
     },
     components: {
     cardColor,
     cardChecklist
     },
     created() {
-        console.log('onCardEditCreated', this.card)
     }
 };
 </script>

@@ -42,6 +42,12 @@ export const boardStore = {
             const cards = state.currBoard.lists[listIdx].cards;
             cards.splice(cardIdx, 1);
         },
+
+        //LIST//
+        addList(state, { list }) {
+            const lists = state.currBoard.lists;
+            lists.push(list);
+        }
     },
     actions: {
         //BOARD//
@@ -61,6 +67,12 @@ export const boardStore = {
         },
         async removeCard({ commit, state }, { listId, cardId }) {
             commit({ type: 'removeCard', listId, cardId })
+            await boardService.updateBoard(state.currBoard);
+        },
+        //LIST//
+        async addList({ commit, state }, { listTitle }) {
+            const list = boardService.getEmptyList(listTitle);
+            commit({ type: 'addList', list })
             await boardService.updateBoard(state.currBoard);
         },
     }

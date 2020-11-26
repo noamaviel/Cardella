@@ -2,7 +2,7 @@
     <section class="board">
         <board-header :board="board" />
         <list-cmp v-for="list in board.lists" :key="list.id" :list="list" />
-        <!-- <list-add /> -->
+        <list-add />
     </section>
 </template>
 
@@ -10,7 +10,7 @@
 import boardHeader from "@/cmps/board/board-header.cmp.vue";
 import listCmp from "@/cmps/list/list.cmp.vue";
 import { eventBus, EVENT_UPDATE_BOARD } from '../services/eventbus-service.js'
-// import listAdd from "@/cmps/list/list-add.cmp.vue";
+import listAdd from "@/cmps/list/list-add.cmp.vue";
 
 export default {
     data() {
@@ -25,7 +25,7 @@ export default {
     components: {
         boardHeader,
         listCmp,
-        // listAdd,
+        listAdd,
     },
     created() {
         const boardId = this.$route.params.boardId;

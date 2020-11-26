@@ -6,7 +6,8 @@ export const boardService = {
     addBoard,
     removeBoard,
     updateBoard,
-    getEmptyCard
+    getEmptyCard,
+    getEmptyList
 }
 
 function getBoards() {
@@ -42,6 +43,15 @@ function getEmptyCard(title = '') {
         },
     }
     return card;
+}
+
+function getEmptyList(title = '') {
+    const list = {
+        id: _makeId(),
+        title,
+        cards: []
+    }
+    return list;
 }
 
 function _makeId(length = 4) {

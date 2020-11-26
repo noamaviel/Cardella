@@ -1,7 +1,7 @@
 <template>
   <section class="side-menu">
     <button @click="onOpenMenu">Menu</button>
-    <side-menu v-if="isMenu" @closeMenu="closeMenu" :board="board" />
+    <!-- <side-menu v-if="isMenu" @closeMenu="closeMenu" :board="board" /> -->
     
     <!-- <ul class="menu-actions">
       <li>Change background</li>
