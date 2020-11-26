@@ -2,6 +2,7 @@
   <section class="side-menu">
     <button @click="onOpenMenu">Menu</button>
     <side-menu v-if="isMenu" @closeMenu="closeMenu" :board="board" />
+    
     <!-- <ul class="menu-actions">
       <li>Change background</li>
       <li>Delete board</li>

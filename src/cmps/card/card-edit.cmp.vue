@@ -75,6 +75,7 @@
 import cardColor from "../card/card-color.cmp"
 import cardChecklist from "../card/card-checklist.cmp"
 
+
 export default {
     props: {
         card: Object,

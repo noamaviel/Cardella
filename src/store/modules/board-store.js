@@ -48,5 +48,9 @@ export const boardStore = {
             commit({ type: 'addCard', listId, card })
             await boardService.updateBoard(state.currBoard);
         },
+        async updateBoard({ state }) {
+            console.log('state.currBoard in boardActions', state.currBoard)
+            await boardService.updateBoard(state.currBoard);
+        }
     }
 }
