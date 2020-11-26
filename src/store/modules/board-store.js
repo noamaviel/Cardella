@@ -47,6 +47,11 @@ export const boardStore = {
         addList(state, { list }) {
             const lists = state.currBoard.lists;
             lists.push(list);
+        },
+        updateList(state, { list }) {
+            const listIdx = state.currBoard.lists.findIndex(currList => currList.id === list.id);
+            const lists = state.currBoard.lists;
+            lists.splice(listIdx, 1, list);
         }
     },
     actions: {
@@ -62,7 +67,7 @@ export const boardStore = {
             await boardService.updateBoard(state.currBoard);
         },
         async updateBoard({ state }) {
-            console.log('state.currBoard in boardActions', state.currBoard)
+            // console.log('state.currBoard in boardActions', state.currBoard)
             await boardService.updateBoard(state.currBoard);
         },
         async removeCard({ commit, state }, { listId, cardId }) {
@@ -73,6 +78,11 @@ export const boardStore = {
         async addList({ commit, state }, { listTitle }) {
             const list = boardService.getEmptyList(listTitle);
             commit({ type: 'addList', list })
+            await boardService.updateBoard(state.currBoard);
+        },
+        async updateList({ commit, state }, { list }) {
+            console.log('state.currBoard in boardActions', state.currBoard)
+            commit({ type: 'updateList', list });
             await boardService.updateBoard(state.currBoard);
         },
     }

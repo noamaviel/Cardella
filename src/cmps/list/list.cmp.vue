@@ -1,8 +1,18 @@
 
 <template>
     <section class="list-container">
+        <i class="fas fa-ellipsis-h"></i>
         <div class="list-menu">
-            <i class="fas fa-ellipsis-h"></i>
+            <ul>
+                <li>Delete list</li>
+                <li>Add card</li>
+                <!-- <li>Sort by</li> -->
+                <!-- <ul>
+                    <li>Date created</li>
+                    <li>Due date</li>
+                    <li>Card name</li>
+                </ul> -->
+            </ul>
         </div>
 
         <h1
@@ -61,6 +71,10 @@ export default {
             }
             this.list.title = ev.target.innerText;
             ev.target.blur();
+            this.$store.dispatch({
+                type: "updateList",
+                list: this.list,
+            });
         },
         addCard() {
             this.$store.dispatch({
