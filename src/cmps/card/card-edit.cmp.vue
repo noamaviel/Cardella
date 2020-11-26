@@ -30,7 +30,8 @@
             date-picker input (consider a npm package)
 		</label>            
         </due-date-cmp> -->
-            <h3>Checklist</h3>
+            <!-- <h3>Checklist</h3> -->
+            <card-checklist v-if="card.checklists" :checklist="card.checklists[0]"/>
             <!-- <checklist-cmp>
             status bar
             todo list
@@ -66,11 +67,13 @@
             <button @click="updateCard">save</button>
             <button @click="onCloseCard">cancel</button>
         </div>
+
     </section>
 </template>
 
 <script>
 import cardColor from "../card/card-color.cmp"
+import cardChecklist from "../card/card-checklist.cmp"
 
 export default {
     props: {
@@ -99,7 +102,8 @@ export default {
         updateCard() {},
     },
     components: {
-    cardColor
+    cardColor,
+    cardChecklist
     },
     created() {
         console.log('onCardEditCreated', this.card)

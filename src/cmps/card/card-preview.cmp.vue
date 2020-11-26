@@ -40,6 +40,9 @@ export default {
     components: {
         cardEdit,
     },
+    created() {
+        console.log('card in Card Preview', this.card)
+    }
 };
 </script>
 

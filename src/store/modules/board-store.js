@@ -33,5 +33,6 @@ export const boardStore = {
             const board = await boardService.getBoardById(boardId)
             commit({ type: 'setCurrBoard', board })
         },
+       
     }
 }
