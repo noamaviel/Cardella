@@ -52,7 +52,12 @@ export const boardStore = {
             const listIdx = state.currBoard.lists.findIndex(currList => currList.id === list.id);
             const lists = state.currBoard.lists;
             lists.splice(listIdx, 1, list);
-        }
+        },
+        removeList(state, { listId }) {
+            const listIdx = state.currBoard.lists.findIndex(currList => currList.id === listId);
+            const lists = state.currBoard.lists;
+            lists.splice(listIdx, 1);
+        },
     },
     actions: {
         //BOARD//
@@ -86,6 +91,11 @@ export const boardStore = {
         },
         async updateList({ commit, state }, { list }) {
             commit({ type: 'updateList', list });
+            await boardService.updateBoard(state.currBoard);
+        },
+        async removeList({ commit, state }, { listId }) {
+            console.log('state.currBoard in boardActions', state.currBoard)
+            commit({ type: 'removeList', listId })
             await boardService.updateBoard(state.currBoard);
         },
     }
