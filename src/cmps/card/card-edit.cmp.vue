@@ -7,12 +7,18 @@
             margin: 5px;
             border: 1px solid black;
             width: 400px;
-            height: 400px;
+            height: 800px;
             background-color: grey;
         "
     >
         <div class="main-area" style="flex-grow: 1">
             <button @click="onCloseCard">x</button>
+            <!-- <div class="addChecklistModal">
+                <form>
+                    <input type="text" />
+                    <button>Add Checklist</button>
+                </form>
+            </div> -->
             <h1>CARD EDIT!</h1>
             <h2>card.title</h2>
             <h4>list.title</h4>
@@ -30,8 +36,10 @@
             date-picker input (consider a npm package)
 		</label>            
         </due-date-cmp> -->
-            <!-- <h3>Checklist</h3> -->
-            <card-checklist v-if="card.checklists" :checklist="card.checklists[0]"/>
+            <checklists-cmp
+                v-if="card.checklists"
+                :checklists="card.checklists"
+            />
             <!-- <checklist-cmp>
             status bar
             todo list
@@ -62,19 +70,20 @@
             <button>Due Date</button>
             <button>Upload Image</button>
             <button @click="onOpenColorPallette">Card Color</button>
-            <card-color v-if="isDisplayColorPallette" @setColor="changeColor"/>
+            <card-color v-if="isDisplayColorPallette" @setColor="changeColor" />
             <button>Delete card</button>
             <button @click="updateCard">save</button>
             <button @click="onCloseCard">cancel</button>
         </div>
-
     </section>
 </template>
 
 <script>
-import cardColor from "../card/card-color.cmp"
-import cardChecklist from "../card/card-checklist.cmp"
-
+import cardColor from "../card/card-color.cmp";
+// import checklists from "../card/checklists.cmp"
+import checklistsCmp from "./checklists.cmp.vue";
+// import ChecklistsCmp from './checklists.cmp.vue';
+// import cardChecklist from "../card/card-checklist.cmp"
 
 export default {
     props: {
@@ -82,32 +91,34 @@ export default {
     },
     data() {
         return {
-            isDisplayColorPallette: false
+            isDisplayColorPallette: false,
             // comment: "",
         };
     },
     methods: {
         onCloseCard() {
-            this.$emit('closeCard');
+            this.$emit("closeCard");
         },
         changeColor(color) {
-            console.log('color:', color)
+            console.log("color:", color);
             this.isDisplayColorPallette = false;
             this.card.style.bgColor = color;
-          //TODO - Set color of BGC
+            //TODO - Set color of BGC
         },
         onOpenColorPallette() {
-            console.log('color button clicked')
-          this.isDisplayColorPallette = !this.isDisplayColorPallette;
+            console.log("color button clicked");
+            this.isDisplayColorPallette = !this.isDisplayColorPallette;
         },
         updateCard() {},
     },
     components: {
-    cardColor,
-    cardChecklist
+        cardColor,
+        // checklists
+        checklistsCmp,
+        // cardChecklist
     },
     created() {
-        console.log('onCardEditCreated', this.card)
-    }
+        console.log("onCardEditCreated", this.card);
+    },
 };
 </script>

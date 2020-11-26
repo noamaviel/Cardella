@@ -1,7 +1,14 @@
 <template>
     <section>
         <div>
-            <h3>{{ checklist.title }}</h3>
+            <h3
+                contenteditable="true"
+                @keypress.enter.prevent="updateChecklistTitle"
+                @blur="updateChecklistTitle"
+            >
+                {{ checklist.title }}
+            </h3>
+           
         </div>
         <ul v-if="checklist.todos">
             <li
@@ -32,13 +39,17 @@
                 <button @click="onRemoveTodo(index)">X</button>
             </li>
         </ul>
-        <form @submit.prevent="onAddTodo">
+        <button v-if="!isAddTodoForm" @click="onAddTodoForm">
+            Add an item
+        </button>
+        <form v-if="isAddTodoForm" @submit.prevent="onAddTodo">
             <input
                 type="text"
                 placeholder="Add your todo"
                 v-model="tmpTodo.title"
             />
             <button>Add Todo</button>
+            <button @click="onCloseAddTodo">X</button>
         </form>
     </section>
 </template>
@@ -62,6 +73,7 @@ export default {
                 title: "",
                 isDone: false,
             },
+            isAddTodoForm: false,
         };
     },
     methods: {
@@ -74,15 +86,37 @@ export default {
             this.tmpTodo.id = utilService.makeId();
             let newTodo = JSON.parse(JSON.stringify(this.tmpTodo));
             console.log("onAddTodo", newTodo);
-            this.checklist.todos.splice(this.checklist.todos.length, 0, newTodo);
+            this.checklist.todos.splice(
+                this.checklist.todos.length,
+                0,
+                newTodo
+            );
             eventBus.$emit(EVENT_UPDATE_BOARD);
-            this.tmpTodo.title = '';
+            this.tmpTodo.title = "";
         },
         onRemoveTodo(index) {
             console.log("onRemoveTodo", index);
             this.checklist.todos.splice(index, 1);
             eventBus.$emit(EVENT_UPDATE_BOARD);
         },
+        onAddTodoForm() {
+            this.isAddTodoForm = true;
+            console.log("onAddTodoForm");
+        },
+        onCloseAddTodo() {
+            this.isAddTodoForm = false;
+        },
+        updateChecklistTitle(ev) {
+            if (this.checklist.title === ev.target.innerText) return;
+            if (!ev.target.innerText) {
+                ev.target.innerText = this.checklist.title;
+                return;
+            }
+            this.checklist.title = ev.target.innerText;
+            ev.target.blur();
+             eventBus.$emit(EVENT_UPDATE_BOARD);
+        },
+       
     },
     components: {
         // cardEdit,
