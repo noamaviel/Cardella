@@ -11,9 +11,7 @@
             background-color: grey;
         "
     >
-        <div class="main-area"
-        style="flex-grow: 1"
-        >
+        <div class="main-area" style="flex-grow: 1">
             <button @click="onCloseCard">x</button>
             <h1>CARD EDIT!</h1>
             <h2>card.title</h2>
@@ -65,14 +63,16 @@
             <button>Card Color</button>
             <button>Delete card</button>
             <button @click="updateCard">save</button>
-            <button @click="closeCard">cancel</button>
+            <button @click="onCloseCard">cancel</button>
         </div>
     </section>
 </template>
 
 <script>
 export default {
-    props: {},
+    props: {
+        inCard: Object,
+    },
     data() {
         return {
             // comment: "",
@@ -80,9 +80,12 @@ export default {
     },
     methods: {
         onCloseCard() {
-            this.$emit('closeCard')
+            this.$emit('closeCard');
         },
         updateCard() {},
     },
+    created() {
+        console.log('onCardEditCreated', this.inCard)
+    }
 };
 </script>

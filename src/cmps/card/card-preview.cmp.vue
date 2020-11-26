@@ -13,12 +13,12 @@
         <h1>card</h1>
         {{ card.title }}
         <button @click="onOpenEdit">Edit</button>
-        <card-edit v-if="isEdited" @closeCard="onCloseCard" />
+        <card-edit v-if="isEdited" @closeCard="onCloseCard" :inCard="card"/>
     </section>
 </template>
 
 <script>
-import cardEdit from "../card/card-edit.cmp";
+import cardEdit from "../card/card-edit.cmp.vue";
 
 export default {
     props: {
