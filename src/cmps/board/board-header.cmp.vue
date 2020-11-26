@@ -2,8 +2,8 @@
     <section class="board-header">
         <h2
             contenteditable="true"
-            @keypress.enter.prevent="updateBoardName"
-            @blur="updateBoardName"
+            @keypress.enter.prevent="updateBoardTitle"
+            @blur="updateBoardTitle"
         >
             {{ board.title }}
         </h2>
@@ -23,8 +23,8 @@ export default {
         board: Object,
     },
     methods: {
-        updateBoardName(ev) {
-            if (this.board.name === ev.target.innerText) return;
+        updateBoardTitle(ev) {
+            if (this.board.title === ev.target.innerText) return;
             if (!ev.target.innerText) {
                 ev.target.innerText = this.board.title;
                 return;

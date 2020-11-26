@@ -12,13 +12,19 @@
     >
         <h1>card</h1>
         {{ card.title }}
+        <card-edit />
     </section>
 </template>
 
 <script>
+import cardEdit from "../card/card-edit.cmp";
+
 export default {
     props: {
         card: Object,
+    },
+    components: {
+        cardEdit,
     },
 };
 </script>
