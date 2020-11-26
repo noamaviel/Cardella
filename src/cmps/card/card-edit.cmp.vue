@@ -7,8 +7,9 @@
             margin: 5px;
             border: 1px solid black;
             width: 400px;
-            height: 800px;
+            z-index:10;
             background-color: grey;
+            position: absolute;
         "
     >
         <div class="main-area" style="flex-grow: 1">

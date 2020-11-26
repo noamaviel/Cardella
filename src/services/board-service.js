@@ -39,7 +39,7 @@ function getEmptyCard(title = '') {
             imgUrl: 'http://some-img'
         },
         style: {
-            bgColor: '#26de81'
+            bgColor: '#F6B6B4'
         },
     }
     return card;
