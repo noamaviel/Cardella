@@ -2,16 +2,19 @@
     <section
         class="card-edit"
         style="
-            display: inline-block;
+            display: flex;
             padding: 10px;
             margin: 5px;
             border: 1px solid black;
-            width: 200px;
+            width: 400px;
             height: 400px;
+            background-color: grey;
         "
     >
-        <div class="main-area">
-            <button @click="closeCard">x</button>
+        <div class="main-area"
+        style="flex-grow: 1"
+        >
+            <button @click="onCloseCard">x</button>
             <h1>CARD EDIT!</h1>
             <h2>card.title</h2>
             <h4>list.title</h4>
@@ -53,7 +56,7 @@
         </ul> -->
         </div>
 
-        <div class="menu-area">
+        <div class="menu-area" style="display: flex; flex-direction: column">
             <button>Members</button>
             <button>Labels</button>
             <button>Checklist</button>
@@ -61,10 +64,9 @@
             <button>Upload Image</button>
             <button>Card Color</button>
             <button>Delete card</button>
+            <button @click="updateCard">save</button>
+            <button @click="closeCard">cancel</button>
         </div>
-
-        <button @click="updateCard">save</button>
-        <button @click="closeCard">cancel</button>
     </section>
 </template>
 
@@ -77,7 +79,9 @@ export default {
         };
     },
     methods: {
-        closeCard() {},
+        onCloseCard() {
+            this.$emit('closeCard')
+        },
         updateCard() {},
     },
 };

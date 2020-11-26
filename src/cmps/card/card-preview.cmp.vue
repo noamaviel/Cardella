@@ -12,7 +12,8 @@
     >
         <h1>card</h1>
         {{ card.title }}
-        <card-edit />
+        <button @click="onOpenEdit">Edit</button>
+        <card-edit v-if="isEdited" @closeCard="onCloseCard" />
     </section>
 </template>
 
@@ -22,6 +23,19 @@ import cardEdit from "../card/card-edit.cmp";
 export default {
     props: {
         card: Object,
+    },
+    data() {
+        return {
+            isEdited: false,
+        };
+    },
+    methods: {
+        onOpenEdit() {
+            this.isEdited = true;
+        },
+        onCloseCard() {
+            this.isEdited = false;
+        }
     },
     components: {
         cardEdit,
