@@ -7,7 +7,7 @@
             margin: 5px;
             border: 1px solid black;
             width: 200px;
-            height: 400px;
+            height: 100px;
         "
     >
         <h1>card</h1>

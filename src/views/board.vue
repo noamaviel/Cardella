@@ -1,6 +1,5 @@
 <template>
     <section class="board">
-        <h1>This is the public board!!!</h1>
         <board-header :board="board" />
         <list-cmp v-for="list in board.lists" :key="list.id" :list="list" />
         <!-- <list-add /> -->
