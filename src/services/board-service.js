@@ -5,7 +5,10 @@ export const boardService = {
     getBoardById,
     addBoard,
     removeBoard,
-    updateBoard
+    updateBoard,
+    getListById,
+    getCardById,
+    getEmptyCard
 }
 
 function getBoards() {
@@ -13,6 +16,16 @@ function getBoards() {
 }
 function getBoardById(boardId) {
     return HttpService.get(`boards/${boardId}`)
+}
+
+async function getListById(boardId, listId) {
+    const board = await getBoardById(boardId);
+    return board.lists[listId];
+}
+
+function getCardById(boardId, listId, cardId) {
+    const list = getListById(boardId, listId);
+    return list.card[cardId];
 }
 
 function addBoard(board) {
@@ -26,6 +39,28 @@ function updateBoard(board) {
     return HttpService.put(`boards/${board._id}`, board)
 }
 
+function getEmptyCard(title = '') {
+    const card = {
+        id: _makeId(),
+        title,
+        createdAt: Date.now(),
+        createdBy: {
+            id: 'u103',
+            fullname: 'Shimrit Herbst',
+            imgUrl: 'http://some-img'
+        }
+    }
+    return card;
+}
+
+function _makeId(length = 4) {
+    var txt = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return txt;
+}
 
 // Service Testing
 

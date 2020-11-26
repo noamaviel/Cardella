@@ -3,6 +3,7 @@ import { boardService } from '@/services/board-service.js';
 export const boardStore = {
     strict: true,
     state: {
+        boards: [],
         currBoard: {},
     },
     getters: {
@@ -11,6 +12,7 @@ export const boardStore = {
         }
     },
     mutations: {
+        //BOARD//
         setCurrBoard(state, { board }) {
             state.currBoard = board;
         },
@@ -27,11 +29,26 @@ export const boardStore = {
             const idx = state.boards.findIndex(board => board._id === boardId);
             state.boards.splice(idx, 1);
         },
+        //CARD//
+        addCard(state, { listId, card }) {
+            console.log('this is it',state.currBoard.lists)
+            const cards = state.currBoard.lists[listId].cards;
+            cards.push(card);
+        },
     },
     actions: {
+        //BOARD//
         async loadBoard({ commit }, { boardId }) {
             const board = await boardService.getBoardById(boardId)
             commit({ type: 'setCurrBoard', board })
         },
+        //CARD//
+        async addCard({ commit, state }, { listId, cardTitle }) {
+            const card = boardService.getEmptyCard(cardTitle);
+            console.log("🚀 ~ file: board-store.js ~ line 47 ~ addCard ~ card", card)
+            commit({ type: 'addCard', listId, card })
+            await boardService.updateBoard(state.currBoard);
+        },
+
     }
 }
