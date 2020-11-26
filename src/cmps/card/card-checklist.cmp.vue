@@ -75,6 +75,7 @@ export default {
             let newTodo = JSON.parse(JSON.stringify(this.tmpTodo));
             console.log("onAddTodo", newTodo);
             this.checklist.todos.splice(this.checklist.todos.length, 0, newTodo);
+            eventBus.$emit(EVENT_UPDATE_BOARD);
             this.tmpTodo.title = '';
         },
         onRemoveTodo(index) {
