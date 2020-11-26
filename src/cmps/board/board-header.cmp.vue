@@ -10,11 +10,13 @@
 
         <board-members :members="board.members" />
 
-        <div class="board-menu-right">
-            <board-filter :board="board" />
-            <side-menu :board="board" />
-        </div>
-    </section>
+    <div class="board-menu-right">
+      <board-filter :board="board" />
+
+      <button @click="toggleMenu">Menu</button>
+      <side-menu v-if="isOpen" :board="board" />
+    </div>
+  </section>
 </template>
 
 <script>
@@ -23,27 +25,32 @@ import boardFilter from "@/cmps/board/board-filter.cmp.vue";
 import sideMenu from "@/cmps/board/side-menu.cmp.vue";
 
 export default {
-    props: {
-        board: Object,
+  props: {
+    board: Object,
+  },
+  data() { 
+    return {
+      isOpen:false
+    };
+  },
+  methods: {
+    updateBoardTitle(ev) {
+      if (this.board.title === ev.target.innerText) return;
+      if (!ev.target.innerText) {
+        ev.target.innerText = this.board.title;
+        return;
+      }
+      this.board.title = ev.target.innerText;
+      ev.target.blur();
     },
-    methods: {
-        updateBoardTitle(ev) {
-            if (this.board.title === ev.target.innerText) return;
-            if (!ev.target.innerText) {
-                ev.target.innerText = this.board.title;
-                return;
-            }
-            this.board.title = ev.target.innerText;
-            ev.target.blur();
-        },
+    toggleMenu() {
+      this.isOpen = !this.isOpen;
     },
-    created() {
-        // console.log("from board-header", this.board.members);
-    },
-    components: {
-        boardMembers,
-        boardFilter,
-        sideMenu,
-    },
+  },
+  components: {
+    boardMembers,
+    boardFilter,
+    sideMenu,
+  },
 };
 </script>

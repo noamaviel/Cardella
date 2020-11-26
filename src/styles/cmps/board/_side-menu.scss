@@ -1,0 +1,24 @@
+.side-menu {
+    display: flex;
+    justify-content: center;
+    height: 400px;
+    background-color: #cacaca;
+    position: absolute;
+    top: 170px;
+    right: 0;
+    padding: 0 16px 16px 16px;
+
+    .menu-actions li {
+        background-color: #fff;
+        margin-bottom: 10px;
+        padding: 8px;
+        cursor: pointer;
+    }
+
+    .menu-actions h4 {
+        text-align: center;
+        margin-top: 30px;
+        cursor: pointer;
+
+    }
+}
