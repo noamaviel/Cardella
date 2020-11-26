@@ -60,7 +60,8 @@
             <button>Checklist</button>
             <button>Due Date</button>
             <button>Upload Image</button>
-            <button>Card Color</button>
+            <button @click="onOpenColorPallette">Card Color</button>
+            <card-color v-if="isDisplayColorPallette" @setColor="changeColor"/>
             <button>Delete card</button>
             <button @click="updateCard">save</button>
             <button @click="onCloseCard">cancel</button>
@@ -69,12 +70,15 @@
 </template>
 
 <script>
+import cardColor from "../card/card-color.cmp"
+
 export default {
     props: {
-        inCard: Object,
+        card: Object,
     },
     data() {
         return {
+            isDisplayColorPallette: false
             // comment: "",
         };
     },
@@ -82,10 +86,23 @@ export default {
         onCloseCard() {
             this.$emit('closeCard');
         },
+        changeColor(color) {
+            console.log('color:', color)
+            this.isDisplayColorPallette = false;
+            this.card.style.bgColor = color;
+          //TODO - Set color of BGC
+        },
+        onOpenColorPallette() {
+            console.log('color button clicked')
+          this.isDisplayColorPallette = !this.isDisplayColorPallette;
+        },
         updateCard() {},
     },
+    components: {
+    cardColor
+    },
     created() {
-        console.log('onCardEditCreated', this.inCard)
+        console.log('onCardEditCreated', this.card)
     }
 };
 </script>
