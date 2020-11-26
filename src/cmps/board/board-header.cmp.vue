@@ -1,18 +1,20 @@
 <template>
-  <section class="board-header">
-    <h2
-      contenteditable="true"
-      @keypress.enter.prevent="updateBoardTitle"
-      @blur="updateBoardTitle"
-    >
-      {{ board.title }}
-    </h2>
+    <section class="board-header">
+        <h2
+            contenteditable="true"
+            @keypress.enter.prevent="updateBoardTitle"
+            @blur="updateBoardTitle"
+        >
+            {{ board.title }}
+        </h2>
 
-    <board-members />
+        <board-members :members="board.members" />
 
     <div class="board-menu-right">
       <board-filter :board="board" />
-      <side-menu :board="board" />
+
+      <button @click="toggleMenu">Menu</button>
+      <side-menu v-if="isOpen" :board="board" />
     </div>
   </section>
 </template>
@@ -26,6 +28,11 @@ export default {
   props: {
     board: Object,
   },
+  data() { 
+    return {
+      isOpen:false
+    };
+  },
   methods: {
     updateBoardTitle(ev) {
       if (this.board.title === ev.target.innerText) return;
@@ -35,6 +42,9 @@ export default {
       }
       this.board.title = ev.target.innerText;
       ev.target.blur();
+    },
+    toggleMenu() {
+      this.isOpen = !this.isOpen;
     },
   },
   components: {

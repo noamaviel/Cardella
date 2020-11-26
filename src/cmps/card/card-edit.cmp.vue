@@ -72,7 +72,7 @@
             <button @click="onOpenColorPallette">Card Color</button>
             <card-color v-if="isDisplayColorPallette" @setColor="changeColor" />
             <button>Delete card</button>
-            <button @click="updateCard">save</button>
+            <!-- <button @click="updateCard">save</button> -->
             <button @click="onCloseCard">cancel</button>
         </div>
     </section>
@@ -109,7 +109,6 @@ export default {
             console.log("color button clicked");
             this.isDisplayColorPallette = !this.isDisplayColorPallette;
         },
-        updateCard() {},
     },
     components: {
         cardColor,
@@ -118,7 +117,6 @@ export default {
         // cardChecklist
     },
     created() {
-        console.log("onCardEditCreated", this.card);
-    },
+    }
 };
 </script>

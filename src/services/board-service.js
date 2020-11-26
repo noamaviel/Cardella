@@ -6,8 +6,8 @@ export const boardService = {
     addBoard,
     removeBoard,
     updateBoard,
-    // getCardById,
-    getEmptyCard
+    getEmptyCard,
+    getEmptyList
 }
 
 function getBoards() {
@@ -16,12 +16,6 @@ function getBoards() {
 function getBoardById(boardId) {
     return HttpService.get(`boards/${boardId}`)
 }
-
-// async function getCardById(boardId, listId, cardId) {
-//     const list = await getListById(boardId, listId);
-//     const idx = list.findIndex(card => card.id === cardId);
-//     return list.card[idx];
-// }
 
 function addBoard(board) {
     return HttpService.post('boards', board)
@@ -49,6 +43,15 @@ function getEmptyCard(title = '') {
         },
     }
     return card;
+}
+
+function getEmptyList(title = '') {
+    const list = {
+        id: _makeId(),
+        title,
+        cards: []
+    }
+    return list;
 }
 
 function _makeId(length = 4) {
