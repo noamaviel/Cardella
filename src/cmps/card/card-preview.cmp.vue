@@ -13,7 +13,7 @@
         <h1>card</h1>
         {{ card.title }}
         <button @click="onOpenEdit">Edit</button>
-        <card-edit v-if="isEdited" @closeCard="onCloseCard" :inCard="card"/>
+        <card-edit v-if="isEdited" @closeCard="onCloseCard" :card="card" />
     </section>
 </template>
 
@@ -35,7 +35,7 @@ export default {
         },
         onCloseCard() {
             this.isEdited = false;
-        }
+        },
     },
     components: {
         cardEdit,

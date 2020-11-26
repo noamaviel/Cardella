@@ -8,7 +8,7 @@
         >
             {{ list.title }}
         </h1>
-        <card-preview v-for="card in list.cards" :key="card.id" :card="card" />
+        <card-preview v-bind:style="{backgroundColor: card.style.bgColor}" v-for="card in list.cards" :key="card.id" :card="card" />
     </section>
 </template>
 
@@ -37,6 +37,9 @@ export default {
     components: {
         cardPreview,
     },
+    created() {
+
+    }
 };
 </script>
 
