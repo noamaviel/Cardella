@@ -2,19 +2,7 @@
 <template>
     <section class="list-container">
         <i class="fas fa-ellipsis-h"></i>
-        <div class="list-menu">
-            <ul>
-                <li>Delete list</li>
-                <li>Add card</li>
-                <!-- <li>Sort by</li> -->
-                <!-- <ul>
-                    <li>Date created</li>
-                    <li>Due date</li>
-                    <li>Card name</li>
-                </ul> -->
-            </ul>
-        </div>
-
+        <list-menu :list="list" />
         <h1
             contenteditable="true"
             @keypress.enter.prevent="updateListTitle"
@@ -47,6 +35,7 @@
 
 <script>
 import cardPreview from "../card/card-preview.cmp";
+import listMenu from "../list/list-menu.cmp";
 
 export default {
     props: {
@@ -95,6 +84,7 @@ export default {
     },
     components: {
         cardPreview,
+        listMenu,
     },
     created() {},
 };

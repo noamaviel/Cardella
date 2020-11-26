@@ -52,7 +52,12 @@ export const boardStore = {
             const listIdx = state.currBoard.lists.findIndex(currList => currList.id === list.id);
             const lists = state.currBoard.lists;
             lists.splice(listIdx, 1, list);
-        }
+        },
+        removeList(state, { listId }) {
+            const listIdx = state.currBoard.lists.findIndex(currList => currList.id === listId);
+            const lists = state.currBoard.lists;
+            lists.splice(listIdx, 1);
+        },
     },
     actions: {
         //BOARD//
@@ -60,14 +65,19 @@ export const boardStore = {
             const board = await boardService.getBoardById(boardId)
             commit({ type: 'setCurrBoard', board })
         },
-        //CARD//
-        async addCard({ commit, state }, { listId, cardTitle }) {
-            const card = boardService.getEmptyCard(cardTitle);
-            commit({ type: 'addCard', listId, card })
-            await boardService.updateBoard(state.currBoard);
-        },
         async updateBoard({ state }) {
             // console.log('state.currBoard in boardActions', state.currBoard)
+            await boardService.updateBoard(state.currBoard);
+        },
+        async updateBoardV2({ commit, state }, { board }) {
+            commit({ type: 'updateBoard', board });
+            await boardService.updateBoard(state.currBoard);
+        },
+        //CARD//
+        async addCard({ commit, state }, { listId, cardTitle }) {
+            console.log('state.currBoard in boardActions', state.currBoard)
+            const card = boardService.getEmptyCard(cardTitle);
+            commit({ type: 'addCard', listId, card })
             await boardService.updateBoard(state.currBoard);
         },
         async removeCard({ commit, state }, { listId, cardId }) {
@@ -81,8 +91,12 @@ export const boardStore = {
             await boardService.updateBoard(state.currBoard);
         },
         async updateList({ commit, state }, { list }) {
-            console.log('state.currBoard in boardActions', state.currBoard)
             commit({ type: 'updateList', list });
+            await boardService.updateBoard(state.currBoard);
+        },
+        async removeList({ commit, state }, { listId }) {
+            // console.log('state.currBoard in boardActions', state.currBoard)
+            commit({ type: 'removeList', listId })
             await boardService.updateBoard(state.currBoard);
         },
     }
