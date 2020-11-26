@@ -14,8 +14,11 @@
             v-for="card in list.cards"
             :key="card.id"
             :card="card"
+            @removeCard="removeCard"
         />
-        <button class="add-card-btn" v-if="!isNew" @click="onOpenNewCard">+ Add another card</button>
+        <button class="add-card-btn" v-if="!isNew" @click="onOpenNewCard">
+            + Add another card
+        </button>
         <div v-else>
             <input
                 type="text"
@@ -62,6 +65,13 @@ export default {
             });
             this.isNew = false;
             this.newCardTitle = "";
+        },
+        removeCard(cardId) {
+            this.$store.dispatch({
+                type: "removeCard",
+                cardId,
+                listId: this.list.id,
+            });
         },
     },
     components: {

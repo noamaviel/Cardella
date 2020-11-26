@@ -1,20 +1,20 @@
 <template>
-  <section class="board-header">
-    <h2
-      contenteditable="true"
-      @keypress.enter.prevent="updateBoardTitle"
-      @blur="updateBoardTitle"
-    >
-      {{ board.title }}
-    </h2>
+    <section class="board-header">
+        <h2
+            contenteditable="true"
+            @keypress.enter.prevent="updateBoardTitle"
+            @blur="updateBoardTitle"
+        >
+            {{ board.title }}
+        </h2>
 
-    <board-members />
+        <board-members :members="board.members" />
 
-    <div class="board-menu-right">
-      <board-filter :board="board" />
-      <side-menu :board="board" />
-    </div>
-  </section>
+        <div class="board-menu-right">
+            <board-filter :board="board" />
+            <side-menu :board="board" />
+        </div>
+    </section>
 </template>
 
 <script>
@@ -23,24 +23,27 @@ import boardFilter from "@/cmps/board/board-filter.cmp.vue";
 import sideMenu from "@/cmps/board/side-menu.cmp.vue";
 
 export default {
-  props: {
-    board: Object,
-  },
-  methods: {
-    updateBoardTitle(ev) {
-      if (this.board.title === ev.target.innerText) return;
-      if (!ev.target.innerText) {
-        ev.target.innerText = this.board.title;
-        return;
-      }
-      this.board.title = ev.target.innerText;
-      ev.target.blur();
+    props: {
+        board: Object,
     },
-  },
-  components: {
-    boardMembers,
-    boardFilter,
-    sideMenu,
-  },
+    methods: {
+        updateBoardTitle(ev) {
+            if (this.board.title === ev.target.innerText) return;
+            if (!ev.target.innerText) {
+                ev.target.innerText = this.board.title;
+                return;
+            }
+            this.board.title = ev.target.innerText;
+            ev.target.blur();
+        },
+    },
+    created() {
+        // console.log("from board-header", this.board.members);
+    },
+    components: {
+        boardMembers,
+        boardFilter,
+        sideMenu,
+    },
 };
 </script>

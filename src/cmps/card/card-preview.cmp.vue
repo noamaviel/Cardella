@@ -14,6 +14,7 @@
         {{ card.title }}
         <button @click="onOpenEdit">Edit</button>
         <card-edit v-if="isEdited" @closeCard="onCloseCard" :card="card" />
+        <i class="far fa-trash-alt" @click.stop="emitRemoveCard"></i>
     </section>
 </template>
 
@@ -36,6 +37,9 @@ export default {
         onCloseCard() {
             this.isEdited = false;
         },
+        emitRemoveCard() {
+            this.$emit("removeCard", this.card.id);
+        },
     },
     components: {
         cardEdit,
@@ -47,4 +51,7 @@ export default {
 </script>
 
 <style>
+.far {
+    cursor: pointer;
+}
 </style>
