@@ -1,5 +1,7 @@
 <template>
-    <section>
-        <h1>I'm a footer :)</h1>
-    </section>
+  <section>
+    <footer class="main-footer">
+      <small>I'm a footer :)</small>
+    </footer>
+  </section>
 </template>
