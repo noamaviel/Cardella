@@ -78,7 +78,6 @@ export default {
     },
     methods: {
         onCheckbox() {
-            // noteService.updateLocalStorage();
             console.log("checkbox clicked");
             eventBus.$emit(EVENT_UPDATE_BOARD);
         },

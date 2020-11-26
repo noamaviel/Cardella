@@ -1,15 +1,17 @@
 <template>
     <section class="board">
         <board-header :board="board" />
-        <list-cmp v-for="list in board.lists" :key="list.id" :list="list" />
-        <list-add />
+        <div class="lists-container flex">
+            <list-cmp v-for="list in board.lists" :key="list.id" :list="list" />
+            <list-add />
+        </div>
     </section>
 </template>
 
 <script>
 import boardHeader from "@/cmps/board/board-header.cmp.vue";
 import listCmp from "@/cmps/list/list.cmp.vue";
-import { eventBus, EVENT_UPDATE_BOARD } from '../services/eventbus-service.js'
+import { eventBus, EVENT_UPDATE_BOARD } from "../services/eventbus-service.js";
 import listAdd from "@/cmps/list/list-add.cmp.vue";
 
 export default {
@@ -33,7 +35,7 @@ export default {
 
         eventBus.$on(EVENT_UPDATE_BOARD, () => {
             // console.log("board in board-cmp:", this.board);
-            this.$store.dispatch({type: "updateBoard" });
+            this.$store.dispatch({ type: "updateBoard" });
         });
     },
 };

@@ -10,6 +10,7 @@
                 placeholder="Enter list title..."
             />
             <button @click="addList">Add list</button>
+            <button>x</button>
         </div>
     </section>
 </template>
@@ -35,6 +36,6 @@ export default {
             this.newListTitle = "";
         },
     },
-}
+};
 </script>
  

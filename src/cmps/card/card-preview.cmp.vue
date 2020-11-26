@@ -1,15 +1,5 @@
 <template>
-    <section
-        class="card-preview-container"
-        style="
-            display: inline-block;
-            padding: 10px;
-            margin: 5px;
-            border: 1px solid black;
-            width: 200px;
-            height: 100px;
-        "
-    >
+    <section class="card-preview-container">
         <h1>card</h1>
         {{ card.title }}
         <button @click="onOpenEdit">Edit</button>
@@ -45,8 +35,8 @@ export default {
         cardEdit,
     },
     created() {
-        console.log('card in Card Preview', this.card)
-    }
+        // console.log("card in Card Preview", this.card);
+    },
 };
 </script>
 

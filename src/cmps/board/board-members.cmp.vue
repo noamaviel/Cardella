@@ -34,7 +34,6 @@ export default {
     computed: {},
     methods: {},
     created() {
-        // console.log('members',this.members)
     },
     components: {
         Avatar,

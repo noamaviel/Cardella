@@ -1,6 +1,10 @@
 
 <template>
     <section class="list-container">
+        <div class="list-menu">
+            <i class="fas fa-ellipsis-h"></i>
+        </div>
+
         <h1
             contenteditable="true"
             @keypress.enter.prevent="updateListTitle"
@@ -26,6 +30,7 @@
                 placeholder="Enter a title for this card..."
             />
             <button @click="addCard">Add card</button>
+            <button>x</button>
         </div>
     </section>
 </template>
@@ -80,13 +85,3 @@ export default {
     created() {},
 };
 </script>
-
-<style>
-.list-container {
-    display: flex;
-    flex-direction: column;
-}
-.add-card-btn {
-    width: 200px;
-}
-</style>
