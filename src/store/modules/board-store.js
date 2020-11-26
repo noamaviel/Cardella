@@ -31,8 +31,8 @@ export const boardStore = {
         },
         //CARD//
         addCard(state, { listId, card }) {
-            console.log('this is it',state.currBoard.lists)
-            const cards = state.currBoard.lists[listId].cards;
+            const listIdx = state.currBoard.lists.findIndex(list => list.id === listId);
+            const cards = state.currBoard.lists[listIdx].cards;
             cards.push(card);
         },
     },
@@ -45,10 +45,8 @@ export const boardStore = {
         //CARD//
         async addCard({ commit, state }, { listId, cardTitle }) {
             const card = boardService.getEmptyCard(cardTitle);
-            console.log("🚀 ~ file: board-store.js ~ line 47 ~ addCard ~ card", card)
             commit({ type: 'addCard', listId, card })
             await boardService.updateBoard(state.currBoard);
         },
-
     }
 }

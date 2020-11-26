@@ -15,7 +15,7 @@
             :key="card.id"
             :card="card"
         />
-        <button v-if="!isNew" @click="onOpenNewCard">+ Add another card</button>
+        <button class="add-card-btn" v-if="!isNew" @click="onOpenNewCard">+ Add another card</button>
         <div v-else>
             <input
                 type="text"
@@ -24,7 +24,6 @@
             />
             <button @click="addCard">Add card</button>
         </div>
-        >>>>>>> Stashed changes
     </section>
 </template>
 
@@ -62,6 +61,7 @@ export default {
                 listId: this.list.id,
             });
             this.isNew = false;
+            this.newCardTitle = "";
         },
     },
     components: {
@@ -72,4 +72,11 @@ export default {
 </script>
 
 <style>
+.list-container {
+    display: flex;
+    flex-direction: column;
+}
+.add-card-btn {
+    width: 200px;
+}
 </style>

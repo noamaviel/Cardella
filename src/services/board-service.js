@@ -6,8 +6,7 @@ export const boardService = {
     addBoard,
     removeBoard,
     updateBoard,
-    getListById,
-    getCardById,
+    // getCardById,
     getEmptyCard
 }
 
@@ -18,15 +17,11 @@ function getBoardById(boardId) {
     return HttpService.get(`boards/${boardId}`)
 }
 
-async function getListById(boardId, listId) {
-    const board = await getBoardById(boardId);
-    return board.lists[listId];
-}
-
-function getCardById(boardId, listId, cardId) {
-    const list = getListById(boardId, listId);
-    return list.card[cardId];
-}
+// async function getCardById(boardId, listId, cardId) {
+//     const list = await getListById(boardId, listId);
+//     const idx = list.findIndex(card => card.id === cardId);
+//     return list.card[idx];
+// }
 
 function addBoard(board) {
     return HttpService.post('boards', board)
@@ -48,7 +43,10 @@ function getEmptyCard(title = '') {
             id: 'u103',
             fullname: 'Shimrit Herbst',
             imgUrl: 'http://some-img'
-        }
+        },
+        style: {
+            bgColor: '#26de81'
+        },
     }
     return card;
 }
