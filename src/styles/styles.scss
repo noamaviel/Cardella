@@ -1,3 +1,40 @@
 // BASICS
 @import 'basics/base';
+// @import 'basics/helpers';
+// @import 'basics/layout';
+
+// SETUP
+@import 'setup/functions';
+@import 'setup/mixins';
+@import 'setup/typography';
+@import 'setup/variables';
+
+// MAIN CMPS
+@import 'cmps/app-footer';
+@import 'cmps/app-header';
+@import 'cmps/boards-menu.scss';
+
+// CMPS BOARD
+@import 'cmps/board/board-activity-log';
+@import 'cmps/board/board-filter';
+@import 'cmps/board/board-header';
+@import 'cmps/board/board-members';
+@import 'cmps/board/side-menu';
+
+// CMPS CARD
+@import 'cmps/card/card-edit';
+@import 'cmps/card/card-preview';
+@import 'cmps/card/card-sort';
+
+// CMPS LIST
+@import 'cmps/list/list-add';
+@import 'cmps/list/list-menu';
+@import 'cmps/list/list';
+
+// VIEWS
+@import 'views/board-create';
+@import 'views/board';
+@import 'views/home-page';
+@import 'views/login-signup';
+@import 'views/user-details';
 

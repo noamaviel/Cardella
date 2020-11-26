@@ -1,0 +1,23 @@
+.board-header {
+    padding: 10px;
+    padding-top: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid grey;
+    margin-bottom: 20px;
+
+    .board-avatar i {
+        font-size: 30px;
+    }
+
+    .board-menu-right {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 280px;
+    }
+
+}
