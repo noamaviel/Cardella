@@ -33,8 +33,7 @@ export default {
     },
     computed: {},
     methods: {},
-    created() {
-    },
+    created() {},
     components: {
         Avatar,
     },
