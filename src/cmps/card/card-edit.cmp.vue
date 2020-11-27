@@ -1,17 +1,5 @@
 <template>
-    <section
-        class="card-edit"
-        style="
-            display: flex;
-            padding: 10px;
-            margin: 5px;
-            border: 1px solid black;
-            width: 400px;
-            z-index:10;
-            background-color: grey;
-            position: absolute;
-        "
-    >
+    <section class="card-edit">
         <div class="main-area" style="flex-grow: 1">
             <button @click="onCloseCard">x</button>
             <!-- <div class="addChecklistModal">
@@ -20,8 +8,7 @@
                     <button>Add Checklist</button>
                 </form>
             </div> -->
-            <h1>CARD EDIT!</h1>
-            <h2>card.title</h2>
+            <h2>{{card.title}}</h2>
             <h4>list.title</h4>
             <h3>Members</h3>
             <!-- <members-cmp></members-cmp> -->
@@ -117,7 +104,6 @@ export default {
         checklistsCmp,
         // cardChecklist
     },
-    created() {
-    }
+    created() {},
 };
 </script>

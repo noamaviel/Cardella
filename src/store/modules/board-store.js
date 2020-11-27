@@ -25,10 +25,10 @@ export const boardStore = {
             state.boards.splice(idx, 1, board);
             state.currBoard = board;
         },
-        removeBoard(state, { boardId }) {
-            const idx = state.boards.findIndex(board => board._id === boardId);
-            state.boards.splice(idx, 1);
-        },
+        // removeBoard(state, { boardId }) {
+        //     const idx = state.boards.findIndex(board => board._id === boardId);
+        //     state.boards.splice(idx, 1);
+        // },
         //CARD//
         addCard(state, { listId, card }) {
             const listIdx = state.currBoard.lists.findIndex(list => list.id === listId);
@@ -42,7 +42,6 @@ export const boardStore = {
             const cards = state.currBoard.lists[listIdx].cards;
             cards.splice(cardIdx, 1);
         },
-
         //LIST//
         addList(state, { list }) {
             const lists = state.currBoard.lists;
