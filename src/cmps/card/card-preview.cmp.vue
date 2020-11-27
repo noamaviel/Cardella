@@ -1,5 +1,6 @@
 <template>
     <section class="card-preview-container">
+        <img :src="card.uploadImgUrl" />
         <h3>{{ card.title }}</h3>
         <router-link to="../../.."
             ><i class="far fa-trash-alt" @click.stop="emitRemoveCard"></i
@@ -17,7 +18,7 @@ export default {
     },
     methods: {
         emitRemoveCard() {
-            console.log('we are here')
+            console.log("we are here");
             this.$emit("removeCard", this.card.id);
         },
     },

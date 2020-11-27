@@ -30,15 +30,15 @@
             date-picker input (consider a npm package)
 		</label>            
         </due-date-cmp> -->
+            <h3>Checklist</h3>
             <checklists-cmp
                 v-if="card.checklists"
                 :checklists="card.checklists"
             />
-            <!-- <checklist-cmp>
-            status bar
-            todo list
-            <button>Add an item</button>
-        </checklist-cmp> -->
+
+            <h3>Image</h3>
+            <img :src="card.uploadImgUrl" />
+
             <h3>Description</h3>
             <textarea
                 type="textarea"
@@ -47,9 +47,7 @@
                 rows="5"
                 max-rows="6"
                 @blur="updateCardDescription"
-            ></textarea>
-            <h3>Image</h3>
-            <img src="" />
+            />
             <h3>Activity</h3>
             <!-- consider change to "Comments" as these are not activities -->
             <!-- <input type="text" placeholder="Write a comment... v-model="comment""/> -->
@@ -63,10 +61,20 @@
             <button>Labels</button>
             <button>Checklist</button>
             <button>Due Date</button>
-            <button>Upload Image</button>
+            <button>
+                <label for="imgUploader">Upload Image</label>
+            </button>
+            <input
+                type="file"
+                name="img-uploader"
+                id="imgUploader"
+                @change="onUploadImg"
+            />
             <button @click="onOpenColorPallette">Card Color</button>
             <card-color v-if="isDisplayColorPallette" @setColor="changeColor" />
-            <button>Delete card</button>
+            <router-link to="../../..">
+                <button @click="removeCard">Delete card</button>
+            </router-link>
             <router-link to="../../..">Cancel</router-link>
         </div>
     </section>
@@ -74,10 +82,8 @@
 
 <script>
 import cardColor from "@/cmps/card/card-color.cmp";
-// import checklists from "../card/checklists.cmp"
 import checklistsCmp from "@/cmps/card/checklists.cmp.vue";
-// import ChecklistsCmp from './checklists.cmp.vue';
-// import cardChecklist from "../card/card-checklist.cmp"
+import { uploadImg } from "@/services/upload-img-service.js";
 
 export default {
     data() {
@@ -119,7 +125,6 @@ export default {
             this.isDisplayColorPallette = !this.isDisplayColorPallette;
         },
         updateCardTitle(ev) {
-            debugger
             if (this.card.title === ev.target.innerText) return;
             if (!ev.target.innerText) {
                 ev.target.innerText = this.card.title;
@@ -139,13 +144,22 @@ export default {
                 list: this.list,
             });
         },
+        async onUploadImg(ev) {
+            const res = await uploadImg(ev);
+            this.card.uploadImgUrl = res.secure_url;
+            this.updateCard();
+        },
+        removeCard() {
+            this.$store.dispatch({
+                type: "removeCard",
+                cardId: this.card.id,
+                listId: this.list.id,
+            });
+        },
     },
     components: {
         cardColor,
-        // checklists
         checklistsCmp,
-        // cardChecklist
     },
-    created() {},
 };
 </script>

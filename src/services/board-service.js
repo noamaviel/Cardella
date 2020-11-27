@@ -1,4 +1,5 @@
 import HttpService from './http-service'
+import { utilService } from '@/services/util-service.js';
 
 export const boardService = {
     getBoards,
@@ -30,10 +31,11 @@ function updateBoard(board) {
 
 function getEmptyCard(title = '') {
     const card = {
-        id: _makeId(),
+        id: utilService.makeId(),
         title,
         createdAt: Date.now(),
         description: '',
+        uploadImgUrl: '',
         createdBy: {
             id: 'u103',
             fullname: 'Shimrit Herbst',
@@ -48,65 +50,9 @@ function getEmptyCard(title = '') {
 
 function getEmptyList(title = '') {
     const list = {
-        id: _makeId(),
+        id: utilService.makeId(),
         title,
         cards: []
     }
     return list;
 }
-
-function _makeId(length = 4) {
-    var txt = '';
-    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return txt;
-}
-
-// Service Testing
-
-
-// // var testboard = {_id: "b102", test:'testboard'}
-// // update(testboard);
-
-// // async function update(board) {
-// //   console.log('board in ENTRANCE', board)
-// //   var t = await boardService.update(board)
-// //   console.log('updatedboard', t)
-// // }
-
-// getBoards();
-
-// async function getBoards() {
-//   var bs = await boardService.getBoards();
-//   console.log('boards:', bs);
-// }
-
-// const testBoard = {
-//   _id: "b101"
-// }
-// getBoardById(testBoard._id)
-
-// async function getBoardById(testBoardId) {
-//   var bst = await boardService.getBoardById(testBoardId);
-//   console.log('boardById', bst)
-// }
-
-// removeBoard("b102")
-
-// async function removeBoard(boardId) {
-//   var rb = await boardService.remove(boardId)
-//   console.log('removedBoard', rb)
-// }
-
-// // const newTestBoard = {
-// //   _id: "b102"
-// // }
-
-// // addBoard(newTestBoard)
-
-// // async function addBoard(newBoard) {
-// //   var ntb = await boardService.addBoard(newBoard);
-// //   console.log('newBoard', ntb);
-// // }
