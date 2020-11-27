@@ -10,7 +10,7 @@
                 placeholder="Enter list title..."
             />
             <button @click="addList">Add list</button>
-            <button>x</button>
+            <button @click="onCloseNewList">X</button>
         </div>
     </section>
 </template>
@@ -26,6 +26,9 @@ export default {
     methods: {
         onOpenNewList() {
             this.isNew = true;
+        },
+        onCloseNewList() {
+            this.isNew = false;
         },
         addList() {
             this.$store.dispatch({

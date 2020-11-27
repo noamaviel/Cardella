@@ -28,7 +28,7 @@
                 placeholder="Enter a title for this card..."
             />
             <button @click="addCard">Add card</button>
-            <button>x</button>
+            <button @click="onCloseNewCard">X</button>
         </div>
     </section>
 </template>
@@ -51,6 +51,9 @@ export default {
     methods: {
         onOpenNewCard() {
             this.isNew = true;
+        },
+        onCloseNewCard() {
+            this.isNew = false;
         },
         updateListTitle(ev) {
             if (this.list.title === ev.target.innerText) return;

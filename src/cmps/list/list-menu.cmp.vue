@@ -10,7 +10,7 @@
                     placeholder="Enter a title for this card..."
                 />
                 <button @click="addCard">Add card</button>
-                <button>x</button>
+                <button @click="onCloseNewCard">X</button>
             </div>
 
             <!-- <li>Sort by</li> -->
@@ -34,6 +34,9 @@ export default {
     methods: {
         onOpenNewCard() {
             this.isNew = true;
+        },
+        onCloseNewCard() {
+            this.isNew = false;
         },
         removeList() {
             this.$store.dispatch({

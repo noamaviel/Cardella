@@ -75,7 +75,6 @@ export const boardStore = {
         },
         //CARD//
         async addCard({ commit, state }, { listId, cardTitle }) {
-            console.log('state.currBoard in boardActions', state.currBoard)
             const card = boardService.getEmptyCard(cardTitle);
             commit({ type: 'addCard', listId, card })
             await boardService.updateBoard(state.currBoard);
@@ -95,7 +94,6 @@ export const boardStore = {
             await boardService.updateBoard(state.currBoard);
         },
         async removeList({ commit, state }, { listId }) {
-            // console.log('state.currBoard in boardActions', state.currBoard)
             commit({ type: 'removeList', listId })
             await boardService.updateBoard(state.currBoard);
         },
