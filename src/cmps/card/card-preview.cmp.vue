@@ -1,41 +1,25 @@
 <template>
     <section class="card-preview-container">
-        <h1>card</h1>
-        {{ card.title }}
-        <button @click="onOpenEdit">Edit</button>
-        <card-edit v-if="isEdited" @closeCard="onCloseCard" :card="card" />
-        <i class="far fa-trash-alt" @click.stop="emitRemoveCard"></i>
+        <h3>{{ card.title }}</h3>
+        <router-link to="../../.."
+            ><i class="far fa-trash-alt" @click.stop="emitRemoveCard"></i
+        ></router-link>
     </section>
 </template>
 
 <script>
-import cardEdit from "../card/card-edit.cmp.vue";
-
 export default {
     props: {
         card: Object,
     },
     data() {
-        return {
-            isEdited: false,
-        };
+        return {};
     },
     methods: {
-        onOpenEdit() {
-            this.isEdited = true;
-        },
-        onCloseCard() {
-            this.isEdited = false;
-        },
         emitRemoveCard() {
+            console.log('we are here')
             this.$emit("removeCard", this.card.id);
         },
-    },
-    components: {
-        cardEdit,
-    },
-    created() {
-        // console.log("card in Card Preview", this.card);
     },
 };
 </script>

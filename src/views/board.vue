@@ -2,7 +2,16 @@
     <section class="board">
         <board-header :board="board" />
         <div class="lists-container flex">
-            <list-cmp v-for="list in board.lists" :key="list.id" :list="list" />
+            <list-cmp
+                v-for="list in board.lists"
+                :key="list.id"
+                :list="list"
+            />
+            <div v-if="showModal" class="modal-route">
+                <div class="modal-content">
+                    <router-view></router-view>
+                </div>
+            </div>
             <list-add />
         </div>
     </section>
@@ -16,14 +25,20 @@ import listAdd from "@/cmps/list/list-add.cmp.vue";
 
 export default {
     data() {
-        return {};
+        return {
+            showModal: false,
+        };
     },
     computed: {
         board() {
             return this.$store.getters.getCurrBoard;
         },
     },
-    methods: {},
+    methods: {
+        // showCardEdit(cardId) {
+        //     this.$router.push(`/card/${cardId}`);
+        // },
+    },
     components: {
         boardHeader,
         listCmp,
@@ -38,5 +53,30 @@ export default {
             this.$store.dispatch({ type: "updateBoard" });
         });
     },
+    watch: {
+        $route(newVal) {
+            this.showModal = newVal.meta && newVal.meta.showModal;
+        },
+    },
 };
 </script>
+
+<style scoped>
+.modal-route {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(#000000, 0.5);
+}
+
+.modal-route .modal-content {
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+}
+</style>

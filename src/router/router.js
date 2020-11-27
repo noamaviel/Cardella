@@ -6,7 +6,7 @@ import createBoard from '../views/board-create.vue'
 import login from '../views/login-signup.vue'
 import userDetails from '../views/user-details.vue'
 // import listCmp from '../cmps/list/list.cmp.vue'  
-import CardEdit from '../cmps/card/card-edit.cmp.vue'
+import CardEdit from '../views/card-edit.vue'
 
 Vue.use(VueRouter)
 
@@ -19,18 +19,23 @@ const routes = [
   {
     path: '/board/:boardId?',
     name: 'Public Board',
-    component: publicBoard
+    component: publicBoard,
+    children: [
+      {
+        path: '/board/:boardId/list/:listId/card/:cardId',
+        name: 'Card',
+        component: CardEdit,
+        meta: {
+          showModal: true
+        }
+      }
+    ]
   },
   // {
   //   path: '/board/:boardId/list/:listId', 
   //   name: 'List',
   //   component: listCmp
   // },
-  {
-    path: '/board/:boardId/card/:cardId', 
-    name: 'Card',
-    component: CardEdit
-  },
   {
     path: '/board/create',
     name: 'Create Board',

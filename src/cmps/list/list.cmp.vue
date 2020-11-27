@@ -10,14 +10,18 @@
         >
             {{ list.title }}
         </h1>
-
-        <card-preview
-            v-bind:style="{ backgroundColor: card.style.bgColor }"
+        <router-link
+            :to="`list/${list.id}/card/${card.id}`" append
             v-for="card in list.cards"
             :key="card.id"
             :card="card"
-            @removeCard="removeCard"
-        />
+        >
+            <card-preview
+                v-bind:style="{ backgroundColor: card.style.bgColor }"
+                :card="card"
+                @removeCard="removeCard"
+            />
+        </router-link>
         <button class="add-card-btn" v-if="!isNew" @click="onOpenNewCard">
             + Add another card
         </button>

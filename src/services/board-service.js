@@ -33,6 +33,7 @@ function getEmptyCard(title = '') {
         id: _makeId(),
         title,
         createdAt: Date.now(),
+        description: '',
         createdBy: {
             id: 'u103',
             fullname: 'Shimrit Herbst',

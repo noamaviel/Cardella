@@ -35,7 +35,12 @@ export const boardStore = {
             const cards = state.currBoard.lists[listIdx].cards;
             cards.push(card);
         },
-
+        updateCard(state, { list, card }) {
+            const listIdx = state.currBoard.lists.findIndex(currList => currList.id === list.id);
+            const cardIdx = state.currBoard.lists[listIdx].cards.findIndex(currCard => currCard.id === card.id);
+            const cards = state.currBoard.lists[listIdx].cards;
+            cards.splice(cardIdx, 1, card);
+        },
         removeCard(state, { listId, cardId }) {
             const listIdx = state.currBoard.lists.findIndex(list => list.id === listId);
             const cardIdx = state.currBoard.lists[listIdx].cards.findIndex(card => card.id === cardId);
@@ -65,12 +70,11 @@ export const boardStore = {
             commit({ type: 'setCurrBoard', board })
         },
         async updateBoard({ state }) {
-            // console.log('state.currBoard in boardActions', state.currBoard)
             await boardService.updateBoard(state.currBoard);
         },
         async updateBoardV2({ commit, state }, { board }) {
-            commit({ type: 'updateBoard', board });
             await boardService.updateBoard(state.currBoard);
+            commit({ type: 'updateBoard', board });
         },
         //CARD//
         async addCard({ commit, state }, { listId, cardTitle }) {
@@ -78,10 +82,15 @@ export const boardStore = {
             commit({ type: 'addCard', listId, card })
             await boardService.updateBoard(state.currBoard);
         },
+        async updateCard({ commit, state }, { list, card }) {
+            commit({ type: 'updateCard', list, card });
+            await boardService.updateBoard(state.currBoard);
+        },
         async removeCard({ commit, state }, { listId, cardId }) {
             commit({ type: 'removeCard', listId, cardId })
             await boardService.updateBoard(state.currBoard);
         },
+
         //LIST//
         async addList({ commit, state }, { listTitle }) {
             const list = boardService.getEmptyList(listTitle);
