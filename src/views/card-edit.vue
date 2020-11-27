@@ -1,15 +1,21 @@
 <template>
     <section class="card-edit">
         <div class="main-area" style="flex-grow: 1">
-            <button @click="onCloseCard">x</button>
+            <router-link to="../../..">X</router-link>
             <!-- <div class="addChecklistModal">
                 <form>
                     <input type="text" />
                     <button>Add Checklist</button>
                 </form>
             </div> -->
-            <h2>{{card.title}}</h2>
-            <h4>list.title</h4>
+            <h2
+                contenteditable="true"
+                @keypress.enter.prevent="updateCardTitle"
+                @blur="updateCardTitle"
+            >
+                {{ card.title }}
+            </h2>
+            <h4>in list {{ list.title }}</h4>
             <h3>Members</h3>
             <!-- <members-cmp></members-cmp> -->
             <h3>Labels</h3>
@@ -34,13 +40,14 @@
             <button>Add an item</button>
         </checklist-cmp> -->
             <h3>Description</h3>
-            <!-- <input
-      type="textarea"
-      v-model=""
-      placeholder="Add a more detailed description..."
-      rows="3" (consider)
-      max-rows="6" (consider)
-    /> -->
+            <textarea
+                type="textarea"
+                v-model="card.description"
+                placeholder="Add a more detailed description..."
+                rows="5"
+                max-rows="6"
+                @blur="updateCardDescription"
+            ></textarea>
             <h3>Image</h3>
             <img src="" />
             <h3>Activity</h3>
@@ -60,28 +67,42 @@
             <button @click="onOpenColorPallette">Card Color</button>
             <card-color v-if="isDisplayColorPallette" @setColor="changeColor" />
             <button>Delete card</button>
-            <!-- <button @click="updateCard">save</button> -->
-            <button @click="onCloseCard">cancel</button>
+            <router-link to="../../..">Cancel</router-link>
         </div>
     </section>
 </template>
 
 <script>
-import cardColor from "../card/card-color.cmp";
+import cardColor from "@/cmps/card/card-color.cmp";
 // import checklists from "../card/checklists.cmp"
-import checklistsCmp from "./checklists.cmp.vue";
+import checklistsCmp from "@/cmps/card/checklists.cmp.vue";
 // import ChecklistsCmp from './checklists.cmp.vue';
 // import cardChecklist from "../card/card-checklist.cmp"
 
 export default {
-    props: {
-        card: Object,
-    },
     data() {
         return {
             isDisplayColorPallette: false,
-            // comment: "",
         };
+    },
+    computed: {
+        board() {
+            return this.$store.getters.getCurrBoard;
+        },
+        list() {
+            const listId = this.$route.params.listId;
+            const listIdx = this.board.lists.findIndex(
+                (list) => list.id === listId
+            );
+            return this.board.lists[listIdx];
+        },
+        card() {
+            const cardId = this.$route.params.cardId;
+            const cardIdx = this.list.cards.findIndex(
+                (card) => card.id === cardId
+            );
+            return this.list.cards[cardIdx];
+        },
     },
     methods: {
         onCloseCard() {
@@ -91,11 +112,32 @@ export default {
             console.log("color:", color);
             this.isDisplayColorPallette = false;
             this.card.style.bgColor = color;
-            //TODO - Set color of BGC
+            this.updateCard();
         },
         onOpenColorPallette() {
             console.log("color button clicked");
             this.isDisplayColorPallette = !this.isDisplayColorPallette;
+        },
+        updateCardTitle(ev) {
+            debugger
+            if (this.card.title === ev.target.innerText) return;
+            if (!ev.target.innerText) {
+                ev.target.innerText = this.card.title;
+                return;
+            }
+            this.card.title = ev.target.innerText;
+            ev.target.blur();
+            this.updateCard();
+        },
+        updateCardDescription() {
+            this.updateCard();
+        },
+        updateCard() {
+            this.$store.dispatch({
+                type: "updateCard",
+                card: this.card,
+                list: this.list,
+            });
         },
     },
     components: {
