@@ -1,11 +1,21 @@
 <template>
   <section class="side-menu">
-    <ul class="menu-actions">
-      <li>Change background</li>
-      <li>Delete board</li>
-      <h4>Activity Log:</h4>
-      <board-activity-log />
-    </ul>
+    <div class="side-menu-header">
+      <h3>Menu</h3>
+    </div>
+    <div class="side-menu-nav">
+      <h5><i class="far fa-trash-alt"></i> Delete Board</h5>
+      <h5><i class="fas fa-palette"></i> Change Background</h5>
+    </div>
+    <div class="activity-title">
+      <h5><i class="fas fa-list-ul"></i> Activity Log:</h5>
+    </div>
+    <div class="side-activities">
+      <board-activity-log
+        class="activity-preview"
+        :activities="board.boardActivities"
+      />
+    </div>
   </section>
 </template>
 
@@ -18,10 +28,6 @@ export default {
   },
   computed: {},
   methods: {
-    getActivities() {
-      //     this.
-      // }
-    },
     created() {},
   },
   components: {
@@ -29,3 +35,5 @@ export default {
   },
 };
 </script>
+
+
