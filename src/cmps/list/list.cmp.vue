@@ -15,6 +15,7 @@
             group-name="list"
             @drop="(dropResult) => onDrop(dropResult)"
             :get-child-payload="getCardPayload(list.id)"
+            :animation-duration="400"
         >
             <Draggable v-for="card in list.cards" :key="card.id">
                 <router-link :to="`list/${list.id}/card/${card.id}`" append>
