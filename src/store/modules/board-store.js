@@ -83,8 +83,10 @@ export const boardStore = {
             await boardService.updateBoard(state.currBoard);
         },
         async updateCard({ commit, state }, { list, card }) {
+            commit({ type: 'setIsLoading', isLoading: true })
             commit({ type: 'updateCard', list, card });
             await boardService.updateBoard(state.currBoard);
+            commit({ type: 'setIsLoading', isLoading: false })
         },
         async removeCard({ commit, state }, { listId, cardId }) {
             commit({ type: 'removeCard', listId, cardId })

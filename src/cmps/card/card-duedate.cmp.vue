@@ -12,19 +12,20 @@
 </template>
 
 <script>
-
 export default {
     props: {
-        currDueDate: Date,
+        currTimestemp: Number, 
     },
     data() {
         return {
-            newDueDate: new Date(this.currDueDate)
+            newDueDate: this.currTimestemp
+                ? new Date(this.currTimestemp)
+                : Date.now(),
         };
     },
     methods: {
         emitDueDateChange() {
-            this.$emit("setDueDate", this.newDueDate);
+            this.$emit("setDueDate", this.newDueDate.getTime());
         },
     },
 };

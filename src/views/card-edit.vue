@@ -19,10 +19,8 @@
             </h2>
             <h4>in list {{ list.title }}</h4>
 
-            <template v-if="card.members">
-                <h3>Members</h3>
-                <board-members :members="card.members" />
-            </template>
+            <h3>Members</h3>
+            <members-cmp :members="membersToCard" />
 
             <template v-if="card.labels">
                 <h3>Labels</h3>
@@ -31,7 +29,7 @@
 
             <template v-if="card.dueDate">
                 <h3>Due date</h3>
-                <h2>{{ dueDateToShow }}</h2>
+                <h3>{{ dueDateToShow }}</h3>
             </template>
 
             <!-- <template v-if="card.checklists"> -->
@@ -45,7 +43,12 @@
 
             <template v-if="card.uploadImgUrl">
                 <h3>Image</h3>
-                <img :src="card.uploadImgUrl" />
+                <img v-if="!isLoading" :src="card.uploadImgUrl" />
+                <img
+                    v-else
+                    src="https://i.pinimg.com/originals/78/e8/26/78e826ca1b9351214dfdd5e47f7e2024.gif"
+                />
+                <i class="far fa-trash-alt" @click="removeImg"></i>
             </template>
 
             <h3>Description</h3>
@@ -57,7 +60,7 @@
                 max-rows="6"
                 @blur="updateCardDescription"
             />
-            <h3>Activity</h3>
+            <!-- <h3>Activity</h3> -->
             <!-- consider change to "Comments" as these are not activities -->
             <!-- <input type="text" placeholder="Write a comment... v-model="comment""/> -->
             <!-- <ul>
@@ -75,21 +78,26 @@
                 :isAddChecklist="this.isAddChecklist"
                 @newChecklist="onNewChecklist"
             />
-            <button>Due Date</button>
+            <button @click="onOpenDatePicker">Due Date</button>
             <card-due-date
-                :currDueDate="new Date(card.dueDate)"
+                v-if="isDisplayDatePicker"
+                :currTimestemp="card.dueDate"
                 @setDueDate="setDueDate"
             />
 
             <button>
-                <label for="imgUploader">Upload Image</label>
+                <label for="imgUploader" @click.prevent="onOpenUploadImgField"
+                    >Upload Image</label
+                >
             </button>
             <input
                 type="file"
                 name="img-uploader"
                 id="imgUploader"
+                v-if="isDisplayUploadImg"
                 @change="onUploadImg"
             />
+
             <button @click="onOpenColorPallette">Card Color</button>
             <card-color v-if="isDisplayColorPallette" @setColor="changeColor" />
 
@@ -109,7 +117,7 @@ import cardColor from "@/cmps/card/card-color.cmp";
 import checklistsCmp from "@/cmps/card/checklists.cmp.vue";
 import { uploadImg } from "@/services/upload-img-service.js";
 import cardDueDate from "@/cmps/card/card-duedate.cmp.vue";
-import boardMembers from "@/cmps/board/board-members.cmp.vue";
+import membersCmp from "@/cmps/members.cmp.vue";
 import addChecklist from "@/cmps/card/add-checklist.cmp.vue";
 import moment from "moment";
 
@@ -118,6 +126,8 @@ export default {
     data() {
         return {
             isDisplayColorPallette: false,
+            isDisplayUploadImg: false,
+            isDisplayDatePicker: false,
             isAddChecklist: false,
         };
     },
@@ -140,20 +150,38 @@ export default {
             return this.list.cards[cardIdx];
         },
         dueDateToShow() {
-            return moment(this.card.dueDate).fromNow();
+            return moment(this.card.dueDate).calendar({
+                lastDay: "[Yesterday at] HH:mm",
+                sameDay: "[Today at] HH:mm",
+                nextDay: "[Tomorrow at] HH:mm",
+                lastWeek: "[Last] dddd [at] HH:mm",
+                nextWeek: "dddd [at] HH:mm",
+                sameElse: "DD/MM/YYYY [at] HH:mm",
+            });
+        },
+        isLoading() {
+            return this.$store.getters.isLoading;
+        },
+        membersToCard() {
+            const members = this.card.members && this.card.createdBy.imgUrl;
+            return members;
         },
     },
     methods: {
         changeColor(color) {
-            console.log("color:", color);
             this.isDisplayColorPallette = false;
             this.card.style.bgColor = color;
             this.updateCard();
         },
         onOpenColorPallette() {
-            console.log("color button clicked");
             this.isDisplayColorPallette = !this.isDisplayColorPallette;
         },
+        onOpenUploadImgField() {
+            this.isDisplayUploadImg = !this.isDisplayUploadImg;
+        },
+        onOpenDatePicker() {
+            this.isDisplayDatePicker = !this.isDisplayDatePicker;
+            },
         onAddChecklist() {
             this.isAddChecklist = !this.isAddChecklist;
             // this.isAddChecklist = true;
@@ -196,6 +224,7 @@ export default {
         async onUploadImg(ev) {
             const res = await uploadImg(ev);
             this.card.uploadImgUrl = res.secure_url;
+            this.isDisplayUploadImg = false;
             this.updateCard();
         },
         removeCard() {
@@ -205,9 +234,17 @@ export default {
                 listId: this.list.id,
             });
         },
+        removeImg() {
+            this.card.uploadImgUrl = "";
+            this.$store.dispatch({
+                type: "updateCard",
+                card: this.card,
+                list: this.list,
+            });
+        },
         setDueDate(dueDate) {
             console.log("dueDate:", dueDate);
-            this.card.dueDate = dueDate.getTime();
+            this.card.dueDate = dueDate;
             this.updateCard();
         },
     },
@@ -215,7 +252,7 @@ export default {
         cardColor,
         checklistsCmp,
         cardDueDate,
-        boardMembers,
+        membersCmp,
         addChecklist,
     },
 };

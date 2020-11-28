@@ -10,7 +10,7 @@
       </h2>
     </div>
     <div class="avater-board-header">
-      <board-members :members="board.members" />
+      <members-cmp :members="board.members" />
     </div>
 
     <div class="right-board-header">
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import boardMembers from "@/cmps/board/board-members.cmp.vue";
+import membersCmp from "@/cmps/members.cmp.vue";
 import boardFilter from "@/cmps/board/board-filter.cmp.vue";
 import sideMenu from "@/cmps/board/side-menu.cmp.vue";
 
@@ -54,7 +54,7 @@ export default {
     },
   },
   components: {
-    boardMembers,
+    membersCmp,
     boardFilter,
     sideMenu,
   },

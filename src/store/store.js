@@ -9,10 +9,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isLoading: false
+  },
+  getters: {
+    isLoading(state) {
+      return state.isLoading;
+    }
   },
   mutations: {
-  },
-  actions: {
+    setIsLoading(state, { isLoading }) {
+      state.isLoading = isLoading;
+    },
   },
   modules: {
     boardStore,

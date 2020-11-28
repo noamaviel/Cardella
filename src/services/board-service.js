@@ -34,13 +34,13 @@ function getEmptyCard(title = '') {
         id: utilService.makeId(),
         title,
         createdAt: Date.now(),
-        dueDate: Date.now(),
+        dueDate: null,
         description: '',
         uploadImgUrl: '',
         createdBy: {
             id: 'u103',
             fullname: 'Shimrit Herbst',
-            imgUrl: 'http://some-img'
+            imgUrl: 'https://res.cloudinary.com/shimrit/image/upload/v1606511397/cardella/shimrit_idcy9l.jpg',
         },
         style: {
             bgColor: '#C1C1C1'
