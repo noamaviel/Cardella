@@ -39,6 +39,7 @@
                 type="text"
                 v-model="newCardTitle"
                 placeholder="Enter a title for this card..."
+                @keyup.enter="addCard"
             />
             <button @click="addCard">Add card</button>
             <button @click="onCloseNewCard">X</button>

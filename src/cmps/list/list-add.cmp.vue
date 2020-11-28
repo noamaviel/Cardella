@@ -8,6 +8,7 @@
                 type="text"
                 v-model="newListTitle"
                 placeholder="Enter list title..."
+                @keyup.enter="addList"
             />
             <button @click="addList">Add list</button>
             <button @click="onCloseNewList">X</button>

@@ -37,14 +37,11 @@ function getEmptyCard(title = '') {
         dueDate: null,
         description: '',
         uploadImgUrl: '',
-        createdBy: {
-            id: 'u103',
-            fullname: 'Shimrit Herbst',
-            imgUrl: 'https://res.cloudinary.com/shimrit/image/upload/v1606511397/cardella/shimrit_idcy9l.jpg',
-        },
         style: {
             bgColor: '#C1C1C1'
         },
+        createdBy: _getCreatedBy(),
+        members: [_getCreatedBy()],
     }
     return card;
 }
@@ -56,4 +53,13 @@ function getEmptyList(title = '') {
         cards: []
     }
     return list;
+}
+
+// TODO implement when login is ready
+function _getCreatedBy() {
+    return {
+        id: 'u103',
+        fullname: 'Shimrit Herbst',
+        imgUrl: 'https://res.cloudinary.com/shimrit/image/upload/v1606511397/cardella/shimrit_idcy9l.jpg',
+    };
 }

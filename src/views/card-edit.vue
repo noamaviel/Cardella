@@ -20,7 +20,7 @@
             <h4>in list {{ list.title }}</h4>
 
             <h3>Members</h3>
-            <members-cmp :members="membersToCard" />
+            <members-cmp :members="card.members" />
 
             <template v-if="card.labels">
                 <h3>Labels</h3>
@@ -163,10 +163,6 @@ export default {
         isLoading() {
             return this.$store.getters.isLoading;
         },
-        membersToCard() {
-            const members = this.card.members && this.card.createdBy.imgUrl;
-            return members;
-        },
     },
     methods: {
         changeColor(color) {
@@ -182,7 +178,7 @@ export default {
         },
         onOpenDatePicker() {
             this.isDisplayDatePicker = !this.isDisplayDatePicker;
-            },
+        },
         onAddChecklist() {
             this.isAddChecklist = true;
         },
