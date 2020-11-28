@@ -19,10 +19,8 @@
             </h2>
             <h4>in list {{ list.title }}</h4>
 
-            <template v-if="card.members">
-                <h3>Members</h3>
-                <members-cmp :members="card.members" />
-            </template>
+            <h3>Members</h3>
+            <members-cmp :members="membersToCard" />
 
             <template v-if="card.labels">
                 <h3>Labels</h3>
@@ -44,7 +42,11 @@
 
             <template v-if="card.uploadImgUrl">
                 <h3>Image</h3>
-                <img :src="card.uploadImgUrl" />
+                <img v-if="!isLoading" :src="card.uploadImgUrl" />
+                <img
+                    v-else
+                    src="https://i.pinimg.com/originals/78/e8/26/78e826ca1b9351214dfdd5e47f7e2024.gif"
+                />
                 <i class="far fa-trash-alt" @click="removeImg"></i>
             </template>
 
@@ -57,7 +59,7 @@
                 max-rows="6"
                 @blur="updateCardDescription"
             />
-            <h3>Activity</h3>
+            <!-- <h3>Activity</h3> -->
             <!-- consider change to "Comments" as these are not activities -->
             <!-- <input type="text" placeholder="Write a comment... v-model="comment""/> -->
             <!-- <ul>
@@ -69,9 +71,10 @@
             <button>Members</button>
             <button>Labels</button>
             <button>Checklist</button>
-            <button>Due Date</button>
+            <button @click="onOpenDatePicker">Due Date</button>
             <card-due-date
-                :currDueDate="new Date(card.dueDate)"
+                v-if="isDisplayDatePicker"
+                :currTimestemp="card.dueDate"
                 @setDueDate="setDueDate"
             />
 
@@ -84,11 +87,12 @@
                 type="file"
                 name="img-uploader"
                 id="imgUploader"
-                v-if="isDisplay"
+                v-if="isDisplayUploadImg"
                 @change="onUploadImg"
             />
+
             <button @click="onOpenColorPallette">Card Color</button>
-            <card-color v-if="isDisplay" @setColor="changeColor" />
+            <card-color v-if="isDisplayColorPallette" @setColor="changeColor" />
 
             <router-link to="../../..">
                 <button @click="removeCard">Delete card</button>
@@ -113,7 +117,9 @@ export default {
     props: {},
     data() {
         return {
-            isDisplay: false,
+            isDisplayColorPallette: false,
+            isDisplayUploadImg: false,
+            isDisplayDatePicker: false,
         };
     },
     computed: {
@@ -135,7 +141,21 @@ export default {
             return this.list.cards[cardIdx];
         },
         dueDateToShow() {
-            return moment(this.card.dueDate).calendar();
+            return moment(this.card.dueDate).calendar({
+                lastDay: "[Yesterday at] HH:mm",
+                sameDay: "[Today at] HH:mm",
+                nextDay: "[Tomorrow at] HH:mm",
+                lastWeek: "[Last] dddd [at] HH:mm",
+                nextWeek: "dddd [at] HH:mm",
+                sameElse: "DD/MM/YYYY [at] HH:mm",
+            });
+        },
+        isLoading() {
+            return this.$store.getters.isLoading;
+        },
+        membersToCard() {
+            const members = this.card.members && this.card.createdBy.imgUrl;
+            return members;
         },
     },
     methods: {
@@ -145,10 +165,13 @@ export default {
             this.updateCard();
         },
         onOpenColorPallette() {
-            this.isDisplay = !this.isDisplay;
+            this.isDisplayColorPallette = !this.isDisplayColorPallette;
         },
         onOpenUploadImgField() {
-            this.isDisplay = !this.isDisplay;
+            this.isDisplayUploadImg = !this.isDisplayUploadImg;
+        },
+        onOpenDatePicker() {
+            this.isDisplayDatePicker = !this.isDisplayDatePicker;
         },
         updateCardTitle(ev) {
             if (this.card.title === ev.target.innerText) return;
@@ -173,7 +196,7 @@ export default {
         async onUploadImg(ev) {
             const res = await uploadImg(ev);
             this.card.uploadImgUrl = res.secure_url;
-            this.isDisplay = false;
+            this.isDisplayUploadImg = false;
             this.updateCard();
         },
         removeCard() {
@@ -193,7 +216,7 @@ export default {
         },
         setDueDate(dueDate) {
             console.log("dueDate:", dueDate);
-            this.card.dueDate = dueDate.getTime();
+            this.card.dueDate = dueDate;
             this.updateCard();
         },
     },
