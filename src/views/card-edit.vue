@@ -34,13 +34,14 @@
                 <h2>{{ dueDateToShow }}</h2>
             </template>
 
-            <template v-if="card.checklists">
-                <h3>Checklist</h3>
-                <checklists-cmp
-                    v-if="card.checklists"
-                    :checklists="card.checklists"
-                />
-            </template>
+            <!-- <template v-if="card.checklists"> -->
+            <!-- <h3>Checklist</h3> -->
+            <checklists-cmp
+                v-if="card.checklists"
+                :checklists="card.checklists"
+                :board="this.board"
+            />
+            <!-- </template> -->
 
             <template v-if="card.uploadImgUrl">
                 <h3>Image</h3>
@@ -67,7 +68,13 @@
         <div class="menu-area" style="display: flex; flex-direction: column">
             <button>Members</button>
             <button>Labels</button>
-            <button>Checklist</button>
+            <button @click="onAddChecklist">Checklist</button>
+            <add-checklist
+                v-if="isAddChecklist"
+                :checklists="card.checklists"
+                :isAddChecklist="this.isAddChecklist"
+                @newChecklist="onNewChecklist"
+            />
             <button>Due Date</button>
             <card-due-date
                 :currDueDate="new Date(card.dueDate)"
@@ -103,6 +110,7 @@ import checklistsCmp from "@/cmps/card/checklists.cmp.vue";
 import { uploadImg } from "@/services/upload-img-service.js";
 import cardDueDate from "@/cmps/card/card-duedate.cmp.vue";
 import boardMembers from "@/cmps/board/board-members.cmp.vue";
+import addChecklist from "@/cmps/card/add-checklist.cmp.vue";
 import moment from "moment";
 
 export default {
@@ -110,6 +118,7 @@ export default {
     data() {
         return {
             isDisplayColorPallette: false,
+            isAddChecklist: false,
         };
     },
     computed: {
@@ -144,6 +153,18 @@ export default {
         onOpenColorPallette() {
             console.log("color button clicked");
             this.isDisplayColorPallette = !this.isDisplayColorPallette;
+        },
+        onAddChecklist() {
+            this.isAddChecklist = true;
+        },
+        onNewChecklist(newChecklist) {
+            this.card.checklists.splice(
+                this.card.checklists.length,
+                0,
+                newChecklist
+            );
+            this.isAddChecklist = false;
+            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
         },
         updateCardTitle(ev) {
             if (this.card.title === ev.target.innerText) return;
@@ -188,6 +209,7 @@ export default {
         checklistsCmp,
         cardDueDate,
         boardMembers,
+        addChecklist,
     },
 };
 </script>
