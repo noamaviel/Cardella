@@ -1,8 +1,12 @@
 
 <template>
     <section class="list-container">
-        <i class="fas fa-ellipsis-h"></i>
-        <list-menu :list="list" />
+        <i
+            class="fas fa-ellipsis-h"
+            @click="toggleOpenListMenu"
+            style="cursor: pointer"
+        ></i>
+        <list-menu v-if="isMenuOpen" :list="list" />
         <h1
             contenteditable="true"
             @keypress.enter.prevent="updateListTitle"
@@ -58,10 +62,14 @@ export default {
         return {
             isNew: false,
             newCardTitle: "",
+            isMenuOpen: false,
         };
     },
     computed: {},
     methods: {
+        toggleOpenListMenu() {
+            this.isMenuOpen = !this.isMenuOpen;
+        },
         onDrop(dropResult) {
             console.log("dropResult onDrop", dropResult);
             this.list.cards = utilService.applyDrag(

@@ -1,5 +1,5 @@
 .side-menu {
-    color: rgb(65, 65, 65);
+    color: $clr1;
     width: 305px;
     display: flex;
     flex-direction: column;
@@ -22,7 +22,7 @@
 
         h3 {
             line-height: 20px;
-            font-size: 1rem;
+            font-size:rem(16px);
             margin: 14px 32px;
         }
     }
@@ -42,7 +42,7 @@
             border-radius: 3px;
             padding: 6px;
             line-height: 20px;
-            font-size: 1rem;
+            font-size: rem(16px);
             cursor: pointer;
         }
     }
@@ -51,7 +51,7 @@
         padding: 12px 6px;
         margin: 0 6px 0 12px;
         line-height: 20px;
-        font-size: 1rem;
+        font-size: rem(16px);
 
     }
 
@@ -61,7 +61,7 @@
         .activity-preview {
             display: flex;
             align-items: center;
-            font-size: .875rem;
+            font-size: rem(14px);
             line-height: 20px;
             margin: 0 12px 8px 20px;
         }
