@@ -17,18 +17,14 @@ function makeId(length = 5) {
 function applyDrag(arr, dragResult) {
     const { removedIndex, addedIndex, payload } = dragResult
     if (removedIndex === null && addedIndex === null) return arr
-    console.log('drageResult in applyDrag', dragResult)
     const result = [...arr]
-    console.log('ARRAY in applyDrag:', arr);
 
     let itemToAdd;
     if (payload) {
         itemToAdd = payload;
     }
-    console.log('payload in applyDrag', payload)
     if (removedIndex !== null) {
         itemToAdd = result.splice(removedIndex, 1)[0]
-        console.log('itemToAdd while removedIndex != null', itemToAdd)
     }
 
     if (addedIndex !== null) {

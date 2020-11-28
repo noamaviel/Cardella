@@ -32,13 +32,14 @@
                 <h3>{{ dueDateToShow }}</h3>
             </template>
 
-            <template v-if="card.checklists">
-                <h3>Checklist</h3>
-                <checklists-cmp
-                    v-if="card.checklists"
-                    :checklists="card.checklists"
-                />
-            </template>
+            <!-- <template v-if="card.checklists"> -->
+            <!-- <h3>Checklist</h3> -->
+            <checklists-cmp
+                v-if="card.checklists"
+                :checklists="card.checklists"
+                :board="this.board"
+            />
+            <!-- </template> -->
 
             <template v-if="card.uploadImgUrl">
                 <h3>Image</h3>
@@ -70,7 +71,13 @@
         <div class="menu-area" style="display: flex; flex-direction: column">
             <button>Members</button>
             <button>Labels</button>
-            <button>Checklist</button>
+            <button @click="onAddChecklist">Checklist</button>
+            <add-checklist
+                v-if="isAddChecklist"
+                :checklists="card.checklists"
+                :isAddChecklist="this.isAddChecklist"
+                @newChecklist="onNewChecklist"
+            />
             <button @click="onOpenDatePicker">Due Date</button>
             <card-due-date
                 v-if="isDisplayDatePicker"
@@ -111,6 +118,7 @@ import checklistsCmp from "@/cmps/card/checklists.cmp.vue";
 import { uploadImg } from "@/services/upload-img-service.js";
 import cardDueDate from "@/cmps/card/card-duedate.cmp.vue";
 import membersCmp from "@/cmps/members.cmp.vue";
+import addChecklist from "@/cmps/card/add-checklist.cmp.vue";
 import moment from "moment";
 
 export default {
@@ -120,6 +128,7 @@ export default {
             isDisplayColorPallette: false,
             isDisplayUploadImg: false,
             isDisplayDatePicker: false,
+            isAddChecklist: false,
         };
     },
     computed: {
@@ -138,6 +147,7 @@ export default {
             const cardIdx = this.list.cards.findIndex(
                 (card) => card.id === cardId
             );
+            console.log("card() in cardEdit", this.list.cards[cardIdx]);
             return this.list.cards[cardIdx];
         },
         dueDateToShow() {
@@ -172,6 +182,24 @@ export default {
         },
         onOpenDatePicker() {
             this.isDisplayDatePicker = !this.isDisplayDatePicker;
+            },
+        onAddChecklist() {
+            this.isAddChecklist = true;
+        },
+        onNewChecklist(newChecklist) {
+            if (this.card.checklists) {
+                this.card.checklists.splice(
+                    this.card.checklists.length,
+                    0,
+                    newChecklist
+                );
+            } else {
+                this.card.checklists = [newChecklist];
+            }
+
+            this.isAddChecklist = false;
+            let updtBoard = JSON.parse(JSON.stringify(this.board));
+            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
         },
         updateCardTitle(ev) {
             if (this.card.title === ev.target.innerText) return;
@@ -225,6 +253,7 @@ export default {
         checklistsCmp,
         cardDueDate,
         membersCmp,
+        addChecklist,
     },
 };
 </script>

@@ -1,6 +1,7 @@
 <template>
     <section>
-        <ul v-if="checklists">
+        <ul v-if="checklists.length">
+            <h3>Checklists</h3>
             <li
                 v-for="(checklist, index) in checklists"
                 :index="index"
@@ -30,7 +31,8 @@ export default {
         onRemoveChecklist(index) {
             console.log("onRemoveCheclist", index);
             this.checklists.splice(index, 1);
-            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
+            let updtBoard = JSON.parse(JSON.stringify(this.board));
+            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
         },
     },
     components: {

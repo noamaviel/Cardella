@@ -71,7 +71,6 @@ export default {
             this.isMenuOpen = !this.isMenuOpen;
         },
         onDrop(dropResult) {
-            console.log("dropResult onDrop", dropResult);
             this.list.cards = utilService.applyDrag(
                 this.list.cards,
                 dropResult
@@ -79,9 +78,7 @@ export default {
             // this.$store.dispatch({ type: "updateBoardV2", board: this.board });
         },
         getCardPayload(listId) {
-            // console.log("getCardPayload-columnId", listId);
             return (index) => {
-                console.log("getting payload of INDEX", index);
                 return this.lists.filter((p) => p.id === listId)[0].cards[
                     index
                 ];

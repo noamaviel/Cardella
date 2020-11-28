@@ -52,11 +52,8 @@ export default {
     },
     methods: {
         onColumnDrop(dropResult) {
-            console.log("dropResult in onColumnDROP", dropResult);
             let inLists = JSON.parse(JSON.stringify(this.board.lists));
-            console.log("inLists in onColumnDrop", inLists);
             inLists = utilService.applyDrag(inLists, dropResult);
-            console.log("inLists after applyDrag", inLists);
             this.board.lists = inLists;
             // this.$store.dispatch({ type: "updateBoardV2", board: this.board });
         },
