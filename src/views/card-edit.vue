@@ -24,7 +24,7 @@
             <!-- <labels-cmp>{{card.labels}}</labels-cmp> -->
 
             <h3>Due date</h3>
-            <h2>{{ card.dueDate }}</h2>
+            <h2>{{ new Date(card.dueDate) }}</h2>
 
             <h3>Checklist</h3>
             <checklists-cmp
@@ -57,7 +57,10 @@
             <button>Labels</button>
             <button>Checklist</button>
             <button>Due Date</button>
-            <card-due-date />
+            <card-due-date
+                :currDueDate="new Date(card.dueDate)"
+                @setDueDate="setDueDate"
+            />
 
             <button>
                 <label for="imgUploader">Upload Image</label>
@@ -156,6 +159,11 @@ export default {
                 cardId: this.card.id,
                 listId: this.list.id,
             });
+        },
+        setDueDate(dueDate) {
+            console.log("dueDate:", dueDate);
+            this.card.dueDate = dueDate.getTime();
+            this.updateCard();
         },
     },
     components: {

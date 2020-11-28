@@ -1,11 +1,11 @@
 <template>
     <div class="block">
-        <span class="demonstration"></span>
         <el-date-picker
-            v-model="value"
+            v-model="newDueDate"
             type="datetime"
             placeholder="Select date and time"
-            default-time="12:30:00"
+            format="dd/MM/yyyy HH:mm"
+            @change="emitDueDateChange"
         >
         </el-date-picker>
     </div>
@@ -13,10 +13,18 @@
 
 <script>
 export default {
+    props: {
+        currDueDate: Date,
+    },
     data() {
         return {
-            value: "",
+            newDueDate: new Date(this.currDueDate)
         };
+    },
+    methods: {
+        emitDueDateChange() {
+            this.$emit("setDueDate", this.newDueDate);
+        },
     },
 };
 </script>
