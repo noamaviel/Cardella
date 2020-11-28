@@ -74,7 +74,8 @@ export default {
     methods: {
         onCheckbox() {
             console.log("checkbox clicked");
-            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
+            let updtBoard = JSON.parse(JSON.stringify(this.board));
+            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
         },
         onAddTodo() {
             this.tmpTodo.id = utilService.makeId();
@@ -85,13 +86,14 @@ export default {
                 0,
                 newTodo
             );
-            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
+            let updtBoard = JSON.parse(JSON.stringify(this.board));
+            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
             this.tmpTodo.title = "";
         },
         onRemoveTodo(index) {
-            console.log("onRemoveTodo", index);
             this.checklist.todos.splice(index, 1);
-            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
+            let updtBoard = JSON.parse(JSON.stringify(this.board));
+            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
         },
         onAddTodoForm() {
             this.isAddTodoForm = true;
@@ -108,7 +110,8 @@ export default {
             }
             this.checklist.title = ev.target.innerText;
             ev.target.blur();
-            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
+            let updtBoard = JSON.parse(JSON.stringify(this.board));
+            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
         },
     },
 };

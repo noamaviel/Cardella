@@ -137,6 +137,7 @@ export default {
             const cardIdx = this.list.cards.findIndex(
                 (card) => card.id === cardId
             );
+            console.log("card() in cardEdit", this.list.cards[cardIdx]);
             return this.list.cards[cardIdx];
         },
         dueDateToShow() {
@@ -158,13 +159,19 @@ export default {
             this.isAddChecklist = true;
         },
         onNewChecklist(newChecklist) {
-            this.card.checklists.splice(
-                this.card.checklists.length,
-                0,
-                newChecklist
-            );
+            if (this.card.checklists) {
+                this.card.checklists.splice(
+                    this.card.checklists.length,
+                    0,
+                    newChecklist
+                );
+            } else {
+                this.card.checklists = [newChecklist];
+            }
+
             this.isAddChecklist = false;
-            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
+            let updtBoard = JSON.parse(JSON.stringify(this.board));
+            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
         },
         updateCardTitle(ev) {
             if (this.card.title === ev.target.innerText) return;
