@@ -1,12 +1,16 @@
 <template>
-  <div class="home" style="text-align:center">🐢</div>
+  <section>
+    <div class="home" style="text-align: center">🐢</div>
+    <app-footer />
+  </section>
 </template>
-
 <script>
-// @ is an alias to /src
+import appFooter from "@/cmps/app-footer.cmp.vue";
 
 export default {
   name: "home-page",
-  components: {},
+  components: {
+    appFooter,
+  },
 };
 </script>

@@ -1,19 +1,16 @@
 <template>
-    <div id="app">
-        <app-header />
-        <router-view />
-        <app-footer />
-    </div>
+  <div id="app">
+    <app-header />
+    <router-view />
+  </div>
 </template>
 
 <script>
 import appHeader from "@/cmps/app-header.cmp.vue";
-import appFooter from "@/cmps/app-footer.cmp.vue";
 
 export default {
-    components: {
-        appHeader,
-        appFooter,
-    },
+  components: {
+    appHeader,
+  },
 };
 </script>
