@@ -2,11 +2,13 @@
     <section class="board">
         <board-header :board="board" />
         <div class="lists-container flex">
+            <!-- Outer Component Start -->
             <list-cmp
                 v-for="list in board.lists"
                 :key="list.id"
                 :list="list"
             />
+            <!-- Outer Component End -->
             <div v-if="showModal" class="modal-route">
                 <div class="modal-content">
                     <router-view></router-view>

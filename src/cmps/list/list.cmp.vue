@@ -11,8 +11,8 @@
             {{ list.title }}
         </h1>
         <router-link
-            :to="`list/${list.id}/card/${card.id}`" append
             v-for="card in list.cards"
+            :to="`list/${list.id}/card/${card.id}`" append
             :key="card.id"
             :card="card"
         >
