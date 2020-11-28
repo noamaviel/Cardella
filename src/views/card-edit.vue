@@ -18,22 +18,34 @@
                 {{ card.title }}
             </h2>
             <h4>in list {{ list.title }}</h4>
-            <h3>Members</h3>
-            <!-- <members-cmp></members-cmp> -->
-            <h3>Labels</h3>
-            <!-- <labels-cmp>{{card.labels}}</labels-cmp> -->
 
-            <h3>Due date</h3>
-            <h2>{{ new Date(card.dueDate) }}</h2>
+            <template v-if="card.members">
+                <h3>Members</h3>
+                <board-members :members="card.members" />
+            </template>
 
-            <h3>Checklist</h3>
-            <checklists-cmp
-                v-if="card.checklists"
-                :checklists="card.checklists"
-            />
+            <template v-if="card.labels">
+                <h3>Labels</h3>
+                <!-- <labels-cmp>{{card.labels}}</labels-cmp> -->
+            </template>
 
-            <h3>Image</h3>
-            <img :src="card.uploadImgUrl" />
+            <template v-if="card.dueDate">
+                <h3>Due date</h3>
+                <h2>{{ dueDateToShow }}</h2>
+            </template>
+
+            <template v-if="card.checklists">
+                <h3>Checklist</h3>
+                <checklists-cmp
+                    v-if="card.checklists"
+                    :checklists="card.checklists"
+                />
+            </template>
+
+            <template v-if="card.uploadImgUrl">
+                <h3>Image</h3>
+                <img :src="card.uploadImgUrl" />
+            </template>
 
             <h3>Description</h3>
             <textarea
@@ -90,6 +102,8 @@ import cardColor from "@/cmps/card/card-color.cmp";
 import checklistsCmp from "@/cmps/card/checklists.cmp.vue";
 import { uploadImg } from "@/services/upload-img-service.js";
 import cardDueDate from "@/cmps/card/card-duedate.cmp.vue";
+import boardMembers from "@/cmps/board/board-members.cmp.vue";
+import moment from "moment";
 
 export default {
     props: {},
@@ -115,6 +129,9 @@ export default {
                 (card) => card.id === cardId
             );
             return this.list.cards[cardIdx];
+        },
+        dueDateToShow() {
+            return moment(this.card.dueDate).fromNow();
         },
     },
     methods: {
@@ -170,6 +187,7 @@ export default {
         cardColor,
         checklistsCmp,
         cardDueDate,
+        boardMembers,
     },
 };
 </script>
