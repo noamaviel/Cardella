@@ -1,10 +1,13 @@
 .card-edit {
     display: flex;
     padding: 10px;
+    max-width: 600px;
     margin: 5px;
     border: 1px solid black;
-    width: 400px;
-    z-index: 10;
     background-color: grey;
-    position: absolute;
+
+    img {
+        max-width: 300px;
+    }
+
 }

@@ -1,18 +1,18 @@
-// BASICS
-@import 'basics/base';
-@import 'basics/helpers';
-// @import 'basics/layout';
-
 // SETUP
+@import 'setup/variables';
 @import 'setup/functions';
 @import 'setup/mixins';
 @import 'setup/typography';
-@import 'setup/variables';
+
+// BASICS
+@import 'basics/base';
+@import 'basics/helpers';
+@import 'basics/layout';
 
 // MAIN CMPS
 @import 'cmps/app-footer';
 @import 'cmps/app-header';
-@import 'cmps/boards-menu.scss';
+@import 'cmps/boards-menu';
 
 // CMPS BOARD
 @import 'cmps/board/board-activity-log';
@@ -22,7 +22,6 @@
 @import 'cmps/board/side-menu';
 
 // CMPS CARD
-@import 'cmps/card/card-edit';
 @import 'cmps/card/card-preview';
 @import 'cmps/card/card-sort';
 
@@ -32,9 +31,9 @@
 @import 'cmps/list/list';
 
 // VIEWS
+@import 'views/card-edit';
 @import 'views/board-create';
 @import 'views/board';
 @import 'views/home-page';
 @import 'views/login-signup';
 @import 'views/user-details';
-
