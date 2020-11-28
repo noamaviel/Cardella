@@ -1,5 +1,6 @@
 <template>
     <section class="list-menu">
+        <h3>List actions</h3>
         <ul>
             <li @click="removeList">Delete list</li>
             <li v-if="!isNew" @click="onOpenNewCard">Add card</li>
@@ -29,7 +30,10 @@ export default {
         list: Object,
     },
     data() {
-        return { isNew: false, newCardTitle: "" };
+        return {
+            isNew: false,
+            newCardTitle: "",
+        };
     },
     methods: {
         onOpenNewCard() {

@@ -22,21 +22,14 @@
             <!-- <members-cmp></members-cmp> -->
             <h3>Labels</h3>
             <!-- <labels-cmp>{{card.labels}}</labels-cmp> -->
+
             <h3>Due date</h3>
-            <!-- <due-date-cmp>
-            <label>
-			<my-checkbox
-				:value=""
-				v-model=""
-			/>
-            date-picker input (consider a npm package)
-		</label>            
-        </due-date-cmp> -->
+            <h2>{{ card.dueDate }}</h2>
+
             <h3>Checklist</h3>
             <checklists-cmp
                 v-if="card.checklists"
                 :checklists="card.checklists"
-                :board="board"
             />
 
             <h3>Image</h3>
@@ -64,6 +57,8 @@
             <button>Labels</button>
             <button>Checklist</button>
             <button>Due Date</button>
+            <card-due-date />
+
             <button>
                 <label for="imgUploader">Upload Image</label>
             </button>
@@ -74,20 +69,15 @@
                 @change="onUploadImg"
             />
             <button @click="onOpenColorPallette">Card Color</button>
-
             <card-color v-if="isDisplayColorPallette" @setColor="changeColor" />
 
-            <button @click="removeCard">
-                <router-link to="../../..">Delete card </router-link>
-            </button>
+            <router-link to="../../..">
+                <button @click="removeCard">Delete card</button>
+            </router-link>
 
-            <!-- <router-link to="../../..">
-        <button @click="removeCard">Delete card</button>
-      </router-link> -->
-
-            <button>
+            <!-- <button>
                 <router-link to="../../..">Cancel</router-link>
-            </button>
+            </button> -->
         </div>
     </section>
 </template>
@@ -96,10 +86,10 @@
 import cardColor from "@/cmps/card/card-color.cmp";
 import checklistsCmp from "@/cmps/card/checklists.cmp.vue";
 import { uploadImg } from "@/services/upload-img-service.js";
+import cardDueDate from "@/cmps/card/card-duedate.cmp.vue";
 
 export default {
-    props: {
-    },
+    props: {},
     data() {
         return {
             isDisplayColorPallette: false,
@@ -111,10 +101,6 @@ export default {
         },
         list() {
             const listId = this.$route.params.listId;
-            console.log(
-                "🚀 ~ file: card-edit.vue ~ line 100 ~ list ~ listId",
-                listId
-            );
             const listIdx = this.board.lists.findIndex(
                 (list) => list.id === listId
             );
@@ -122,11 +108,6 @@ export default {
         },
         card() {
             const cardId = this.$route.params.cardId;
-            console.log(
-                "🚀 ~ file: card-edit.vue ~ line 108 ~ card ~ cardId",
-                cardId
-            );
-
             const cardIdx = this.list.cards.findIndex(
                 (card) => card.id === cardId
             );
@@ -134,9 +115,6 @@ export default {
         },
     },
     methods: {
-        onCloseCard() {
-            this.$emit("closeCard");
-        },
         changeColor(color) {
             console.log("color:", color);
             this.isDisplayColorPallette = false;
@@ -180,12 +158,10 @@ export default {
             });
         },
     },
-    created() {
-      console.log('this.board in card-edit', this.board);
-    },
     components: {
         cardColor,
         checklistsCmp,
+        cardDueDate,
     },
 };
 </script>
