@@ -8,7 +8,6 @@
             >
                 {{ checklist.title }}
             </h3>
-           
         </div>
         <ul v-if="checklist.todos">
             <li
@@ -55,14 +54,12 @@
 </template>
 
 <script>
-// import cardEdit from "../card/card-edit.cmp.vue";
-
 import { utilService } from "../../services/util-service.js";
 
 export default {
     props: {
         checklist: Object,
-        board: Object
+        board: Object,
     },
     data() {
         return {
@@ -77,7 +74,7 @@ export default {
     methods: {
         onCheckbox() {
             console.log("checkbox clicked");
-             this.$store.dispatch({ type: "updateBoardV2", board: this.board });
+            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
         },
         onAddTodo() {
             this.tmpTodo.id = utilService.makeId();
@@ -111,15 +108,8 @@ export default {
             }
             this.checklist.title = ev.target.innerText;
             ev.target.blur();
-             this.$store.dispatch({ type: "updateBoardV2", board: this.board });
+            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
         },
-       
-    },
-    components: {
-        // cardEdit,
-    },
-    created() {
-       
     },
 };
 </script>

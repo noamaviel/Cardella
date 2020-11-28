@@ -34,6 +34,7 @@ function getEmptyCard(title = '') {
         id: utilService.makeId(),
         title,
         createdAt: Date.now(),
+        dueDate: Date.now(),
         description: '',
         uploadImgUrl: '',
         createdBy: {

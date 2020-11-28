@@ -18,29 +18,34 @@
                 {{ card.title }}
             </h2>
             <h4>in list {{ list.title }}</h4>
-            <h3>Members</h3>
-            <!-- <members-cmp></members-cmp> -->
-            <h3>Labels</h3>
-            <!-- <labels-cmp>{{card.labels}}</labels-cmp> -->
-            <h3>Due date</h3>
-            <!-- <due-date-cmp>
-            <label>
-			<my-checkbox
-				:value=""
-				v-model=""
-			/>
-            date-picker input (consider a npm package)
-		</label>            
-        </due-date-cmp> -->
-            <h3>Checklist</h3>
-            <checklists-cmp
-                v-if="card.checklists"
-                :checklists="card.checklists"
-                :board="board"
-            />
 
-            <h3>Image</h3>
-            <img :src="card.uploadImgUrl" />
+            <template v-if="card.members">
+                <h3>Members</h3>
+                <board-members :members="card.members" />
+            </template>
+
+            <template v-if="card.labels">
+                <h3>Labels</h3>
+                <!-- <labels-cmp>{{card.labels}}</labels-cmp> -->
+            </template>
+
+            <template v-if="card.dueDate">
+                <h3>Due date</h3>
+                <h2>{{ dueDateToShow }}</h2>
+            </template>
+
+            <template v-if="card.checklists">
+                <h3>Checklist</h3>
+                <checklists-cmp
+                    v-if="card.checklists"
+                    :checklists="card.checklists"
+                />
+            </template>
+
+            <template v-if="card.uploadImgUrl">
+                <h3>Image</h3>
+                <img :src="card.uploadImgUrl" />
+            </template>
 
             <h3>Description</h3>
             <textarea
@@ -64,6 +69,11 @@
             <button>Labels</button>
             <button>Checklist</button>
             <button>Due Date</button>
+            <card-due-date
+                :currDueDate="new Date(card.dueDate)"
+                @setDueDate="setDueDate"
+            />
+
             <button>
                 <label for="imgUploader">Upload Image</label>
             </button>
@@ -74,20 +84,15 @@
                 @change="onUploadImg"
             />
             <button @click="onOpenColorPallette">Card Color</button>
-
             <card-color v-if="isDisplayColorPallette" @setColor="changeColor" />
 
-            <button @click="removeCard">
-                <router-link to="../../..">Delete card </router-link>
-            </button>
+            <router-link to="../../..">
+                <button @click="removeCard">Delete card</button>
+            </router-link>
 
-            <!-- <router-link to="../../..">
-        <button @click="removeCard">Delete card</button>
-      </router-link> -->
-
-            <button>
+            <!-- <button>
                 <router-link to="../../..">Cancel</router-link>
-            </button>
+            </button> -->
         </div>
     </section>
 </template>
@@ -96,10 +101,12 @@
 import cardColor from "@/cmps/card/card-color.cmp";
 import checklistsCmp from "@/cmps/card/checklists.cmp.vue";
 import { uploadImg } from "@/services/upload-img-service.js";
+import cardDueDate from "@/cmps/card/card-duedate.cmp.vue";
+import boardMembers from "@/cmps/board/board-members.cmp.vue";
+import moment from "moment";
 
 export default {
-    props: {
-    },
+    props: {},
     data() {
         return {
             isDisplayColorPallette: false,
@@ -111,10 +118,6 @@ export default {
         },
         list() {
             const listId = this.$route.params.listId;
-            console.log(
-                "🚀 ~ file: card-edit.vue ~ line 100 ~ list ~ listId",
-                listId
-            );
             const listIdx = this.board.lists.findIndex(
                 (list) => list.id === listId
             );
@@ -122,21 +125,16 @@ export default {
         },
         card() {
             const cardId = this.$route.params.cardId;
-            console.log(
-                "🚀 ~ file: card-edit.vue ~ line 108 ~ card ~ cardId",
-                cardId
-            );
-
             const cardIdx = this.list.cards.findIndex(
                 (card) => card.id === cardId
             );
             return this.list.cards[cardIdx];
         },
+        dueDateToShow() {
+            return moment(this.card.dueDate).fromNow();
+        },
     },
     methods: {
-        onCloseCard() {
-            this.$emit("closeCard");
-        },
         changeColor(color) {
             console.log("color:", color);
             this.isDisplayColorPallette = false;
@@ -179,13 +177,17 @@ export default {
                 listId: this.list.id,
             });
         },
-    },
-    created() {
-      console.log('this.board in card-edit', this.board);
+        setDueDate(dueDate) {
+            console.log("dueDate:", dueDate);
+            this.card.dueDate = dueDate.getTime();
+            this.updateCard();
+        },
     },
     components: {
         cardColor,
         checklistsCmp,
+        cardDueDate,
+        boardMembers,
     },
 };
 </script>
