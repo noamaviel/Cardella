@@ -10,6 +10,16 @@ body {
     margin: 0;
 }
 
+.app {
+    height: 100vh;
+    // background-image: url("https://res.cloudinary.com/morshva/image/upload/v1606573776/7_op2qhx.jpg");
+    // background-image: url("https://res.cloudinary.com/morshva/image/upload/v1606572977/2_hbkchm.jpg");
+    // background-image: url("https://res.cloudinary.com/morshva/image/upload/v1606572976/3_ye915h.jpg");
+    // background-image: url("https://res.cloudinary.com/morshva/image/upload/v1606573383/5_mavwxz.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 h1,
 h2,
 h3,
@@ -37,7 +47,7 @@ a:link {
 }
 
 a:visited {
-    color: $clr1;
+    color: inherit;
 }
 
 ul {

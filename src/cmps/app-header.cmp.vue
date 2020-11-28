@@ -1,11 +1,17 @@
 <template>
-    <section>
-        <header class="main-header">
-            <router-link to="/">Home</router-link> 
-            <router-link to="/board/b101">Public Board</router-link>
-            <h1 class="logo">Cardella</h1>
-            <button>Boards</button>
-            <router-link to="/login">Login</router-link>
-        </header>
-    </section>
+  <section>
+    <header class="main-header">
+      <div class="main-header-left">
+        <router-link to="/"><h4><i class="fas fa-home"></i></h4></router-link>
+        <router-link to="/board/b101"><h4>Public Board</h4></router-link>
+      </div>
+      <div class="logo">
+        <router-link to="/"><h1>Cardella</h1></router-link>
+      </div>
+      <div class="main-header-right">
+        <h4><a href="">Boards</a></h4>
+        <router-link to="/login"><h4>Login</h4></router-link>
+      </div>
+    </header>
+  </section>
 </template>

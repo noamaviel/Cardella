@@ -1,28 +1,53 @@
 .board-header {
-    padding: 10px;
-    padding-top: 25px;
-    display: flex;
-    height: 70px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid grey;
+
+    // background-color: rgba(109, 109, 109, 0.733);
+    border-bottom: 0.5px solid rgb(51, 51, 51);
     margin-bottom: 20px;
+    color: $clr2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "leftBoardHeader avaterBoardHeader rightBoardHeader";
 
-    .board-avatar i {
-        font-size: 30px;
+    .left-board-header {
+        margin-left: 10px;
+        display: flex;
+        justify-content: flex-start;
+        grid-area: leftBoardHeader;
+        align-self: center;
     }
 
-    .avatar-list {
+    .avater-board-header {
         display: flex;
-    }
-
-    .board-menu-right {
-        display: flex;
-        align-items: center;
         flex-direction: row;
-        justify-content: space-around;
-        width: 280px;
+        justify-content: center;
+        align-self: center;
+        grid-area: avaterBoardHeader;
+
+        .avatar-list {
+            display: flex;
+        }
+
     }
+
+    .right-board-header {
+        margin-right: 10px;
+        display: flex;
+        justify-content: flex-end;
+        grid-area: rightBoardHeader;
+        align-self: center;
+
+        button {
+            margin-left: 10px;
+        }
+
+    }
+
+
+
+
+
+
+
+
 
 }

@@ -67,7 +67,7 @@ export default {
                 this.list.cards,
                 dropResult
             );
-            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
+            // this.$store.dispatch({ type: "updateBoardV2", board: this.board });
         },
         getCardPayload(listId) {
             console.log("getCardPayload-columnId", listId);
