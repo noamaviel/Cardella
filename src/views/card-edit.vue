@@ -21,7 +21,7 @@
 
             <template v-if="card.members">
                 <h3>Members</h3>
-                <board-members :members="card.members" />
+                <members-cmp :members="card.members" />
             </template>
 
             <template v-if="card.labels">
@@ -31,7 +31,7 @@
 
             <template v-if="card.dueDate">
                 <h3>Due date</h3>
-                <h2>{{ dueDateToShow }}</h2>
+                <h3>{{ dueDateToShow }}</h3>
             </template>
 
             <template v-if="card.checklists">
@@ -45,6 +45,7 @@
             <template v-if="card.uploadImgUrl">
                 <h3>Image</h3>
                 <img :src="card.uploadImgUrl" />
+                <i class="far fa-trash-alt" @click="removeImg"></i>
             </template>
 
             <h3>Description</h3>
@@ -75,16 +76,19 @@
             />
 
             <button>
-                <label for="imgUploader">Upload Image</label>
+                <label for="imgUploader" @click.prevent="onOpenUploadImgField"
+                    >Upload Image</label
+                >
             </button>
             <input
                 type="file"
                 name="img-uploader"
                 id="imgUploader"
+                v-if="isDisplay"
                 @change="onUploadImg"
             />
             <button @click="onOpenColorPallette">Card Color</button>
-            <card-color v-if="isDisplayColorPallette" @setColor="changeColor" />
+            <card-color v-if="isDisplay" @setColor="changeColor" />
 
             <router-link to="../../..">
                 <button @click="removeCard">Delete card</button>
@@ -102,14 +106,14 @@ import cardColor from "@/cmps/card/card-color.cmp";
 import checklistsCmp from "@/cmps/card/checklists.cmp.vue";
 import { uploadImg } from "@/services/upload-img-service.js";
 import cardDueDate from "@/cmps/card/card-duedate.cmp.vue";
-import boardMembers from "@/cmps/board/board-members.cmp.vue";
+import membersCmp from "@/cmps/members.cmp.vue";
 import moment from "moment";
 
 export default {
     props: {},
     data() {
         return {
-            isDisplayColorPallette: false,
+            isDisplay: false,
         };
     },
     computed: {
@@ -131,19 +135,20 @@ export default {
             return this.list.cards[cardIdx];
         },
         dueDateToShow() {
-            return moment(this.card.dueDate).fromNow();
+            return moment(this.card.dueDate).calendar();
         },
     },
     methods: {
         changeColor(color) {
-            console.log("color:", color);
             this.isDisplayColorPallette = false;
             this.card.style.bgColor = color;
             this.updateCard();
         },
         onOpenColorPallette() {
-            console.log("color button clicked");
-            this.isDisplayColorPallette = !this.isDisplayColorPallette;
+            this.isDisplay = !this.isDisplay;
+        },
+        onOpenUploadImgField() {
+            this.isDisplay = !this.isDisplay;
         },
         updateCardTitle(ev) {
             if (this.card.title === ev.target.innerText) return;
@@ -168,6 +173,7 @@ export default {
         async onUploadImg(ev) {
             const res = await uploadImg(ev);
             this.card.uploadImgUrl = res.secure_url;
+            this.isDisplay = false;
             this.updateCard();
         },
         removeCard() {
@@ -175,6 +181,14 @@ export default {
                 type: "removeCard",
                 cardId: this.card.id,
                 listId: this.list.id,
+            });
+        },
+        removeImg() {
+            this.card.uploadImgUrl = "";
+            this.$store.dispatch({
+                type: "updateCard",
+                card: this.card,
+                list: this.list,
             });
         },
         setDueDate(dueDate) {
@@ -187,7 +201,7 @@ export default {
         cardColor,
         checklistsCmp,
         cardDueDate,
-        boardMembers,
+        membersCmp,
     },
 };
 </script>
