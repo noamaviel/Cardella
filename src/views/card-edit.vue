@@ -1,5 +1,7 @@
 <template>
-    <section class="card-edit">
+    <!-- When the card is removed, the card-edit vue tries to be rendered even though the card
+    is already deleted. In order to prevent errors, we check that the card is not undefined. -->
+    <section class="card-edit" v-if="card">
         <div class="main-area" style="flex-grow: 1">
             <router-link to="../../..">X</router-link>
             <!-- <div class="addChecklistModal">
@@ -97,6 +99,7 @@ export default {
         },
         list() {
             const listId = this.$route.params.listId;
+            console.log("🚀 ~ file: card-edit.vue ~ line 100 ~ list ~ listId", listId)
             const listIdx = this.board.lists.findIndex(
                 (list) => list.id === listId
             );
@@ -104,6 +107,8 @@ export default {
         },
         card() {
             const cardId = this.$route.params.cardId;
+            console.log("🚀 ~ file: card-edit.vue ~ line 108 ~ card ~ cardId", cardId)
+            
             const cardIdx = this.list.cards.findIndex(
                 (card) => card.id === cardId
             );
