@@ -9,27 +9,18 @@
                 <button @click="onRemoveChecklist(index)">
                     Delete Checklist
                 </button>
-                <card-checklist :checklist="checklist" />
+                <card-checklist :checklist="checklist" :board="board" />
             </li>
         </ul>
     </section>
 </template>
 
 <script>
-// import cardEdit from "../card/card-edit.cmp.vue";
-// import {
-//     eventBus,
-//     EVENT_UPDATE_BOARD,
-// } from "../../services/eventbus-service.js";
-// import { utilService } from "../../services/util-service.js";
 import cardChecklist from "../card/card-checklist.cmp";
-import {
-    eventBus,
-    EVENT_UPDATE_BOARD,
-} from "../../services/eventbus-service.js";
 
 export default {
     props: {
+        board: Object,
         checklists: Array,
     },
     data() {
@@ -39,12 +30,14 @@ export default {
         onRemoveChecklist(index) {
             console.log("onRemoveCheclist", index);
             this.checklists.splice(index, 1);
-            eventBus.$emit(EVENT_UPDATE_BOARD);
+            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
         },
     },
     components: {
         cardChecklist,
     },
-    created() {},
+    created() {
+        console.log("this.board in checklists", this.board);
+    },
 };
 </script>

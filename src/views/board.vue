@@ -18,7 +18,6 @@
 <script>
 import boardHeader from "@/cmps/board/board-header.cmp.vue";
 import listCmp from "@/cmps/list/list.cmp.vue";
-import { eventBus, EVENT_UPDATE_BOARD } from "../services/eventbus-service.js";
 import listAdd from "@/cmps/list/list-add.cmp.vue";
 
 export default {
@@ -46,16 +45,12 @@ export default {
     const boardId = this.$route.params.boardId;
     this.$store.dispatch({ type: "loadBoard", boardId });
 
-    eventBus.$on(EVENT_UPDATE_BOARD, () => {
-      // console.log("board in board-cmp:", this.board);
-      this.$store.dispatch({ type: "updateBoard" });
-    });
-  },
-  watch: {
-    $route(newVal) {
-      this.showModal = newVal.meta && newVal.meta.showModal;
     },
-  },
+    watch: {
+        $route(newVal) {
+            this.showModal = newVal.meta && newVal.meta.showModal;
+        },
+    },
 };
 </script>
 

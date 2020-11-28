@@ -56,15 +56,13 @@
 
 <script>
 // import cardEdit from "../card/card-edit.cmp.vue";
-import {
-    eventBus,
-    EVENT_UPDATE_BOARD,
-} from "../../services/eventbus-service.js";
+
 import { utilService } from "../../services/util-service.js";
 
 export default {
     props: {
         checklist: Object,
+        board: Object
     },
     data() {
         return {
@@ -79,7 +77,7 @@ export default {
     methods: {
         onCheckbox() {
             console.log("checkbox clicked");
-            eventBus.$emit(EVENT_UPDATE_BOARD);
+             this.$store.dispatch({ type: "updateBoardV2", board: this.board });
         },
         onAddTodo() {
             this.tmpTodo.id = utilService.makeId();
@@ -90,13 +88,13 @@ export default {
                 0,
                 newTodo
             );
-            eventBus.$emit(EVENT_UPDATE_BOARD);
+            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
             this.tmpTodo.title = "";
         },
         onRemoveTodo(index) {
             console.log("onRemoveTodo", index);
             this.checklist.todos.splice(index, 1);
-            eventBus.$emit(EVENT_UPDATE_BOARD);
+            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
         },
         onAddTodoForm() {
             this.isAddTodoForm = true;
@@ -113,14 +111,16 @@ export default {
             }
             this.checklist.title = ev.target.innerText;
             ev.target.blur();
-             eventBus.$emit(EVENT_UPDATE_BOARD);
+             this.$store.dispatch({ type: "updateBoardV2", board: this.board });
         },
        
     },
     components: {
         // cardEdit,
     },
-    created() {},
+    created() {
+       
+    },
 };
 </script>
 
