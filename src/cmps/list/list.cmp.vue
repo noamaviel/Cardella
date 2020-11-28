@@ -10,18 +10,22 @@
         >
             {{ list.title }}
         </h1>
-        <router-link
-            v-for="card in list.cards"
-            :to="`list/${list.id}/card/${card.id}`" append
-            :key="card.id"
-            :card="card"
+
+        <Container
+            group-name="list"
+            @drop="(dropResult) => onDrop(dropResult)"
+            :get-child-payload="getCardPayload(list.id)"
         >
-            <card-preview
-                v-bind:style="{ backgroundColor: card.style.bgColor }"
-                :card="card"
-                @removeCard="removeCard"
-            />
-        </router-link>
+            <Draggable v-for="card in list.cards" :key="card.id">
+                <router-link :to="`list/${list.id}/card/${card.id}`" append>
+                    <card-preview
+                        v-bind:style="{ backgroundColor: card.style.bgColor }"
+                        :card="card"
+                        @removeCard="removeCard"
+                    />
+                </router-link>
+            </Draggable>
+        </Container>
         <button class="add-card-btn" v-if="!isNew" @click="onOpenNewCard">
             + Add another card
         </button>
@@ -38,12 +42,16 @@
 </template>
 
 <script>
+import { Container, Draggable } from "vue-smooth-dnd";
+import { utilService } from "../../services/util-service.js";
 import cardPreview from "../card/card-preview.cmp";
 import listMenu from "../list/list-menu.cmp";
 
 export default {
     props: {
         list: Object,
+        lists: Array,
+        index: Number,
     },
     data() {
         return {
@@ -53,6 +61,23 @@ export default {
     },
     computed: {},
     methods: {
+        onDrop(dropResult) {
+            console.log("dropResult onDrop", dropResult);
+            this.list.cards = utilService.applyDrag(
+                this.list.cards,
+                dropResult
+            );
+            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
+        },
+        getCardPayload(listId) {
+            console.log("getCardPayload-columnId", listId);
+            return (index) => {
+                console.log("getting payload of INDEX", index);
+                return this.lists.filter((p) => p.id === listId)[0].cards[
+                    index
+                ];
+            };
+        },
         onOpenNewCard() {
             this.isNew = true;
         },
@@ -90,6 +115,8 @@ export default {
         },
     },
     components: {
+        Container,
+        Draggable,
         cardPreview,
         listMenu,
     },
