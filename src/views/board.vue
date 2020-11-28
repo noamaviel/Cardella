@@ -49,7 +49,7 @@ export default {
             inLists = utilService.applyDrag(inLists, dropResult);
             console.log("inLists after applyDrag", inLists);
             this.board.lists = inLists;
-            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
+            // this.$store.dispatch({ type: "updateBoardV2", board: this.board });
         },
         // showCardEdit(cardId) {
         //     this.$router.push(`/card/${cardId}`);
