@@ -3,7 +3,7 @@
         <board-header :board="board" />
         <div class="lists-container flex">
             <!-- Outer Component Start -->
-            <Container orientation="horizontal" @drop="onColumnDrop($event)">
+            <Container orientation="horizontal" @drop="onColumnDrop($event)" :animation-duration="400">
                 <Draggable v-for="(list, index) in board.lists" :key="list.id">
                     <list-cmp
                         :list="list"
