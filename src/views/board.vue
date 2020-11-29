@@ -67,11 +67,15 @@ export default {
     },
     created() {
         const boardId = this.$route.params.boardId;
+        console.log('Created!')
         this.$store.dispatch({ type: "loadBoard", boardId });
     },
     watch: {
-        $route(newVal) {
-            this.showModal = newVal.meta && newVal.meta.showModal;
+        $route: {
+            immediate: true,
+            handler: function (newVal) {
+                this.showModal = newVal.meta && newVal.meta.showModal;
+            },
         },
     },
 };

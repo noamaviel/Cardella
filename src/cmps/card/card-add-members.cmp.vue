@@ -12,10 +12,13 @@
             :value="member._id"
         >
         </el-option>
+    <members-cmp :members="boardMembers" />
     </el-select>
 </template>
 
 <script>
+import membersCmp from "@/cmps/members.cmp.vue";
+
 export default {
     props: {
         currCardMembers: Array,
@@ -36,6 +39,9 @@ export default {
             );
             this.$emit("setCardMembers", newCardMembers);
         },
+    },
+    components: {
+        membersCmp,
     },
 };
 </script>
