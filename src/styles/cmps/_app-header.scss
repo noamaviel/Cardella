@@ -1,18 +1,15 @@
 header.main-header {
-    // position: fixed;
-    // width: 100%;
+
     color: $clr2;
     height: 40px;
-    background-color: rgba(253, 44, 44, 0.418);
+    background-color: #CD687C;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "leftHeader logo rightHeader";
 
     h4 {
-        margin: 0 10px;
+        margin-bottom: 0;
     }
-
-
 
     .main-header-left {
         display: flex;
@@ -20,6 +17,9 @@ header.main-header {
         grid-area: leftHeader;
         align-self: center;
 
+        h4 {
+            margin-left: 20px;
+        }
     }
 
     .logo {
@@ -39,6 +39,10 @@ header.main-header {
         justify-content: flex-end;
         grid-area: rightHeader;
         align-self: center;
+
+        h4 {
+            margin-right: 20px;
+        }
 
     }
 

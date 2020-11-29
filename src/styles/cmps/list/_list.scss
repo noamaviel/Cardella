@@ -1,13 +1,45 @@
+.lists-container {
+    margin: 0 5px;
+    // overflow-y: auto;
+}
+
 .list-container {
+    overflow-x: hidden;
+    // max-height: 75vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #ebecf0;
     border-radius: 3px;
-    margin-inline-start: 12px;
+    margin: 0 4px;
     width: 220px;
+    overflow-y: auto;
 
-    .add-card-btn {
-        width: 100%;
+    .add-another-card-button {
+        @include button;
+        @include dark-buttons;
+        padding: 10px;
+        margin: 8px 0 12px;
+    }
+
+    .add-card-button-inside {
+        align-self: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        button {
+            @include button;
+            padding: 10px;
+            margin: 8px 0 12px;
+        }
+
+        input {
+            width: rem(200px);
+            padding: 25px 5px;
+            box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
+            border: none;
+        }
+
     }
 }

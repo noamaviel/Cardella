@@ -1,0 +1,40 @@
+.add-list-container {
+    .add-another-list-button {
+        @include button;
+        @include bright-buttons;
+        text-align: left;
+        padding: 10px;
+        width: rem(220px);
+    }
+
+    .add-list-button-inside {
+        align-self: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        button {
+            @include button;
+            padding: 10px;
+            margin: 8px 0 12px;
+        }
+
+        input {
+            border-radius: 3px;
+            width: rem(200px);
+            padding: 25px 5px;
+            box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
+            border: none;
+            margin: 0 4px 4px
+            
+        }
+
+        .add-list-inside-cont {
+            button {
+                @include bright-buttons;
+                
+            }
+        }
+
+    }
+}

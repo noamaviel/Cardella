@@ -1,7 +1,7 @@
 <template>
   <section class="board-header">
-    <div class="left-board-header">
-      <h2
+    <div class="left-board-header flex">
+      <h2 class="board-title"
         contenteditable="true"
         @keypress.enter.prevent="updateBoardTitle"
         @blur="updateBoardTitle"
@@ -9,11 +9,11 @@
         {{ board.title }}
       </h2>
     </div>
-    <div class="avater-board-header">
+    <div class="avater-board-header flex f-center">
       <members-cmp :members="board.members" />
     </div>
 
-    <div class="right-board-header">
+    <div class="right-board-header flex">
       <board-filter :board="board" />
       <button @click="toggleMenu">Menu</button>
       <side-menu v-if="isOpen" :board="board" />

@@ -2,10 +2,19 @@
 // COLOR PALETTE
 
 $clr1: #353535; // main text color
-$clr2: #e2e1e1; //white text color
-$clr3: #504658;
-$clr4: #f0decb;
-$clr5: #fff;
+$clr2: #f5f1f1; //white text color
+
+// bright-buttons
+
+$clr3: rgba(255, 255, 255, 0.377); //white bgc for hover;
+$clr4: rgba(255, 255, 255, 0.192); //white bgc for background and focus;
+
+// dark-buttons
+
+$clr5: rgba(65, 65, 65, 0.109); //white bgc for hover;
+// $clr4: rgba(255, 255, 255, 0.192); //white bgc for background and focus;
+
+
 
 // LAYOUT BREAKPOINTS
 

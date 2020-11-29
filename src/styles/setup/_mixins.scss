@@ -1,60 +1,105 @@
+/* Mixin buttons */
+
+@mixin button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+@mixin bright-buttons {
+  outline: none;
+  border-radius: 4px;
+  background-color: $clr4;
+  border: none;
+
+  color: $clr2;
+
+  &:hover {
+    background-color: $clr3;
+    transition-duration: 150ms;
+  }
+
+}
+
+@mixin dark-buttons {
+  outline: none;
+  border-radius: 4px;
+  border: none;
+  color: $clr1;
+
+  &:hover {
+    background-color: $clr5;
+    transition-duration: 150ms;
+  }
+}
+
+@mixin input {
+  background-color: transparent;
+  border: none;
+}
+
+
 /* Media queries Breakpoint mixins */
 
 @mixin for-mobile-layout {
-    @media (max-width: $break-narrow) {
+  @media (max-width: $break-narrow) {
+    @content;
+  }
+}
+
+@mixin for-narrow-layout {
+  @media (min-width: $break-narrow) {
+    @content;
+  }
+}
+
+@mixin for-normal-layout {
+  @media (min-width: $break-normal) {
+    @content;
+  }
+}
+
+@mixin for-wide-layout {
+  @media (min-width: $break-wide) {
+    @content;
+  }
+}
+
+
+/* Media  Mixins */
+
+//aspect ratio mixin
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+
+  >* {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  >img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// Mixin for removing hover efects on iphone screen
+@mixin hover-supported {
+  @media not all and (pointer: coarse) {
+    &:hover {
       @content;
     }
   }
-  
-  @mixin for-narrow-layout {
-    @media (min-width: $break-narrow) {
-      @content;
-    }
-  }
-  
-  @mixin for-normal-layout {
-    @media (min-width: $break-normal) {
-      @content;
-    }
-  }
-  
-  @mixin for-wide-layout {
-    @media (min-width: $break-wide) {
-      @content;
-    }
-  }
-  
-  
-  /* Media  Mixins */
-  
-  //aspect ratio mixin
-  @mixin aspect-ratio($width, $height) {
-      position: relative;
-      overflow: hidden;
-      &:before {
-        content: "";
-        display: block;
-        width: 100%;
-        padding-top: ($height / $width) * 100%;
-      }
-      > * {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-      }  
-      > img {
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-    
-    // Mixin for removing hover efects on iphone screen
-    @mixin hover-supported {    
-      @media not all and (pointer: coarse) {
-          &:hover {
-              @content;
-          }
-      }
-    }
+}

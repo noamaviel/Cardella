@@ -1,6 +1,5 @@
 <template>
-    <section class="list-menu">
-        <h3>List actions</h3>
+    <section class="list-menu flex .f-row">
         <ul>
             <li @click="removeList">Delete list</li>
             <li v-if="!isNew" @click="onOpenNewCard">Add card</li>

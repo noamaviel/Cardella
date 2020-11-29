@@ -1,9 +1,10 @@
 .board-filter {
-    border: 1px solid gray;
-    padding: 5px;
-    background-color: white;
+    padding: rem(5px);
+    margin: 0 4px;
+    @include bright-buttons;
 
     input {
-        border: none;
+        @include input;
+        height: rem(17px);
     }
 }

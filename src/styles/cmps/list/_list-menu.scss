@@ -1,0 +1,26 @@
+.list-menu-container {
+    width: inherit;
+    justify-content: space-between;
+    padding: 10px;
+    color: $clr1;
+
+    .list-title {
+        font-size: rem(13px);
+        font-weight: bold;
+    }
+}
+
+.list-open-menu {
+    text-align: center;
+    cursor: pointer;
+    padding: 4px;
+    @include dark-buttons;
+}
+
+.list-menu{
+    line-height: 25px;
+}
+
+.add-card-btn {
+    width: 100%;
+}
