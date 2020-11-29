@@ -1,7 +1,7 @@
 <template>
     <section>
         <ul v-if="checklists.length">
-            <h3>Checklists</h3>
+            <h3><i class="fas fa-check"></i> Checklists</h3>
             <li
                 v-for="(checklist, index) in checklists"
                 :index="index"

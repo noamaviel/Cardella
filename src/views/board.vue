@@ -76,25 +76,3 @@ export default {
     },
 };
 </script>
-<style scoped>
-.modal-route {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: rgba(#000000, 0.5);
-}
-.modal-route .modal-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(68, 68, 68, 0.465);
-}
-</style>

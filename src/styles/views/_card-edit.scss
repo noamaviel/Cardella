@@ -1,13 +1,81 @@
+.modal-route {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(68, 68, 68, 0.465);
+}
+
+.modal-route .modal-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
 .card-edit {
     display: flex;
     padding: 10px;
-    max-width: 600px;
     margin: 5px;
-    border: 1px solid black;
-    background-color: grey;
+    border-radius: 3px;
+    background-color: $clr2;
+    overflow-y: auto;
+    position: relative;
+    width: rem(768px);
+    z-index: 10;
+
+    .main-area {
+        flex-grow: 1;
+        line-height: rem(40px);
+        margin-left: 10px;
+
+        i {
+            font-size: rem(15px);
+            margin: 0 10px
+        }
+
+        h4 {
+            line-height: rem(25px);
+            margin-bottom: 10px;
+
+        }
+        h3{
+            margin-bottom: 7px;
+        }
+    }
 
     img {
         max-width: 300px;
     }
 
+    .edit-card-menu-area {
+        display: flex;
+        flex-direction: column;
+        margin-right: 8px;
+
+
+        button {
+            @include dark-buttons;
+            height: 32px;
+            margin-top: 8px;
+            max-width: 300px;
+            overflow: hidden;
+            background-color: rgba(9, 30, 66, 0.096);
+            padding: 6px 12px;
+
+            &:hover {
+                background-color: rgba(65, 65, 65, 0.363);
+                transition-duration: 150ms;
+            }
+        }
+
+
+    }
 }
