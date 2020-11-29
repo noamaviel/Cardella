@@ -1,4 +1,4 @@
-# trello-proj
+# Cardella!
 
 ## Project setup
 ```
