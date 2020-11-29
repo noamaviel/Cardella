@@ -1,6 +1,5 @@
 <template>
     <section>
-        <h1>Add checklist</h1>
         <form @submit.prevent="onAddChecklist">
             <input
                 type="text"

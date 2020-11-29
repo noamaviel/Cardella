@@ -42,4 +42,16 @@
         }
 
     }
+
+    .list-title {
+        border: none;
+        width: 100%;
+
+        &:hover {
+            background-color: rgba(65, 65, 65, 0.363);
+            transition-duration: 150ms;
+            background-color: white;
+
+        }
+    }
 }
