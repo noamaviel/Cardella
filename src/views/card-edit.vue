@@ -153,7 +153,6 @@ export default {
             const cardIdx = this.list.cards.findIndex(
                 (card) => card.id === cardId
             );
-            console.log("card() in cardEdit", this.list.cards[cardIdx]);
             return this.list.cards[cardIdx];
         },
         dueDateToShow() {
@@ -186,7 +185,8 @@ export default {
             this.isDisplayDatePicker = !this.isDisplayDatePicker;
         },
         onAddChecklist() {
-            this.isAddChecklist = true;
+            this.isAddChecklist = !this.isAddChecklist;
+            // this.isAddChecklist = true;
         },
         onNewChecklist(newChecklist) {
             if (this.card.checklists) {
