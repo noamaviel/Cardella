@@ -35,6 +35,7 @@
         flex-grow: 1;
         line-height: rem(40px);
         margin-left: 10px;
+        margin-right: 10px;
 
         i {
             font-size: rem(15px);
@@ -53,31 +54,37 @@
             &:hover {
                 background-color: rgba(65, 65, 65, 0.363);
                 transition-duration: 150ms;
-                background-color: white;
+                background-color: $clr2;
 
             }
         }
+
+        .main-area-top .due-date-container {
+            flex-grow: 1;
+        }
     }
 
-    img {
-        max-width: 300px;
-    }
+    // img {
+    //     max-width: 300px;
+    // }
 
     textarea {
         width: 100%;
         border: none;
         background-color: $clr2;
+        font-family: sans-serif;
 
         &:hover {
             background-color: rgba(65, 65, 65, 0.363);
             transition-duration: 150ms;
-            background-color: white;
+            background-color: $clr2;
 
         }
     }
 
     .edit-card-menu-area {
         display: flex;
+        // flex-grow: 1;
         flex-direction: column;
         margin-right: 8px;
 
@@ -86,7 +93,7 @@
             @include dark-buttons;
             height: 32px;
             margin-top: 8px;
-            max-width: 300px;
+            width: 300px;
             overflow: hidden;
             background-color: rgba(9, 30, 66, 0.096);
             padding: 6px 12px;

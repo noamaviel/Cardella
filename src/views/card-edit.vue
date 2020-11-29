@@ -13,18 +13,26 @@
             </h3>
             <h4>in list {{ list.title }}</h4>
 
-            <h4 v-if="card.members.length > 0">Members</h4>
-            <members-cmp :members="card.members" />
+            <div class="main-area-top flex">
+                <template v-if="card.dueDate" class="due-date-container flex">
+                    <h4>Due date</h4>
+                    <h4>{{ dueDateToShow }}</h4>
+                </template>
 
-            <template v-if="card.labels">
-                <h4>Labels</h4>
-                <!-- <labels-cmp>{{card.labels}}</labels-cmp> -->
-            </template>
+                <template
+                    v-if="card.members.length > 0"
+                    class="members-container flex"
+                >
+                    <h4>Members</h4>
+                    <members-cmp :members="card.members" />
+                </template>
+            </div>
 
-            <template v-if="card.dueDate">
-                <h4>Due date</h4>
-                <h4>{{ dueDateToShow }}</h4>
-            </template>
+            <!-- <template v-if="card.labels"> -->
+            <!-- <h4>Labels</h4> -->
+            <!-- <labels-cmp>{{card.labels}}</labels-cmp> -->
+            <!-- </template> -->
+
             <h3><i class="fas fa-stream"></i> Description</h3>
             <textarea
                 type="textarea"
@@ -69,7 +77,7 @@
                 :boardMembers="board.members"
                 @setCardMembers="setCardMembers"
             />
-            <button>Labels</button>
+            <!-- <button>Labels</button> -->
             <button @click="onAddChecklist">Checklist</button>
             <add-checklist
                 v-if="isAddChecklist"
