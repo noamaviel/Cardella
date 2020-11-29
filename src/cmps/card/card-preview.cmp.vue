@@ -2,7 +2,7 @@
     <section class="card-preview-container">
         <img :src="card.uploadImgUrl" />
         <h3>{{ card.title }}</h3>
-        <members-cmp :members="card.members" />
+        <members-cmp :members="card.members"/>
         <i class="far fa-trash-alt" @click.prevent="emitRemoveCard"></i>
     </section>
 </template>

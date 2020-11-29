@@ -70,6 +70,11 @@
 
         <div class="menu-area" style="display: flex; flex-direction: column">
             <button>Members</button>
+            <add-card-members
+                :currCardMembers="card.members"
+                :boardMembers="board.members"
+                @setCardMembers="setCardMembers"
+            />
             <button>Labels</button>
             <button @click="onAddChecklist">Checklist</button>
             <add-checklist
@@ -119,6 +124,7 @@ import { uploadImg } from "@/services/upload-img-service.js";
 import cardDueDate from "@/cmps/card/card-duedate.cmp.vue";
 import membersCmp from "@/cmps/members.cmp.vue";
 import addChecklist from "@/cmps/card/add-checklist.cmp.vue";
+import addCardMembers from "@/cmps/card/card-add-members.cmp.vue";
 import moment from "moment";
 
 export default {
@@ -239,8 +245,11 @@ export default {
             });
         },
         setDueDate(dueDate) {
-            console.log("dueDate:", dueDate);
             this.card.dueDate = dueDate;
+            this.updateCard();
+        },
+        setCardMembers(members) {
+            this.card.members = members;
             this.updateCard();
         },
     },
@@ -250,6 +259,7 @@ export default {
         cardDueDate,
         membersCmp,
         addChecklist,
+        addCardMembers,
     },
 };
 </script>

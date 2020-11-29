@@ -1,6 +1,6 @@
 <template>
     <section class="board-avatar">
-        <ul class="avatar-list">
+        <ul class="avatar-list flex">
             <li
                 class="avatar"
                 v-for="member in members"
