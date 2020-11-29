@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="card-checklist">
         <div>
             <h3
                 contenteditable="true"
@@ -35,20 +35,27 @@
                     />
                     {{ todo.title }}
                 </label>
-                <button @click="onRemoveTodo(index)">X</button>
+                <button class="checklist-btn" @click="onRemoveTodo(index)">
+                    X
+                </button>
             </li>
         </ul>
-        <button v-if="!isAddTodoForm" @click="onAddTodoForm">
+        <button
+            class="checklist-btn"
+            v-if="!isAddTodoForm"
+            @click="onAddTodoForm"
+        >
             Add an item
         </button>
         <form v-if="isAddTodoForm" @submit.prevent="onAddTodo">
             <input
+                class="checklist-input"
                 type="text"
                 placeholder="Add your todo"
                 v-model="tmpTodo.title"
             />
-            <button>Add Todo</button>
-            <button @click="onCloseAddTodo">X</button>
+            <button class="checklist-btn">Add Todo</button>
+            <button class="checklist-btn close" @click="onCloseAddTodo">X</button>
         </form>
     </section>
 </template>

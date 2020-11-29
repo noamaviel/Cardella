@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="checklists">
         <ul v-if="checklists.length">
             <h3><i class="fas fa-check"></i> Checklists</h3>
             <li
@@ -7,10 +7,10 @@
                 :index="index"
                 :key="checklist.id"
             >
-                <button @click="onRemoveChecklist(index)">
-                    Delete Checklist
-                </button>
                 <card-checklist :checklist="checklist" :board="board" />
+                <button class="delete-btn" @click="onRemoveChecklist(index)">
+                    Delete
+                </button>
             </li>
         </ul>
     </section>
