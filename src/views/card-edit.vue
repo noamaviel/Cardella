@@ -144,8 +144,7 @@ export default {
     },
     computed: {
         board() {
-            const board = this.$store.getters.getCurrBoard;
-            return board;
+            return this.$store.getters.getCurrBoard;
         },
         list() {
             if (this.board.lists) {
@@ -154,7 +153,7 @@ export default {
                 );
                 return this.board.lists[listIdx];
             }
-            return '';
+            return "";
         },
         card() {
             if (this.list.cards) {
@@ -163,7 +162,7 @@ export default {
                 );
                 return this.list.cards[cardIdx];
             }
-            return '';
+            return "";
         },
         dueDateToShow() {
             return moment(this.card.dueDate).calendar({

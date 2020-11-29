@@ -67,7 +67,6 @@ export default {
     },
     created() {
         const boardId = this.$route.params.boardId;
-        console.log('Created!')
         this.$store.dispatch({ type: "loadBoard", boardId });
     },
     watch: {
