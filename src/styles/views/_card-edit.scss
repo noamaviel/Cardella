@@ -59,9 +59,18 @@
             }
         }
 
-        .main-area-top .due-date-container {
-            flex-grow: 1;
+        .due-date-container h4 {
+            margin-bottom: 2px;
         }
+
+        .members-container {
+            h4 {
+                margin: 15px 6px 0 0;
+            }
+
+        }
+
+
     }
 
     // img {
@@ -101,6 +110,18 @@
             &:hover {
                 background-color: rgba(65, 65, 65, 0.363);
                 transition-duration: 150ms;
+            }
+        }
+
+        .add-checklist-container {
+            justify-content: space-between;
+
+            button {
+                padding: 2px;
+                font-size: rem(14px);
+                background-color: transparent;
+                margin-left: 8px;
+                width: 100px;
             }
         }
 

@@ -1,12 +1,12 @@
 <template>
-    <section>
+    <section class="add-checklist-container flex">
         <form @submit.prevent="onAddChecklist">
             <input
                 type="text"
                 v-model="tmpChecklist.title"
                 placeholder="Add checklist title"
             />
-            <button>Add</button>
+            <button class="add-checklist-btn">Add</button>
         </form>
     </section>
 </template>
