@@ -1,5 +1,5 @@
 import HttpService from './http-service'
-// import { utilService } from '@/services/util-service.js';
+import { utilService } from '@/services/util-service.js';
 
 export const boardService = {
     getBoards,
@@ -20,7 +20,6 @@ function getBoardById(boardId) {
 
 function addBoard() {
     const board = {
-        // _id: new ObjectID(''),
         title: "New board",
         style: {"backgroundColor": "blue"},
         createdBy: _getCreatedBy(),
@@ -28,10 +27,10 @@ function addBoard() {
         createdAt: Date.now(),
         lists: [
             {
-                // _id: new ObjectID(''),
+                id: utilService.makeId(),
                 title: "New list",
                 cards: [{
-                    // _id: new ObjectID(''),
+                    id: utilService.makeId(),
                     title: "New card",
                     description: "",
                     createdAt: Date.now(),
@@ -59,7 +58,7 @@ function updateBoard(board) {
 
 function getEmptyCard(title = '') {
     const card = {
-        // _id: new ObjectID(''),
+        id: utilService.makeId(),
         title,
         createdAt: Date.now(),
         dueDate: null,
@@ -76,7 +75,7 @@ function getEmptyCard(title = '') {
 
 function getEmptyList(title = '') {
     const list = {
-        // _id: new ObjectID(''),
+        id: utilService.makeId(),
         title,
         cards: []
     }

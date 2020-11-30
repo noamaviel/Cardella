@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import homePage from '../views/home-page.vue'
 import publicBoard from '../views/board.vue'
-import createBoard from '../views/board-create.vue'
+// import createBoard from '../views/board-create.vue'
 import login from '../views/login-signup.vue'
 import userDetails from '../views/user-details.vue'
 // import listCmp from '../cmps/list/list.cmp.vue'  
@@ -36,11 +36,11 @@ const routes = [
   //   name: 'List',
   //   component: listCmp
   // },
-  {
-    path: '/board/create',
-    name: 'Create Board',
-    component: createBoard
-  },
+  // {
+  //   path: '/board/create',
+  //   name: 'Create Board',
+  //   component: createBoard
+  // },
   {
     path: '/login',
     name: 'Login',
