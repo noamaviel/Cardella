@@ -13,6 +13,9 @@
             </h3>
             <h4>in list {{ list.title }}</h4>
 
+            <!-- <card-labels-cmp/> -->
+            <card-preview-labels v-if="card.labels" :labels="card.labels" />
+
             <div class="main-area-top flex">
                 <template v-if="card.dueDate" class="due-date-container flex">
                     <h4>Due date</h4>
@@ -28,10 +31,10 @@
                 </template>
             </div>
 
-            <!-- <template v-if="card.labels"> -->
-            <!-- <h4>Labels</h4> -->
-            <!-- <labels-cmp>{{card.labels}}</labels-cmp> -->
-            <!-- </template> -->
+            <!-- <template v-if="card.labels">
+            <h4>Labels</h4>
+            <labels-cmp>{{card.labels}}</labels-cmp>
+            </template> -->
 
             <h3><i class="fas fa-stream"></i> Description</h3>
             <textarea
@@ -77,7 +80,8 @@
                 :boardMembers="board.members"
                 @setCardMembers="setCardMembers"
             />
-            <!-- <button>Labels</button> -->
+            <button @click="onLabelsEdit">Labels</button>
+            <labels-editor v-if="isLabelsEdit" :labels="card.labels" />
             <button @click="onAddChecklist">Checklist</button>
             <add-checklist
                 v-if="isAddChecklist"
@@ -127,7 +131,10 @@ import cardDueDate from "@/cmps/card/card-duedate.cmp.vue";
 import membersCmp from "@/cmps/members.cmp.vue";
 import addChecklist from "@/cmps/card/add-checklist.cmp.vue";
 import addCardMembers from "@/cmps/card/card-add-members.cmp.vue";
+import cardPreviewLabels from "@/cmps/card/card-preview-labels.cmp.vue";
+import labelsEditor from "@/cmps/card/labels-editor.cmp.vue";
 import moment from "moment";
+// import cardLabelsCmp from '@/cmps/card/card-labels.cmp.vue';
 
 export default {
     props: {},
@@ -140,6 +147,7 @@ export default {
             isDisplayDatePicker: false,
             isAddChecklist: false,
             isAddMembers: false,
+            isLabelsEdit: false,
         };
     },
     computed: {
@@ -264,6 +272,9 @@ export default {
             this.card.members = members;
             this.updateCard();
         },
+        onLabelsEdit() {
+            this.isLabelsEdit = !this.isLabelsEdit;
+        },
     },
     created() {
         const listId = this.$route.params.listId;
@@ -278,6 +289,10 @@ export default {
         membersCmp,
         addChecklist,
         addCardMembers,
+        cardPreviewLabels,
+        labelsEditor,
+        // cardLabelsCmp
     },
 };
 </script>
+      

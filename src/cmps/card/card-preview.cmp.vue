@@ -1,5 +1,6 @@
 <template>
   <section class="card-preview-container">
+    <card-preview-labels v-if="card.labels" :labels="card.labels"/>
     <img :src="card.uploadImgUrl" />
     <div class="card-content">
       <i class="far fa-trash-alt" @click.prevent="emitRemoveCard"></i>
@@ -11,6 +12,7 @@
 
 <script>
 import membersCmp from "@/cmps/members.cmp.vue";
+import cardPreviewLabels from "@/cmps/card/card-preview-labels.cmp.vue"
 
 export default {
   props: {
@@ -27,6 +29,7 @@ export default {
   },
   components: {
     membersCmp,
+    cardPreviewLabels
   },
 };
 </script>

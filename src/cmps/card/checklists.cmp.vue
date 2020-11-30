@@ -39,7 +39,7 @@ export default {
         cardChecklist,
     },
     created() {
-        console.log("this.board in checklists", this.board);
+       
     },
 };
 </script>
