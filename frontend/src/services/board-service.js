@@ -12,21 +12,21 @@ export const boardService = {
 }
 
 function getBoards() {
-    return HttpService.get('boards')
+    return HttpService.get('board')
 }
 function getBoardById(boardId) {
-    return HttpService.get(`boards/${boardId}`)
+    return HttpService.get(`board/${boardId}`)
 }
 
 function addBoard(board) {
-    return HttpService.post('boards', board)
+    return HttpService.post('board', board)
 }
 function removeBoard(boardId) {
-    return HttpService.delete(`boards/${boardId}`)
+    return HttpService.delete(`board/${boardId}`)
 }
 
 function updateBoard(board) {
-    return HttpService.put(`boards/${board._id}`, board)
+    return HttpService.put(`board/${board._id}`, board)
 }
 
 function getEmptyCard(title = '') {
