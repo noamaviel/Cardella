@@ -9,9 +9,35 @@
         <router-link to="/"><h1>Cardella</h1></router-link>
       </div>
       <div class="main-header-right">
-        <h4><a href="">Boards</a></h4>
+
+        <div class="board-open-menu" @click="toggleBoardsMenu"><h4>Boards</h4></div>
+        <boards-menu v-if="isOpen"/>
+
         <router-link to="/login"><h4>Login</h4></router-link>
       </div>
     </header>
   </section>
 </template>
+
+
+<script>
+import boardsMenu from "@/cmps/boards-menu.cmp.vue";
+
+export default {
+  props: {
+  },
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
+  methods: {
+    toggleBoardsMenu() {
+      this.isOpen = !this.isOpen;
+    },
+  },
+  components: {
+    boardsMenu,
+  },
+};
+</script>

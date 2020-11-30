@@ -1,5 +1,5 @@
 import HttpService from './http-service'
-import { utilService } from '@/services/util-service.js';
+// import { utilService } from '@/services/util-service.js';
 
 export const boardService = {
     getBoards,
@@ -18,9 +18,37 @@ function getBoardById(boardId) {
     return HttpService.get(`board/${boardId}`)
 }
 
-function addBoard(board) {
+function addBoard() {
+    const board = {
+        // _id: new ObjectID(''),
+        title: "New board",
+        style: {"backgroundColor": "blue"},
+        createdBy: _getCreatedBy(),
+        members: [_getCreatedBy()],
+        createdAt: Date.now(),
+        lists: [
+            {
+                // _id: new ObjectID(''),
+                title: "New list",
+                cards: [{
+                    // _id: new ObjectID(''),
+                    title: "New card",
+                    description: "",
+                    createdAt: Date.now(),
+                    style: {"bgColor": "#C1C1C1"},
+                    createdBy: _getCreatedBy(),
+                    members: [],
+                    labels: [],
+                    comments: [],
+                }],
+                // push the member
+            }]
+    }
+    console.log(board);
     return HttpService.post('board', board)
 }
+
+
 function removeBoard(boardId) {
     return HttpService.delete(`board/${boardId}`)
 }
@@ -31,7 +59,7 @@ function updateBoard(board) {
 
 function getEmptyCard(title = '') {
     const card = {
-        id: utilService.makeId(),
+        // _id: new ObjectID(''),
         title,
         createdAt: Date.now(),
         dueDate: null,
@@ -48,7 +76,7 @@ function getEmptyCard(title = '') {
 
 function getEmptyList(title = '') {
     const list = {
-        id: utilService.makeId(),
+        // _id: new ObjectID(''),
         title,
         cards: []
     }

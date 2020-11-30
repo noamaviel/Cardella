@@ -1,36 +1,36 @@
 <template>
-    <section
-        class="app"
-        style="
-            background-image: url(https://res.cloudinary.com/morshva/image/upload/v1606573776/7_op2qhx.jpg);
-        "
-    >
-        <board-header :board="board" />
-        <div class="lists-container flex">
-            <!-- Outer Component Start -->
-            <Container
-                orientation="horizontal"
-                @drop="onColumnDrop($event)"
-                :animation-duration="400"
-            >
-                <Draggable v-for="(list, index) in board.lists" :key="list.id">
-                    <list-cmp
-                        :list="list"
-                        :index="index"
-                        :lists="board.lists"
-                        :board="board"
-                    />
-                </Draggable>
-            </Container>
-            <!-- Outer Component End -->
-            <div v-if="showModal" class="modal-route">
-                <div class="modal-content">
-                    <router-view></router-view>
-                </div>
-            </div>
-            <list-add />
+  <section
+    class="app"
+    style="
+      background-image: url(https://res.cloudinary.com/morshva/image/upload/v1606573776/7_op2qhx.jpg);
+    "
+  >
+    <board-header :board="board" />
+    <div class="lists-container flex">
+      <!-- Outer Component Start -->
+      <Container
+        orientation="horizontal"
+        @drop="onColumnDrop($event)"
+        :animation-duration="400"
+      >
+        <Draggable v-for="(list, index) in board.lists" :key="list.id">
+          <list-cmp
+            :list="list"
+            :index="index"
+            :lists="board.lists"
+            :board="board"
+          />
+        </Draggable>
+      </Container>
+      <!-- Outer Component End -->
+      <div v-if="showModal" class="modal-route">
+        <div class="modal-content">
+          <router-view></router-view>
         </div>
-    </section>
+      </div>
+      <list-add />
+    </div>
+  </section>
 </template>
 
 <script>
@@ -41,43 +41,51 @@ import listCmp from "@/cmps/list/list.cmp.vue";
 import listAdd from "@/cmps/list/list-add.cmp.vue";
 
 export default {
-    data() {
-        return {
-            showModal: false,
-        };
+  data() {
+    return {
+      showModal: false,
+    };
+  },
+  computed: {
+    board() {
+      return this.$store.getters.getCurrBoard;
     },
-    computed: {
-        board() {
-            return this.$store.getters.getCurrBoard;
-        },
+  },
+  methods: {
+    onColumnDrop(dropResult) {
+      let inLists = JSON.parse(JSON.stringify(this.board.lists));
+      inLists = utilService.applyDrag(inLists, dropResult);
+      this.board.lists = inLists;
+      let updtBoard = JSON.parse(JSON.stringify(this.board));
+      this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
     },
-    methods: {
-        onColumnDrop(dropResult) {
-            let inLists = JSON.parse(JSON.stringify(this.board.lists));
-            inLists = utilService.applyDrag(inLists, dropResult);
-            this.board.lists = inLists;
-            let updtBoard = JSON.parse(JSON.stringify(this.board))
-            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
-        },
+    loadBoard() {
+      const boardId = this.$route.params.boardId;
+      this.$store.dispatch({ type: "loadBoard", boardId });
     },
-    components: {
-        Container,
-        Draggable,
-        boardHeader,
-        listCmp,
-        listAdd,
+  },
+  components: {
+    Container,
+    Draggable,
+    boardHeader,
+    listCmp,
+    listAdd,
+  },
+  created() {
+    this.$store.dispatch({ type: "loadBoards" });
+    this.loadBoard();
+  },
+  watch: {
+    $route: {
+      immediate: true,
+      handler: function (newVal) {
+        this.showModal = newVal.meta && newVal.meta.showModal;
+      },
     },
-    created() {
-        const boardId = this.$route.params.boardId;
-        this.$store.dispatch({ type: "loadBoard", boardId });
-    },
-    watch: {
-        $route: {
-            immediate: true,
-            handler: function (newVal) {
-                this.showModal = newVal.meta && newVal.meta.showModal;
-            },
-        },
-    },
+     '$route.params.boardId'(val) {
+      this.loadBoard();
+      console.log(val);
+    }
+  },
 };
 </script>

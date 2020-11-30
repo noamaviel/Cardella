@@ -1,5 +1,6 @@
 import { boardService } from '@/services/board-service.js';
 
+
 export const boardStore = {
     strict: true,
     state: {
@@ -9,16 +10,23 @@ export const boardStore = {
     getters: {
         getCurrBoard(state) {
             return state.currBoard;
+        },
+        getBoards(state) {
+            return state.boards;
         }
     },
     mutations: {
         //BOARD//
+        setBoards(state, { boards }) {
+            state.boards = boards;
+        },
+
         setCurrBoard(state, { board }) {
             state.currBoard = board;
         },
-        addBoard(state, { board }) {
-            state.boards.push(board);
-            state.currBoard = board;
+        addBoard(state, { newBoard }) {
+            state.boards.push(newBoard);
+            state.currBoard = newBoard;
         },
         updateBoard(state, { board }) {
             const idx = state.boards.findIndex(currBoard => currBoard._id === board._id);
@@ -29,6 +37,7 @@ export const boardStore = {
         //     const idx = state.boards.findIndex(board => board._id === boardId);
         //     state.boards.splice(idx, 1);
         // },
+
         //CARD//
         addCard(state, { listId, card }) {
             const listIdx = state.currBoard.lists.findIndex(list => list.id === listId);
@@ -65,9 +74,19 @@ export const boardStore = {
     },
     actions: {
         //BOARD//
+        async addBoard({ commit }) {
+            // TO DO: get logedin user (from the user-store)
+            const newBoard = await boardService.addBoard();
+            commit({ type: 'addBoard', newBoard });
+            return newBoard;
+        },
         async loadBoard({ commit }, { boardId }) {
             const board = await boardService.getBoardById(boardId)
             commit({ type: 'setCurrBoard', board })
+        },
+        async loadBoards({ commit }) {
+            const boards = await boardService.getBoards()
+            commit({ type: 'setBoards', boards })
         },
         async updateBoard({ state }) {
             await boardService.updateBoard(state.currBoard);
