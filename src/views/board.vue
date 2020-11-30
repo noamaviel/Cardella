@@ -18,6 +18,7 @@
                         :list="list"
                         :index="index"
                         :lists="board.lists"
+                        :board="board"
                     />
                 </Draggable>
             </Container>
@@ -55,7 +56,8 @@ export default {
             let inLists = JSON.parse(JSON.stringify(this.board.lists));
             inLists = utilService.applyDrag(inLists, dropResult);
             this.board.lists = inLists;
-            // this.$store.dispatch({ type: "updateBoardV2", board: this.board });
+            let updtBoard = JSON.parse(JSON.stringify(this.board))
+            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
         },
     },
     components: {

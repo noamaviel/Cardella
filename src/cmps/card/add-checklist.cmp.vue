@@ -33,10 +33,7 @@ export default {
             let newChecklist = JSON.parse(JSON.stringify(this.tmpChecklist));
             console.log("onAddChecklist", newChecklist);
             this.$emit('newChecklist', newChecklist);
-            // this.checklists.splice(this.checklists.length, 0, newChecklist);
-            // this.$store.dispatch({ type: "updateBoardV2", board: this.board });
             this.tmpChecklist.title = '';
-            // this.isAddChecklist = false;
         },
     },
     components: {},

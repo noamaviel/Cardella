@@ -72,6 +72,7 @@ export default {
             );
             tmpLabel.id = utilService.makeId();
             this.labels.splice(this.labels.length, 0, tmpLabel);
+            this.$emit('updateCard');
         },
         onLabelEdit(index) {
             this.isCustomEdit = true;

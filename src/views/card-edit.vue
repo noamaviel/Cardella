@@ -14,7 +14,7 @@
             <h4>in list {{ list.title }}</h4>
 
             <!-- <card-labels-cmp/> -->
-            <card-preview-labels v-if="card.labels" :labels="card.labels" />
+            <card-preview-labels v-if="card.labels" :labels="card.labels" @updateCard="updateCard" />
 
             <div class="main-area-top flex">
                 <template v-if="card.dueDate" class="due-date-container flex">
@@ -60,7 +60,7 @@
             <checklists-cmp
                 v-if="card.checklists"
                 :checklists="card.checklists"
-                :board="this.board"
+                @updateCard = "updateCard"
             />
             <!-- </template> -->
 
@@ -81,7 +81,7 @@
                 @setCardMembers="setCardMembers"
             />
             <button @click="onLabelsEdit">Labels</button>
-            <labels-editor v-if="isLabelsEdit" :labels="card.labels" />
+            <labels-editor v-if="isLabelsEdit" :labels="card.labels" @updateCard="updateCard"/>
             <button @click="onAddChecklist">Checklist</button>
             <add-checklist
                 v-if="isAddChecklist"
@@ -220,8 +220,7 @@ export default {
             }
 
             this.isAddChecklist = false;
-            let updtBoard = JSON.parse(JSON.stringify(this.board));
-            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
+            this.updateCard();
         },
         updateCardTitle(ev) {
             if (this.card.title === ev.target.innerText) return;

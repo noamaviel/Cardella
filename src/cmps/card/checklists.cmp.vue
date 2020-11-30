@@ -7,7 +7,7 @@
                 :index="index"
                 :key="checklist.id"
             >
-                <card-checklist :checklist="checklist" :board="board" />
+                <card-checklist :checklist="checklist" @updateCard = "onUpdateCard"/>
                 <button class="delete-btn" @click="onRemoveChecklist(index)">
                     Delete
                 </button>
@@ -21,7 +21,6 @@ import cardChecklist from "../card/card-checklist.cmp";
 
 export default {
     props: {
-        board: Object,
         checklists: Array,
     },
     data() {
@@ -31,9 +30,11 @@ export default {
         onRemoveChecklist(index) {
             console.log("onRemoveCheclist", index);
             this.checklists.splice(index, 1);
-            let updtBoard = JSON.parse(JSON.stringify(this.board));
-            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
+            this.$emit('updateCard');
         },
+        onUpdateCard() {
+            this.$emit('updateCard');
+        }
     },
     components: {
         cardChecklist,

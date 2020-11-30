@@ -55,7 +55,9 @@
                 v-model="tmpTodo.title"
             />
             <button class="checklist-btn">Add Todo</button>
-            <button class="checklist-btn close" @click="onCloseAddTodo">X</button>
+            <button class="checklist-btn close" @click="onCloseAddTodo">
+                X
+            </button>
         </form>
     </section>
 </template>
@@ -66,7 +68,6 @@ import { utilService } from "../../services/util-service.js";
 export default {
     props: {
         checklist: Object,
-        board: Object,
     },
     data() {
         return {
@@ -80,27 +81,22 @@ export default {
     },
     methods: {
         onCheckbox() {
-            console.log("checkbox clicked");
-            let updtBoard = JSON.parse(JSON.stringify(this.board));
-            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
+            this.$emit("updateCard");
         },
         onAddTodo() {
             this.tmpTodo.id = utilService.makeId();
             let newTodo = JSON.parse(JSON.stringify(this.tmpTodo));
-            console.log("onAddTodo", newTodo);
             this.checklist.todos.splice(
                 this.checklist.todos.length,
                 0,
                 newTodo
             );
-            let updtBoard = JSON.parse(JSON.stringify(this.board));
-            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
             this.tmpTodo.title = "";
+            this.$emit("updateCard");
         },
         onRemoveTodo(index) {
             this.checklist.todos.splice(index, 1);
-            let updtBoard = JSON.parse(JSON.stringify(this.board));
-            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
+            this.$emit("updateCard");
         },
         onAddTodoForm() {
             this.isAddTodoForm = true;
@@ -117,8 +113,7 @@ export default {
             }
             this.checklist.title = ev.target.innerText;
             ev.target.blur();
-            let updtBoard = JSON.parse(JSON.stringify(this.board));
-            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
+            this.$emit("updateCard");
         },
     },
 };

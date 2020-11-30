@@ -37,6 +37,7 @@ export default {
         },
         onRemoveLabel(index) {
             this.labels.splice(index, 1);
+            this.$emit('updateCard');
         }
     },
     components: {},

@@ -1,6 +1,6 @@
 <template>
   <section class="card-preview-container">
-    <card-preview-labels v-if="card.labels" :labels="card.labels"/>
+    <card-preview-labels v-if="card.labels" :labels="card.labels" @updateCard="onUpdateCard"/>
     <img :src="card.uploadImgUrl" />
     <div class="card-content">
       <i class="far fa-trash-alt" @click.prevent="emitRemoveCard"></i>
@@ -26,6 +26,9 @@ export default {
       console.log("we are here");
       this.$emit("removeCard", this.card.id);
     },
+    onUpdateCard(){
+     this.$emit('updateCard');
+    }
   },
   components: {
     membersCmp,
