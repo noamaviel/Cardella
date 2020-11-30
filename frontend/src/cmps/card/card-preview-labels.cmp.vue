@@ -24,7 +24,7 @@ export default {
     },
     data() {
         return {
-            isTitled: true,
+            isTitled: false,
         };
     },
     methods: {
