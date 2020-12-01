@@ -2,14 +2,15 @@
 module.exports = connectSockets
 
 function connectSockets(io) {
+    console.log('connect Sockets call');
     io.on('connection', socket => {
-        socket.on('chat newMsg', msg=>{
-            console.log(msg)
-            // io.emit('chat addMsg', msg)
-            // emits only to sockets in the same room
-            io.to(socket.myTopic).emit('chat addMsg', msg)
+        // console.log('connection io.on called', socket.myTopic);
+        socket.on('update', msg => {
+            console.log('updateEventInServer with payload', msg)
+            io.to(socket.myTopic).emit('update', msg)
         })
-        socket.on('chat topic', topic=>{
+        socket.on('update topic', topic => {
+            console.log('update topic event in server with payload:', topic)
             if (socket.myTopic) {
                 socket.leave(socket.myTopic)
             }

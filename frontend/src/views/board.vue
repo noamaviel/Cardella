@@ -39,6 +39,7 @@ import { utilService } from "../services/util-service.js";
 import boardHeader from "@/cmps/board/board-header.cmp.vue";
 import listCmp from "@/cmps/list/list.cmp.vue";
 import listAdd from "@/cmps/list/list-add.cmp.vue";
+import socketService from "@/services/socket-service.js";
 
 export default {
     data() {
@@ -56,9 +57,26 @@ export default {
             let inLists = JSON.parse(JSON.stringify(this.board.lists));
             inLists = utilService.applyDrag(inLists, dropResult);
             this.board.lists = inLists;
-            let updtBoard = JSON.parse(JSON.stringify(this.board))
+            let updtBoard = JSON.parse(JSON.stringify(this.board));
             this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
         },
+        onUpdate(type) {
+            console.log("type in onUpdate", type);
+            if (type === "board") {
+                this.$store.dispatch({
+                    type: "loadBoard",
+                    boardId: this.board._id,
+                });
+            } else {
+                console.log("error in updateType");
+            }
+        },
+        //      sendUpdate() {
+        //   socketService.emit('update', 'board')
+        // },
+        // changeRoom() {
+        //   socketService.emit('topic', boardId)
+        // }
     },
     components: {
         Container,
@@ -70,6 +88,14 @@ export default {
     created() {
         const boardId = this.$route.params.boardId;
         this.$store.dispatch({ type: "loadBoard", boardId });
+
+        socketService.setup();
+        socketService.emit("update topic", boardId);
+        socketService.on("update", this.onUpdate);
+    },
+    destroyed() {
+        socketService.off("update", this.onUpdate);
+        socketService.terminate();
     },
     watch: {
         $route: {
