@@ -77,8 +77,8 @@ async function remove(boardId) {
 }
 
 async function add(board) {
-    board.byUserId = ObjectId(board.byUserId);
-    board.aboutUserId = ObjectId(board.aboutUserId);
+    // board.byUserId = ObjectId(board.byUserId);
+    // board.aboutUserId = ObjectId(board.aboutUserId);
 
     const collection = await dbService.getCollection('board')
     try {

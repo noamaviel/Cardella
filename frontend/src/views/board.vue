@@ -52,14 +52,6 @@ export default {
             return this.$store.getters.getCurrBoard;
         },
     },
-    //   methods: {
-    //     onColumnDrop(dropResult) {
-    //       let inLists = JSON.parse(JSON.stringify(this.board.lists));
-    //       inLists = utilService.applyDrag(inLists, dropResult);
-    //       this.board.lists = inLists;
-    //       let updtBoard = JSON.parse(JSON.stringify(this.board));
-    //       this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
-    //     },
     methods: {
         onColumnDrop(dropResult) {
             let inLists = JSON.parse(JSON.stringify(this.board.lists));
@@ -68,17 +60,6 @@ export default {
             let updtBoard = JSON.parse(JSON.stringify(this.board));
             this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
         },
-        // onUpdate(type) {
-        //     console.log("type in onUpdate", type);
-        //     if (type === "board") {
-        //         this.$store.dispatch({
-        //             type: "loadBoard",
-        //             boardId: this.board._id,
-        //         });
-        //     } else {
-        //         console.log("error in updateType");
-        //     }
-        // },
         loadBoard() {
             const boardId = this.$route.params.boardId;
             this.$store.dispatch({ type: "loadBoard", boardId });
@@ -116,7 +97,6 @@ export default {
                 this.showModal = newVal.meta && newVal.meta.showModal;
             },
         },
-        // },
         "$route.params.boardId"(val) {
             this.loadBoard();
             console.log(val);
