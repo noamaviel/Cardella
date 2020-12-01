@@ -12,14 +12,15 @@
         display: flex;
         flex-direction: column;
         width: 300px;
+        color: $clr1;
 
-        .boards-list {
-            color: $clr1;
-            padding: 5px;
+        .boards-list >*{
+           padding: 10px 40px;
         }
 
-        button {
-            margin: 5px;
+        .create-board-btn {
+            margin: 10px;
         }
+
     }
 }

@@ -11,7 +11,7 @@
                     @keyup.enter="addCard"
                 />
                 <button @click="addCard">Add card</button>
-                <button @click="onCloseNewCard">X</button>
+                <button @click="onCloseNewCard"><i class="fas fa-times"></i></button>
             </div>
 
             <!-- <li>Sort by</li> -->

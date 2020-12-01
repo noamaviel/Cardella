@@ -40,9 +40,19 @@ header.main-header {
         grid-area: rightHeader;
         align-self: center;
 
+        button {
+            font-size: inherit;
+            color: inherit;
+            border: none;
+            background-color: transparent;
+            outline: none;
+            cursor: pointer;
+        }
+
         h4 {
             margin-right: 20px;
         }
+       
 
     }
 

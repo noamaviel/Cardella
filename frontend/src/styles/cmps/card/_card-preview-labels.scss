@@ -2,11 +2,12 @@
     display: flex;
 
     ul {
-        display: flex;
+        // display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
         margin: 0;
     }
+
     li {
         height: 10px;
         width: 30px;
@@ -16,17 +17,15 @@
     }
 }
 
-.labels-open {
-    display: flex;
 
-    flex-wrap: wrap;
-
-    ul {
+    .labels-list {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
     }
-    li {
+
+    .li-label {
+        width: 100px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -37,4 +36,15 @@
         text-align: center;
         border-radius: 9%;
     }
-}
+
+
+// .labels-list{
+//     .lable{
+
+//         font-size: 50px;
+//     }
+//     .edit-label-btn{
+//         background-color: black;
+//     }
+// }
+

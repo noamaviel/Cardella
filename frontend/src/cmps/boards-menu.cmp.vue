@@ -6,7 +6,7 @@
           <router-link :to="board._id">{{ board.title }}</router-link>
         </li>
       </ul>
-      <button @click="addBoard">Create a board</button>
+      <button @click="addBoard" class="create-board-btn">+ Create a board</button>
     </div>
   </section>
 </template>
