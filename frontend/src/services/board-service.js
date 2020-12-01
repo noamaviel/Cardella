@@ -69,6 +69,7 @@ function getEmptyCard(title = '') {
         },
         createdBy: _getCreatedBy(),
         members: [_getCreatedBy()],
+        labels: []
     }
     return card;
 }
