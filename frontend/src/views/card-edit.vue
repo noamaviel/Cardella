@@ -242,6 +242,7 @@ export default {
             this.updateCard();
         },
         updateCard() {
+            console.log('updateCard in card-edit');
             this.$store.dispatch({
                 type: "updateCard",
                 card: this.card,

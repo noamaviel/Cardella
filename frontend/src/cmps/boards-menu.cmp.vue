@@ -28,7 +28,9 @@ export default {
     },
   },
 
-  created() {},
+  created() {
+    this.$store.dispatch({ type: 'loadBoards'})
+  },
 };
 </script>
 

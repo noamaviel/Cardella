@@ -23,6 +23,7 @@ export const boardStore = {
         },
 
         setCurrBoard(state, { board }) {
+            console.log('setCurrBoard', board._id);
             state.currBoard = board;
         },
         addBoard(state, { newBoard }) {
@@ -83,9 +84,15 @@ export const boardStore = {
         },
         async loadBoard({ commit }, { boardId }) {
             const board = await boardService.getBoardById(boardId)
+           socketService.emit('update topic', boardId);
+            socketService.on('update', board => {
+                console.log('socket update event', board)
+            commit({ type: 'setCurrBoard', board })
+            })
             commit({ type: 'setCurrBoard', board })
         },
         async loadBoards({ commit }) {
+            console.log('loadBoards');
             const boards = await boardService.getBoards()
             commit({ type: 'setBoards', boards })
         },
@@ -95,14 +102,14 @@ export const boardStore = {
         async updateBoardV2({ commit, state }, { board }) {
             await boardService.updateBoard(state.currBoard);
             commit({ type: 'updateBoard', board });
-            socketService.emit('update', 'board');
+            socketService.emit('update', board);
         },
         //CARD//
         async addCard({ commit, state }, { listId, cardTitle }) {
             const card = boardService.getEmptyCard(cardTitle);
             commit({ type: 'addCard', listId, card })
             await boardService.updateBoard(state.currBoard);
-            socketService.emit('update', 'board');
+            socketService.emit('update', state.currBoard);
         },
         async updateCard({ commit, state }, { list, card }) {
             commit({ type: 'setIsLoading', isLoading: true })
@@ -110,12 +117,12 @@ export const boardStore = {
             await boardService.updateBoard(state.currBoard);
             commit({ type: 'setIsLoading', isLoading: false })
             console.log('updateCard in board-store before socket service emit')
-            socketService.emit('update', 'board');
+            socketService.emit('update', state.currBoard);
         },
         async removeCard({ commit, state }, { listId, cardId }) {
             commit({ type: 'removeCard', listId, cardId })
             await boardService.updateBoard(state.currBoard);
-            socketService.emit('update', 'board');
+            socketService.emit('update', state.currBoard);
         },
 
         //LIST//
@@ -123,17 +130,17 @@ export const boardStore = {
             const list = boardService.getEmptyList(listTitle);
             commit({ type: 'addList', list })
             await boardService.updateBoard(state.currBoard);
-            socketService.emit('update', 'board');
+            socketService.emit('update', state.currBoard);
         },
         async updateList({ commit, state }, { list }) {
             commit({ type: 'updateList', list });
             await boardService.updateBoard(state.currBoard);
-            socketService.emit('update', 'board');
+            socketService.emit('update', state.currBoard);
         },
         async removeList({ commit, state }, { listId }) {
             commit({ type: 'removeList', listId })
             await boardService.updateBoard(state.currBoard);
-            socketService.emit('update', 'board');
+            socketService.emit('update', state.currBoard);
         },
     }
 }
