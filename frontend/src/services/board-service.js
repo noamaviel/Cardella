@@ -39,6 +39,7 @@ function addBoard() {
                     members: [],
                     labels: [],
                     comments: [],
+                    checklists:[]
                 }],
                 // push the member
             }]
@@ -46,7 +47,6 @@ function addBoard() {
     console.log(board);
     return HttpService.post('board', board)
 }
-
 
 function removeBoard(boardId) {
     return HttpService.delete(`board/${boardId}`)
@@ -69,7 +69,8 @@ function getEmptyCard(title = '') {
         },
         createdBy: _getCreatedBy(),
         members: [_getCreatedBy()],
-        labels: []
+        labels: [],
+        checklists:[]
     }
     return card;
 }

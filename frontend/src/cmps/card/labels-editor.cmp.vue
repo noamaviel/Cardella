@@ -3,7 +3,7 @@
         <form @submit.prevent="onCustomLabel" v-if="isCustomEdit">
             <input type="text" v-model="customLabelTitle" />
             <button>Save</button>
-            <button @click.prevent="onCloseCustomEdit">X</button>
+            <button @click.prevent="onCloseCustomEdit"><i class="fas fa-times"></i></button>
         </form>
         <ul>
             <li
@@ -13,7 +13,7 @@
                 @click="onAddLabel(index)"
             >
                 {{ label.title }}
-                <button @click.stop="onLabelEdit(index)">Edit</button>
+                <button class="edit-label-btn" @click.stop="onLabelEdit(index)">Edit</button>
             </li>
         </ul>
     </section>

@@ -7,7 +7,7 @@
     box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
 
     &:hover {
-        i {
+        .fa-trash-alt {
             color: inherit;
         }
     }
@@ -17,7 +17,7 @@
         border-top-right-radius: 3px;
     }
 
-    i {
+    .fa-trash-alt {
         margin: 3px 0 6px;
         color: transparent;
 

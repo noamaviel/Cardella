@@ -15,7 +15,7 @@
 
     <div class="right-board-header flex">
       <board-filter :board="board" />
-      <button @click="toggleMenu">Menu</button>
+      <button @click="toggleMenu">Menu</button>   <!-- @blur="toggleMenu" -->
       <side-menu v-if="isOpen" :board="board" />
     </div>
   </section>

@@ -20,13 +20,14 @@
 }
 
 
-.card-edit {
-    display: flex;
+.card-edit-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 95vh;
     padding: 10px;
     margin: 5px;
     border-radius: 3px;
     background-color: $clr2;
-    overflow-y: auto;
     position: relative;
     width: rem(768px);
     z-index: 10;
@@ -98,7 +99,7 @@
         margin-right: 8px;
 
 
-        button {
+        .main-btn-card-edit {
             @include dark-buttons;
             height: 32px;
             margin-top: 8px;
@@ -122,6 +123,7 @@
                 background-color: transparent;
                 margin-left: 8px;
                 width: 100px;
+               
             }
         }
 

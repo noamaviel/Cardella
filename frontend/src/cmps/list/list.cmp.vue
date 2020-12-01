@@ -1,6 +1,6 @@
 
 <template>
-    <section class="list-container">
+    <section class="list-container flex">
         <div class="list-menu-container flex f-center">
             <h5
                 class="list-title"
@@ -52,7 +52,7 @@
                 />
                 <div class="add-card-inside-cont">
                     <button @click="addCard">Add card</button>
-                    <button @click="onCloseNewCard">X</button>
+                    <button @click="onCloseNewCard"><i class="fas fa-times"></i></button>
                 </div>
             </div>
         </div>

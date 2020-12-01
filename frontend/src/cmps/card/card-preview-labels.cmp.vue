@@ -3,15 +3,15 @@
         :class="{ 'labels-open': isTitled, 'labels-closed': !isTitled }"
         v-if="labels.length"
     >
-        <ul>
-            <li
+        <ul class="labels-list flex">
+            <li class="li-label flex"
                 v-for="(label, index) in labels"
                 :key="label.id"
                 @click.prevent="onIsTitled"
                 :style="{ backgroundColor: label.color }"
             >
                 {{ labelForLiDisplay(label.title) }}
-                <button @click.stop.prevent="onRemoveLabel(index)" v-if="isTitled">X</button>
+                <button @click.stop.prevent="onRemoveLabel(index)" v-if="isTitled"><i class="fas fa-times"></i></button>
             </li>
         </ul>
     </section>

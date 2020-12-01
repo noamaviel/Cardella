@@ -16,7 +16,7 @@
       />
       <div class="add-list-inside-cont">
         <button @click="addList">Add list</button>
-        <button @click="onCloseNewList">X</button>
+        <button @click="onCloseNewList"><i class="fas fa-times"></i></button>
       </div>
     </div>
   </section>

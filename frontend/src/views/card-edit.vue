@@ -1,9 +1,9 @@
 <template>
     <!-- When the card is removed, the card-edit vue tries to be rendered even though the card
     is already deleted. In order to prevent errors, we check that the card is not undefined. -->
-    <section class="card-edit flex" v-if="card">
+    <section class="card-edit-container flex" v-if="card">
         <div class="main-area">
-            <router-link to="../../..">X</router-link>
+           
             <h3
                 contenteditable="true"
                 @keypress.enter.prevent="updateCardTitle"
@@ -75,34 +75,35 @@
         </div>
 
         <div class="edit-card-menu-area flex">
-            <button @click="onAddMembers">Members</button>
+             <router-link to="../../.."><i class="far fa-times-circle"></i></router-link>
+            <button class="main-btn-card-edit" @click="onAddMembers">Members</button>
             <add-card-members
                 v-if="isAddMembers"
                 :currCardMembers="card.members"
                 :boardMembers="board.members"
                 @setCardMembers="setCardMembers"
             />
-            <button @click="onLabelsEdit">Labels</button>
+            <button class="main-btn-card-edit" @click="onLabelsEdit">Labels</button>
             <labels-editor
                 v-if="isLabelsEdit"
                 :labels="card.labels"
                 @updateCard="updateCard"
             />
-            <button @click="onAddChecklist">Checklist</button>
+            <button class="main-btn-card-edit" @click="onAddChecklist">Checklist</button>
             <add-checklist
                 v-if="isAddChecklist"
                 :checklists="card.checklists"
                 :isAddChecklist="this.isAddChecklist"
                 @newChecklist="onNewChecklist"
             />
-            <button @click="onOpenDatePicker">Due Date</button>
+            <button class="main-btn-card-edit" @click="onOpenDatePicker">Due Date</button>
             <card-due-date
                 v-if="isDisplayDatePicker"
                 :currTimestemp="card.dueDate"
                 @setDueDate="setDueDate"
             />
 
-            <button>
+            <button class="main-btn-card-edit">
                 <label for="imgUploader" @click.prevent="onOpenUploadImgField"
                     >Upload Image</label
                 >
@@ -115,10 +116,10 @@
                 @change="onUploadImg"
             />
 
-            <button @click="onOpenColorPallette">Card Color</button>
+            <button class="main-btn-card-edit" @click="onOpenColorPallette">Card Color</button>
             <card-color v-if="isDisplayColorPallette" @setColor="changeColor" />
 
-            <router-link to="../../..">
+            <router-link class="main-btn-card-edit" to="../../..">
                 <button @click="removeCard">Delete card</button>
             </router-link>
 
