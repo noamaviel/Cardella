@@ -14,7 +14,11 @@
             <h4>in list {{ list.title }}</h4>
 
             <!-- <card-labels-cmp/> -->
-            <card-preview-labels v-if="card.labels" :labels="card.labels" @updateCard="updateCard" />
+            <card-preview-labels
+                v-if="card.labels"
+                :labels="card.labels"
+                @updateCard="updateCard"
+            />
 
             <div class="main-area-top flex">
                 <template v-if="card.dueDate" class="due-date-container flex">
@@ -55,14 +59,12 @@
                 />
                 <i class="far fa-trash-alt" @click="removeImg"></i>
             </template>
-            <!-- <template v-if="card.checklists"> -->
-            <!-- <h3>Checklist</h3> -->
+
             <checklists-cmp
                 v-if="card.checklists"
                 :checklists="card.checklists"
-                @updateCard = "updateCard"
+                @updateCard="updateCard"
             />
-            <!-- </template> -->
 
             <!-- <h3>Activity</h3> -->
             <!-- consider change to "Comments" as these are not activities -->
@@ -81,7 +83,11 @@
                 @setCardMembers="setCardMembers"
             />
             <button @click="onLabelsEdit">Labels</button>
-            <labels-editor v-if="isLabelsEdit" :labels="card.labels" @updateCard="updateCard"/>
+            <labels-editor
+                v-if="isLabelsEdit"
+                :labels="card.labels"
+                @updateCard="updateCard"
+            />
             <button @click="onAddChecklist">Checklist</button>
             <add-checklist
                 v-if="isAddChecklist"

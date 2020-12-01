@@ -1,4 +1,23 @@
 .card-checklist {
+    .progress-bar {
+        // display: flex;
+        background-color: grey;
+        border-radius: 20px;
+    }
+
+    .progress-bar-percent {
+        min-width: fit-content;
+        height: 20px;
+        background-color: #fed9b7;
+        border-radius: 20px;
+        // display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: small;
+        color: #0081a7;
+        padding: 0px 5px;
+    }
+
     li {
         display: flex;
         align-items: center;

@@ -9,6 +9,11 @@
                 {{ checklist.title }}
             </h3>
         </div>
+        <div class="progress-bar">
+            <div class="progress-bar-percent" :style="{ width: getPercentage }">
+                {{ getPercentage }} %
+            </div>
+        </div>
         <ul v-if="checklist.todos">
             <li
                 v-for="(todo, index) in checklist.todos"
@@ -78,6 +83,22 @@ export default {
             },
             isAddTodoForm: false,
         };
+    },
+    computed: {
+        getPercentage() {
+            const doneCount = this.checklist.todos.reduce(
+                (acc, todo) => (acc += todo.isDone ? 1 : 0),
+                0
+            );
+            if (doneCount === 0) {
+                return "0";
+            } else {
+                return (
+                    (doneCount / this.checklist.todos.length) *
+                    100
+                ).toFixed(0);
+            }
+        },
     },
     methods: {
         onCheckbox() {

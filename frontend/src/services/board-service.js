@@ -18,9 +18,36 @@ function getBoardById(boardId) {
     return HttpService.get(`board/${boardId}`)
 }
 
-function addBoard(board) {
+function addBoard() {
+    const board = {
+        title: "New board",
+        style: {"backgroundColor": "blue"},
+        createdBy: _getCreatedBy(),
+        members: [_getCreatedBy()],
+        createdAt: Date.now(),
+        lists: [
+            {
+                id: utilService.makeId(),
+                title: "New list",
+                cards: [{
+                    id: utilService.makeId(),
+                    title: "New card",
+                    description: "",
+                    createdAt: Date.now(),
+                    style: {"bgColor": "#C1C1C1"},
+                    createdBy: _getCreatedBy(),
+                    members: [],
+                    labels: [],
+                    comments: [],
+                }],
+                // push the member
+            }]
+    }
+    console.log(board);
     return HttpService.post('board', board)
 }
+
+
 function removeBoard(boardId) {
     return HttpService.delete(`board/${boardId}`)
 }
