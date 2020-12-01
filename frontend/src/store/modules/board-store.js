@@ -35,6 +35,9 @@ export const boardStore = {
             state.boards.splice(idx, 1, board);
             state.currBoard = board;
         },
+        addActivity(state, { activity }) {
+            state.currBoard.boardActivites.unshift(activity);
+        },
         // removeBoard(state, { boardId }) {
         //     const idx = state.boards.findIndex(board => board._id === boardId);
         //     state.boards.splice(idx, 1);
@@ -84,10 +87,10 @@ export const boardStore = {
         },
         async loadBoard({ commit }, { boardId }) {
             const board = await boardService.getBoardById(boardId)
-           socketService.emit('update topic', boardId);
+            socketService.emit('update topic', boardId);
             socketService.on('update', board => {
                 console.log('socket update event', board)
-            commit({ type: 'setCurrBoard', board })
+                commit({ type: 'setCurrBoard', board })
             })
             commit({ type: 'setCurrBoard', board })
         },

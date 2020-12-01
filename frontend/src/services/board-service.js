@@ -21,7 +21,7 @@ function getBoardById(boardId) {
 function addBoard() {
     const board = {
         title: "New board",
-        style: {"backgroundColor": "blue"},
+        style: { "backgroundColor": "blue" },
         createdBy: _getCreatedBy(),
         members: [_getCreatedBy()],
         createdAt: Date.now(),
@@ -34,7 +34,7 @@ function addBoard() {
                     title: "New card",
                     description: "",
                     createdAt: Date.now(),
-                    style: {"bgColor": "#C1C1C1"},
+                    style: { "bgColor": "#C1C1C1" },
                     createdBy: _getCreatedBy(),
                     members: [],
                     labels: [],
@@ -82,6 +82,29 @@ function getEmptyList(title = '') {
     }
     return list;
 }
+
+// function getEmptyActvitiy() {
+//     const activity = {
+
+//         id: utilService.makeId(),
+//         txt: "set card comment to a comment",
+//         createdAt: 1606648895614,
+//         createdBy: {
+//             _id: "u101",
+//             fullname: "Shimrit Herbst",
+//             imgUrl: "https://res.cloudinary.com/shimrit/image/upload/v1606511393/cardella/mor_ojbfto.jpg"
+//         },
+//         inCard: {
+//             id: "c101",
+//             title: "Replace Logo"
+//         },
+//         inList: {
+//             id: "l101",
+//             title: "List 1"
+//         }
+//     },
+// }
+
 
 // TODO implement when login is ready
 function _getCreatedBy() {
