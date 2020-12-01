@@ -24,8 +24,6 @@ export default {
                 type: "addBoard",
             });
             this.$router.push(newBoard._id);
-            //   if ()this.$router.push(newBoard._id);
-            // else this.$router.push(`/board/${newBoard._id}`);
         },
     },
     computed: {

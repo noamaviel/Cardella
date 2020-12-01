@@ -49,6 +49,7 @@ function addBoard() {
 }
 
 function removeBoard(boardId) {
+    console.log('here-removeBoard boardService')
     return HttpService.delete(`board/${boardId}`)
 }
 

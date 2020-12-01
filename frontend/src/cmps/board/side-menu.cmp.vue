@@ -35,6 +35,7 @@ export default {
                 type: "removeBoard",
                 boardId: this.board._id,
             });
+            this.$router.push('/');
         },
     },
     components: {

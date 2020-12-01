@@ -39,7 +39,7 @@ export const boardStore = {
             state.currBoard.boardActivites.unshift(activity);
         },
         removeBoard(state, { boardId }) {
-            console.log('here')
+            console.log('here-removeBoard mutations')
             const idx = state.boards.findIndex(board => board._id === boardId);
             state.boards.splice(idx, 1);
         },
@@ -109,9 +109,10 @@ export const boardStore = {
             socketService.emit('update', board);
         },
         async removeBoard({ commit, state }, { boardId }) {
-            await boardService.removeBoard(state.currBoard);
+            console.log('here-removeBoard actions')
+            await boardService.removeBoard(state.currBoard._id);
             commit({ type: 'removeBoard', boardId })
-            socketService.emit('update', 'board');
+            // socketService.emit('update', state.currBoard);
         },
         //CARD//
         async addCard({ commit, state }, { listId, cardTitle }) {
