@@ -72,7 +72,7 @@ function getEmptyCard(title = '') {
             bgColor: '#E0DFDF'
         },
         createdBy: _getCreatedBy(),
-        members: [_getCreatedBy()],
+        members: [],
         labels: [],
         checklists: []
     }

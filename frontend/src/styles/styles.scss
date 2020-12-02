@@ -13,7 +13,10 @@
 @import 'cmps/app-footer';
 @import 'cmps/app-header';
 @import 'cmps/boards-menu';
+@import 'cmps/color-picker';
+@import 'cmps/image-picker';
 // @import 'cmps/members';
+
 
 // VIEWS
 @import 'views/card-edit';
@@ -39,4 +42,3 @@
 @import 'cmps/list/list-add';
 @import 'cmps/list/list-menu';
 @import 'cmps/list/list';
-

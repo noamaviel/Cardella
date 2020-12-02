@@ -1,7 +1,8 @@
 <template>
-    <section class="side-menu">
+    <section class="side-menu" v-if="!isClose">
         <div class="side-menu-header">
             <h3>Menu</h3>
+            <i class="fas fa-times" @click="closeMenu"></i>
         </div>
         <div class="side-menu-nav">
             <h5 @click="removeBoard">
@@ -11,26 +12,32 @@
                 <i class="fas fa-palette"></i> Change Background
             </h5>
 
-            <div class="background-change" v-if="isOpen">
-                <div class="background-images" v-if="!isColorPickerOpen && !isImgPickerOpen">
+            <div class="background-change flex" v-if="isBackgroundMenuOpen">
+                <div
+                    class="background-images"
+                    v-if="!isColorPickerOpen && !isImgPickerOpen"
+                >
                     <img
                         @click="toggleImgPicker"
                         src="https://res.cloudinary.com/shimrit/image/upload/v1606928149/cardella/WhatsApp_Image_2020-12-02_at_18.46.19_nezql1.jpg"
                     />
                     <h5>Photos</h5>
                 </div>
-                <image-picker
-                    v-if="isImgPickerOpen"
-                    @setBackgroundImg="setBackgroundImg"
-                />
 
-                <div class="background-colors" v-if="!isColorPickerOpen && !isImgPickerOpen">
+                <div
+                    class="background-colors"
+                    v-if="!isColorPickerOpen && !isImgPickerOpen"
+                >
                     <img
                         @click="toggleColorPicker"
                         src="https://res.cloudinary.com/shimrit/image/upload/v1606928144/cardella/WhatsApp_Image_2020-12-02_at_18.46.20_et9hgk.jpg"
                     />
                     <h5>Colors</h5>
                 </div>
+                <image-picker
+                    v-if="isImgPickerOpen"
+                    @setBackgroundImg="setBackgroundImg"
+                />
                 <color-picker v-if="isColorPickerOpen" @setBgc="setBgc" />
             </div>
         </div>
@@ -57,7 +64,8 @@ export default {
     },
     data() {
         return {
-            isOpen: false,
+            isClose: false,
+            isBackgroundMenuOpen: false,
             isColorPickerOpen: false,
             isImgPickerOpen: false,
         };
@@ -71,8 +79,13 @@ export default {
             });
             this.$router.push("/");
         },
+        closeMenu() {
+            this.isClose = true;
+        },
         toggleChangeBgcMenu() {
-            this.isOpen = !this.isOpen;
+            this.isBackgroundMenuOpen = !this.isBackgroundMenuOpen;
+            this.isColorPickerOpen = false;
+            this.isImgPickerOpen = false;
         },
         toggleImgPicker() {
             this.isImgPickerOpen = !this.isImgPickerOpen;
@@ -81,10 +94,22 @@ export default {
             this.isColorPickerOpen = !this.isColorPickerOpen;
         },
         setBgc(color) {
-            this.$emit("setBgc", color);
+            this.board.style.backgroundColor = color;
+            this.board.style.backgroundImgUrl = "";
+            this.$store.dispatch({
+                type: "updateBoardV2",
+                board: this.board,
+            });
+            this.isClose = true;
         },
         setBackgroundImg(imgUrl) {
-            this.$emit("setBackgroundImg", imgUrl);
+            this.board.style.backgroundImgUrl = imgUrl;
+            this.board.style.backgroundColor = "";
+            this.$store.dispatch({
+                type: "updateBoardV2",
+                board: this.board,
+            });
+            this.isClose = true;
         },
     },
     components: {
