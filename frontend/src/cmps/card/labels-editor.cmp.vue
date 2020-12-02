@@ -9,10 +9,10 @@
     </form>
     <ul class="flex f-center f-col">
       <li
-        class="edit-label "
+        class="edit-label"
         v-for="(label, index) in labelsPallette"
         :key="label.id"
-        :style="{ backgroundColor: label.bgcColor, color: label.color }"
+        :style="{ backgroundColor: label.color}"
         @click="onAddLabel(index)"
       >
         {{ label.title }}
@@ -41,38 +41,32 @@ export default {
         {
           id: "101",
           title: "Fun",
-          bgcColor: "#A54657",
-          color: "#F4F5F7",
+          color: "#A54657",
         },
         {
           id: "102",
           title: "High Priority",
-          bgcColor: "#582630",
-          color: "#F4F5F7",
+          color: "#582630",
         },
         {
           id: "103",
           title: "Low Priority",
-          bgcColor: "#F7EE7F",
-          color: "$clr1",
+          color: "#F7EE7F",
         },
         {
           id: "104",
           title: "Back-end",
-          bgcColor: "#6089AC",
-          color: "#F4F5F7",
+          color: "#6089AC",
         },
         {
           id: "105",
           title: "Front-end",
-          bgcColor: "#F1A66A",
-          color: "$clr1",
+          color: "#F1A66A",
         },
         {
           id: "106",
           title: "Extra",
-          bgcColor: "#F26157",
-          color: "$clr1",
+          color: "#F26157",
         },
       ],
     };

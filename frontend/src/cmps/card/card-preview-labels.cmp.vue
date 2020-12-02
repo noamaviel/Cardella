@@ -8,7 +8,7 @@
                 v-for="(label, index) in labels"
                 :key="label.id"
                 @click.prevent="onIsTitled"
-                :style="{ backgroundColor: label.bgcColor, color: label.color }"
+                :style="{ backgroundColor: label.color }"
             >
                 {{ labelForLiDisplay(label.title) }}
                 <button class="clr-btn" @click.stop.prevent="onRemoveLabel(index)" v-if="isTitled"><i class="fas fa-times"></i></button>

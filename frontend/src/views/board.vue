@@ -1,6 +1,6 @@
 <template>
     <section
-        class="app"
+        class="app-container"
         style="
             background-image: url(https://res.cloudinary.com/morshva/image/upload/v1606573776/7_op2qhx.jpg);
         "

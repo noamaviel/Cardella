@@ -1,7 +1,7 @@
 
 .labels-closed {
     display: flex;
-    // color: transparent;
+    color: transparent;
 
     ul {
         flex-wrap: wrap;
@@ -14,17 +14,16 @@
         height: 10px;
         width: 30px;
         border-radius: 4px;
-        // color: transparent;
-        margin: 1px;
+        color: transparent;
+        margin: 3px;
     }
 }
 
 
 .labels-list {
-    line-height: rem(20px);
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin-top: 3px;
+    margin: 0;
 }
 
 .li-label {
@@ -34,8 +33,7 @@
     text-align: center;
     padding: 0 10px;
     border-radius: 8px;
-    margin: 0 8px 8px 0;
-
+    margin: 4px 6px 0 0;
 }
 
 

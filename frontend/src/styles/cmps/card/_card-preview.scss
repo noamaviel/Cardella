@@ -1,34 +1,48 @@
 .card-preview-container {
     display: inline-block;
-    margin: rem(5px);
-    width: rem(200px);
+    margin: rem(3px);
+    width: rem(244px);
     border-radius: 3px;
     color: $clr1;
     box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
 
-    &:hover {
+    .card-content {
+        margin: 0 rem(10px);
+
+        .card-trash {
+            .fa-trash-alt {
+                margin-top: 5px;
+                color: transparent;
+                align-items: end;
+            }
+
+
+            &:hover {
+                .fa-trash-alt {
+                    color: inherit;
+                }
+            }
+        }
+   
+
+
+
+
+        .card-title {
+            font-size: rem(13px);
+        }
+
+        img {
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
         .fa-trash-alt {
-            color: inherit;
+            margin: 3px 0 6px;
+            color: transparent;
+
         }
     }
 
-    img {
-        border-top-left-radius: 3px;
-        border-top-right-radius: 3px;
-    }
-
-    .fa-trash-alt {
-        margin: 3px 0 6px;
-        color: transparent;
-
-    }
-}
-
-.card-content {
-    margin: 0 rem(10px);
-
-    .card-title {
-        font-size: rem(13px);
-    }
 
 }

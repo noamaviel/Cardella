@@ -18,9 +18,11 @@
         padding: 0px 6px;
     }
 
-    li {
+    .check-list-li {
         display: flex;
         align-items: center;
+        margin:0;
+
     }
 
     .checklist-input {
@@ -31,8 +33,7 @@
 
     .checklist-btn {
         // height: 20%;
-        margin-left: em(20px);
-        background-color: rgba(9, 30, 66, 0.096);
+        margin-left: em(15px);
         border: none;
         border-radius: 4px;
         border: none;

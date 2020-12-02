@@ -45,15 +45,15 @@
             margin-bottom: rem(20px);
 
             i {
-                width: 20px;
+                width: rem(20px);
             }
 
         }
 
-        .contenteditable-title:hover{
+        .contenteditable-title:hover {
             transition-duration: 150ms;
             background-color: rgb(219, 219, 219);
-               
+
             // :not(i){}
         }
 
@@ -99,28 +99,33 @@
             .members-container {
                 // border: 1px solid rgb(194, 16, 16);
                 flex-wrap: wrap;
-                margin-bottom: rem(20px);
+                justify-content: space-between;
+                // margin-bottom: rem(20px);
+                height: rem(60px);
+
 
                 h5 {
-                    margin-bottom: rem(20px);
+                    // margin-bottom: rem(20px);
                 }
 
                 .avatar-list {
                     margin: 0px;
-                }
 
-                .avatar {
-                    margin-right: 1px;
+                    .avatar {
+                        margin-right: 1px;
+                    }
                 }
             }
 
             .due-date-container {
                 // border: 1px solid rgb(70, 30, 204);
-                justify-content: flex-start;
+                justify-content: space-between;
+                width: rem(137px);
+                height: rem(60px);
 
-                h5 {
-                    margin-bottom: rem(27px);
-                }
+                // h5 {
+                //     margin-bottom: rem(27px);
+                // }
 
             }
         }
@@ -157,6 +162,8 @@
             .uploaded-img {
                 width: 60%;
                 max-height: 50%;
+                margin-left: rem(27px);
+
             }
 
             // .loading-img {
@@ -178,10 +185,9 @@
             margin-bottom: rem(20px);
         }
 
-        li {
-            margin-left: rem(27px);
-            margin-bottom: rem(20px);
-        }
+
+        margin-left: rem(27px);
+
 
         h3 {
             margin-bottom: rem(20px);
@@ -193,6 +199,7 @@
     .edit-card-buttons-area {
         // border: 1px solid black;
         flex-direction: column;
+        width: rem(180px);
 
         .edit-card-buttons-container {
             .main-btn-card-edit {
@@ -208,11 +215,15 @@
         }
 
         .edit-label {
+            position: relative;
             font-size: rem(14px);
             margin-bottom: rem(8px);
-            width: rem(130px);
+            width: rem(80px);
             text-align: right;
             border-radius: 3px;
+            .edit-label-btn{
+                position: absolute;
+            }
 
         }
 
@@ -236,16 +247,11 @@
 
             }
 
-            // .el-input--prefix{
-            //     .el-input__inner {
-            //         width: 180px;
-            //     }
-            // } 
-            // .el-input--suffix{
-            //     .el-input__inner {
-            //         width: 180px;
-            //     }
-            // } 
+            .el-date-editor {
+                .el-input{
+                    width:100%;
+                }
+            }
 
             .colors-container {
                 // margin-top: 10px;

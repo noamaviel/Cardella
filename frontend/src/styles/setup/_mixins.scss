@@ -20,6 +20,7 @@
   border-radius: 4px;
   border: none;
   color: $clr1;
+  
 
   &:hover {
     background-color: $clr5;
@@ -62,7 +63,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #8b8b8b;
+    background-color: #c2c2c2;
     border-radius: 20px;
     border: 3px solid #fbfaf8;
   }
@@ -81,7 +82,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #8b8b8b;
+    background-color: #c2c2c2;
     border-radius: 20px;
     border: 3px solid #fbfaf8;
   }

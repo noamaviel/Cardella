@@ -41,7 +41,7 @@
                 v-if="!isNew"
                 @click="onOpenNewCard"
             >
-                + Add another card
+                <i class="fas fa-plus"></i> Add another card
             </button>
             <div class="add-card-button-inside clr-btn flex" v-else>
                 <input
