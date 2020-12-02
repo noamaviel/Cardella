@@ -23,7 +23,7 @@ export const boardStore = {
         },
 
         setCurrBoard(state, { board }) {
-            console.log('setCurrBoard', board._id);
+            // console.log('setCurrBoard', board._id);
             state.currBoard = board;
         },
         addBoard(state, { newBoard }) {
@@ -40,8 +40,10 @@ export const boardStore = {
         },
         removeBoard(state, { boardId }) {
             console.log('here-removeBoard mutations')
-            const idx = state.boards.findIndex(board => board._id === boardId);
-            state.boards.splice(idx, 1);
+            if (state.boards.length > 0) {
+                const idx = state.boards.findIndex(board => board._id === boardId);
+                state.boards.splice(idx, 1);
+            }
         },
 
         //CARD//
@@ -89,10 +91,10 @@ export const boardStore = {
         async loadBoard({ commit }, { boardId }) {
             const board = await boardService.getBoardById(boardId)
             socketService.emit('update topic', boardId);
-            socketService.on('update', board => {
-                console.log('socket update event', board)
-                commit({ type: 'setCurrBoard', board })
-            })
+            // socketService.on('update', board => {
+            //     console.log('socket update event', board)
+            //     commit({ type: 'setCurrBoard', board })
+            // })
             commit({ type: 'setCurrBoard', board })
         },
         async loadBoards({ commit }) {
@@ -103,14 +105,14 @@ export const boardStore = {
         // async updateBoard({ state }) {
         //     await boardService.updateBoard(state.currBoard);
         // },
-        async updateBoardV2({ commit, state }, { board }) {
-            await boardService.updateBoard(state.currBoard);
+        async updateBoardV2({ commit }, { board }) {
+            await boardService.updateBoard(board);
             commit({ type: 'updateBoard', board });
             socketService.emit('update', board);
         },
-        async removeBoard({ commit, state }, { boardId }) {
+        async removeBoard({ commit }, { boardId }) {
             console.log('here-removeBoard actions')
-            await boardService.removeBoard(state.currBoard._id);
+            await boardService.removeBoard(boardId);
             commit({ type: 'removeBoard', boardId })
             // socketService.emit('update', state.currBoard);
         },
@@ -129,12 +131,12 @@ export const boardStore = {
         },
         async updateCard({ commit, state }, { list, card }) {
             try {
-            commit({ type: 'setIsLoading', isLoading: true })
-            await boardService.updateBoard(state.currBoard);
-            commit({ type: 'updateCard', list, card });
-            commit({ type: 'setIsLoading', isLoading: false })
-            socketService.emit('update', state.currBoard);
-            } catch (err){
+                commit({ type: 'setIsLoading', isLoading: true })
+                await boardService.updateBoard(state.currBoard);
+                commit({ type: 'updateCard', list, card });
+                commit({ type: 'setIsLoading', isLoading: false })
+                socketService.emit('update', state.currBoard);
+            } catch (err) {
                 // $swal.error();
             }
         },
