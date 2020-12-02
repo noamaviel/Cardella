@@ -31,7 +31,6 @@ export default {
         onAddChecklist() {
             this.tmpChecklist.id = utilService.makeId();
             let newChecklist = JSON.parse(JSON.stringify(this.tmpChecklist));
-            console.log("onAddChecklist", newChecklist);
             this.$emit('newChecklist', newChecklist);
             this.tmpChecklist.title = '';
         },

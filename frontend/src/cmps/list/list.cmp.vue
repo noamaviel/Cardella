@@ -22,7 +22,7 @@
             group-name="list"
             @drop="(dropResult) => onDrop(dropResult)"
             :get-child-payload="getCardPayload(list.id)"
-            :animation-duration="400"
+            :animation-duration="350"
         >
             <Draggable v-for="card in list.cards" :key="card.id">
                 <router-link :to="`list/${list.id}/card/${card.id}`" append>
@@ -87,8 +87,8 @@ export default {
                 this.list.cards,
                 dropResult
             );
-            let updtBoard = JSON.parse(JSON.stringify(this.board));
-            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
+            // let updtBoard = JSON.parse(JSON.stringify(this.board));
+            this.$store.dispatch({ type: "updateBoardV2", board: this.board });
         },
         getCardPayload(listId) {
             return (index) => {

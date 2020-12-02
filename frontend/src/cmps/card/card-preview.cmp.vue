@@ -3,7 +3,7 @@
     <div class="card-content">
       <card-preview-labels
         class="card-top-labels"
-        v-if="card.labels"
+        v-if="card.labels && card.labels.length"
         :labels="card.labels"
         @updateCard="onUpdateCard"
       />

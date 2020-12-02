@@ -23,7 +23,6 @@ export const boardStore = {
         },
 
         setCurrBoard(state, { board }) {
-            console.log('setCurrBoard', board._id);
             state.currBoard = board;
         },
         addBoard(state, { newBoard }) {
@@ -39,9 +38,10 @@ export const boardStore = {
             state.currBoard.boardActivites.unshift(activity);
         },
         removeBoard(state, { boardId }) {
-            console.log('here-removeBoard mutations')
-            const idx = state.boards.findIndex(board => board._id === boardId);
-            state.boards.splice(idx, 1);
+            if (state.boards.length > 0) {
+                const idx = state.boards.findIndex(board => board._id === boardId);
+                state.boards.splice(idx, 1);
+            }
         },
 
         //CARD//
@@ -82,37 +82,58 @@ export const boardStore = {
         //BOARD//
         async addBoard({ commit }) {
             // TO DO: get logedin user (from the user-store)
-            const newBoard = await boardService.addBoard();
-            commit({ type: 'addBoard', newBoard });
-            return newBoard;
+            try {
+                const newBoard = await boardService.addBoard();
+                commit({ type: 'addBoard', newBoard });
+                return newBoard;
+            }
+            catch (err) {
+                console.error('Cannot add board', err);
+                // $swal.error();
+            }
         },
         async loadBoard({ commit }, { boardId }) {
-            const board = await boardService.getBoardById(boardId)
-            socketService.emit('update topic', boardId);
-            socketService.on('update', board => {
-                console.log('socket update event', board)
+            try {
+                const board = await boardService.getBoardById(boardId)
+                socketService.emit('update topic', boardId);
                 commit({ type: 'setCurrBoard', board })
-            })
-            commit({ type: 'setCurrBoard', board })
+            }
+            catch (err) {
+                console.error('Cannot load board', err);
+                // $swal.error();
+            }
         },
         async loadBoards({ commit }) {
-            console.log('loadBoards');
-            const boards = await boardService.getBoards()
-            commit({ type: 'setBoards', boards })
+            try {
+                const boards = await boardService.getBoards()
+                commit({ type: 'setBoards', boards })
+            }
+            catch (err) {
+                console.error('Cannot load boards', err);
+                // $swal.error();
+            }
         },
         // async updateBoard({ state }) {
         //     await boardService.updateBoard(state.currBoard);
         // },
-        async updateBoardV2({ commit, state }, { board }) {
-            await boardService.updateBoard(state.currBoard);
-            commit({ type: 'updateBoard', board });
-            socketService.emit('update', board);
+        async updateBoardV2({ commit }, { board }) {
+            try {
+                await boardService.updateBoard(board);
+                commit({ type: 'updateBoard', board });
+                socketService.emit('update', board);
+            } catch (err) {
+                console.error('Cannot update board', err);
+                // $swal.error();
+            }
         },
-        async removeBoard({ commit, state }, { boardId }) {
-            console.log('here-removeBoard actions')
-            await boardService.removeBoard(state.currBoard._id);
-            commit({ type: 'removeBoard', boardId })
-            // socketService.emit('update', state.currBoard);
+        async removeBoard({ commit }, { boardId }) {
+            try {
+                await boardService.removeBoard(boardId);
+                commit({ type: 'removeBoard', boardId })
+            } catch (err) {
+                console.error('Cannot remove board', err);
+                // $swal.error();
+            }
         },
         //CARD//
         async addCard({ commit, state }, { listId, cardTitle }) {
@@ -122,44 +143,63 @@ export const boardStore = {
                 await boardService.updateBoard(state.currBoard);
                 socketService.emit('update', state.currBoard);
             } catch (err) {
-                console.error('Cannot add Card', err);
-                // throw err;
+                console.error('Cannot add card', err);
                 // $swal.error();
             }
         },
         async updateCard({ commit, state }, { list, card }) {
             try {
-            commit({ type: 'setIsLoading', isLoading: true })
-            await boardService.updateBoard(state.currBoard);
-            commit({ type: 'updateCard', list, card });
-            commit({ type: 'setIsLoading', isLoading: false })
-            socketService.emit('update', state.currBoard);
-            } catch (err){
+                commit({ type: 'setIsLoading', isLoading: true })
+                await boardService.updateBoard(state.currBoard);
+                commit({ type: 'updateCard', list, card });
+                commit({ type: 'setIsLoading', isLoading: false })
+                socketService.emit('update', state.currBoard);
+            } catch (err) {
+                console.error('Cannot update card', err);
                 // $swal.error();
             }
         },
         async removeCard({ commit, state }, { listId, cardId }) {
-            commit({ type: 'removeCard', listId, cardId })
-            await boardService.updateBoard(state.currBoard);
-            socketService.emit('update', state.currBoard);
+            try {
+                commit({ type: 'removeCard', listId, cardId })
+                await boardService.updateBoard(state.currBoard);
+                socketService.emit('update', state.currBoard);
+            } catch (err) {
+                console.error('Cannot remove card', err);
+                // $swal.error();
+            }
         },
-
         //LIST//
         async addList({ commit, state }, { listTitle }) {
-            const list = boardService.getEmptyList(listTitle);
-            commit({ type: 'addList', list })
-            await boardService.updateBoard(state.currBoard);
-            socketService.emit('update', state.currBoard);
+            try {
+                const list = boardService.getEmptyList(listTitle);
+                commit({ type: 'addList', list })
+                await boardService.updateBoard(state.currBoard);
+                socketService.emit('update', state.currBoard);
+            } catch (err) {
+                console.error('Cannot add list', err);
+                // $swal.error();
+            }
         },
         async updateList({ commit, state }, { list }) {
-            commit({ type: 'updateList', list });
-            await boardService.updateBoard(state.currBoard);
-            socketService.emit('update', state.currBoard);
+            try {
+                commit({ type: 'updateList', list });
+                await boardService.updateBoard(state.currBoard);
+                socketService.emit('update', state.currBoard);
+            } catch (err) {
+                console.error('Cannot update list', err);
+                // $swal.error();
+            }
         },
         async removeList({ commit, state }, { listId }) {
-            commit({ type: 'removeList', listId })
-            await boardService.updateBoard(state.currBoard);
-            socketService.emit('update', state.currBoard);
+            try {
+                commit({ type: 'removeList', listId })
+                await boardService.updateBoard(state.currBoard);
+                socketService.emit('update', state.currBoard);
+            } catch (err) {
+                console.error('Cannot remove list', err);
+                // $swal.error();
+            }
         },
     }
 }

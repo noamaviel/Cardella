@@ -42,7 +42,9 @@ export default {
         ev.target.innerText = this.board.title;
         return;
       }
+      // console.log("store title before:", this.$store.getters.getCurrBoard.title)
       this.board.title = ev.target.innerText;
+      // console.log("store title after:", this.$store.getters.getCurrBoard.title)
       ev.target.blur();
       this.$store.dispatch({
         type: "updateBoardV2",
