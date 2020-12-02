@@ -1,11 +1,11 @@
 <template>
     <section class="card-preview-container">
         <card-preview-labels
-            v-if="card.labels"
+            v-if="card.labels && card.labels.length"
             :labels="card.labels"
             @updateCard="onUpdateCard"
         />
-        <img :src="card.uploadImgUrl" />
+        <img v-if="card.uploadImgUrl" :src="card.uploadImgUrl" />
         <div class="card-content">
             <i class="far fa-trash-alt" @click.prevent="emitRemoveCard"></i>
             <h5 class="card-title">{{ card.title }}</h5>
