@@ -21,7 +21,10 @@ function getBoardById(boardId) {
 function addBoard() {
     const board = {
         title: "New board",
-        style: { "backgroundColor": "blue" },
+        style: {
+            "backgroundColor": "white",
+            "backgroundImgUrl": "url('https://res.cloudinary.com/morshva/image/upload/v1606573383/5_mavwxz.jpg')"
+        },
         createdBy: _getCreatedBy(),
         members: [_getCreatedBy()],
         createdAt: Date.now(),
@@ -39,7 +42,7 @@ function addBoard() {
                     members: [],
                     labels: [],
                     comments: [],
-                    checklists:[]
+                    checklists: []
                 }],
                 // push the member
             }]
@@ -71,7 +74,7 @@ function getEmptyCard(title = '') {
         createdBy: _getCreatedBy(),
         members: [_getCreatedBy()],
         labels: [],
-        checklists:[]
+        checklists: []
     }
     return card;
 }

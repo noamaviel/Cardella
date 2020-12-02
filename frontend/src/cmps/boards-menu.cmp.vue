@@ -2,7 +2,7 @@
     <section class="boards-menu-container">
         <div class="boards-menu">
             <ul class="boards-list">
-                <li v-for="board in boards" :key="board._id">
+                <li v-for="board in boards" :key="board._id" @click="onClick">
                     <router-link :to="'/board/' + board._id">{{
                         board.title
                     }}</router-link>
@@ -25,13 +25,15 @@ export default {
             });
             this.$router.push(newBoard._id);
         },
+        onClick() {
+            this.$emit("closeBoardsMenu");
+        },
     },
     computed: {
         boards() {
             return this.$store.getters.getBoards;
         },
     },
-
     created() {
         this.$store.dispatch({ type: "loadBoards" });
     },

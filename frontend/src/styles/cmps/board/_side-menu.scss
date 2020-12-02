@@ -45,6 +45,21 @@
             font-size: rem(16px);
             cursor: pointer;
         }
+
+        .background-change {
+            display: flex;
+            justify-content: space-evenly;
+
+            img {
+                width: 120px;
+                height: 90px;
+                cursor: pointer;
+            }
+
+            h5 {
+                text-align: center;
+            }
+        }
     }
 
     .activity-title h5 {

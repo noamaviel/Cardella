@@ -10,7 +10,7 @@ export const boardStore = {
     },
     getters: {
         getCurrBoard(state) {
-            return state.currBoard;
+            return state.currBoard
         },
         getBoards(state) {
             return state.boards;
@@ -139,6 +139,7 @@ export const boardStore = {
         async addCard({ commit, state }, { listId, cardTitle }) {
             try {
                 const card = boardService.getEmptyCard(cardTitle);
+                console.log("🚀 ~ file: board-store.js ~ line 142 ~ addCard ~ card", card)
                 commit({ type: 'addCard', listId, card })
                 await boardService.updateBoard(state.currBoard);
                 socketService.emit('update', state.currBoard);

@@ -1,12 +1,14 @@
 <template>
     <section
-        class="app-container"
-        style="
-            background-image: url(https://res.cloudinary.com/morshva/image/upload/v1606573776/7_op2qhx.jpg);
-        "
+        class="app"
+        v-if="board && board.style"
+        :style="{
+            'background-color': board.style.backgroundColor,
+            'background-image': `url(${board.style.backgroundImgUrl})`,
+        }"
     >
         <board-header :board="board" />
-        <div class="lists-container flex">
+        <div class="lists-container">
             <!-- Outer Component Start -->
             <Container
                 orientation="horizontal"
@@ -21,6 +23,7 @@
                         :board="board"
                     />
                 </Draggable>
+                <list-add />
             </Container>
             <!-- Outer Component End -->
             <div v-if="showModal" class="modal-route">
@@ -28,7 +31,6 @@
                     <router-view></router-view>
                 </div>
             </div>
-            <list-add />
         </div>
     </section>
 </template>
@@ -64,10 +66,6 @@ export default {
             const boardId = this.$route.params.boardId;
             this.$store.dispatch({ type: "loadBoard", boardId });
         },
-        onSocketEvent(updatedBoard) {
-            // console.log("socket update event", updatedBoard);
-            this.$store.commit({ type: "setCurrBoard", board: updatedBoard });
-        },
         //      sendUpdate() {
         //   socketService.emit('update', 'board')
         // },
@@ -83,14 +81,15 @@ export default {
         listAdd,
     },
     created() {
-        socketService.setup();
-        socketService.on("update", this.onSocketEvent);
-
         const boardId = this.$route.params.boardId;
         this.$store.dispatch({ type: "loadBoard", boardId });
+
+        socketService.setup();
+        // socketService.emit("update topic", boardId);
+        // socketService.on("update", this.onUpdate);
     },
     destroyed() {
-        socketService.off("update", this.onSocketEvent);
+        socketService.off("update", this.onUpdate);
         socketService.terminate();
     },
     watch: {
