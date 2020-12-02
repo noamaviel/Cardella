@@ -10,7 +10,8 @@
                 >
             </div>
             <div class="logo">
-                <router-link to="/"><h1>Cardella</h1></router-link>
+                <router-link to="/"> <img src="@/assets/img/logo.png"></router-link>
+                <!-- <router-link to="/"><h1>Cardella</h1></router-link> -->
             </div>
             <div class="main-header-right">
                 <h4>

@@ -1,6 +1,6 @@
 
 <template>
-    <section class="list-container flex">
+    <section class="list-container flex ">
         <div class="list-menu-container flex f-center">
             <h5
                 class="list-title"

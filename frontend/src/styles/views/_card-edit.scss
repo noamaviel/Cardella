@@ -218,9 +218,10 @@
             position: relative;
             font-size: rem(14px);
             margin-bottom: rem(8px);
-            width: rem(80px);
+            width: rem(100px);
             text-align: right;
             border-radius: 3px;
+            cursor: pointer;
             .edit-label-btn{
                 position: absolute;
             }

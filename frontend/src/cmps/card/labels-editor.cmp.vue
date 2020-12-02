@@ -41,32 +41,32 @@ export default {
         {
           id: "101",
           title: "Fun",
-          color: "#A54657",
+          color: "#43798f",
         },
         {
           id: "102",
           title: "High Priority",
-          color: "#582630",
+          color: "#2A9D8F",
         },
         {
           id: "103",
           title: "Low Priority",
-          color: "#F7EE7F",
+          color: "#E9C46A",
         },
         {
           id: "104",
           title: "Back-end",
-          color: "#6089AC",
+          color: "#F4A261",
         },
         {
           id: "105",
           title: "Front-end",
-          color: "#F1A66A",
+          color: "#E76F51",
         },
         {
           id: "106",
           title: "Extra",
-          color: "#F26157",
+          color: "#bdbdbd",
         },
       ],
     };

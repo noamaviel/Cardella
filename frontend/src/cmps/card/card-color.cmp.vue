@@ -3,28 +3,28 @@
         <ul class="colors-container flex">
             <li
                 class="color"
-                style="background-color: #f6b6b4"
-                @click="changeColor($event, '#F6B6B4')"
-            ></li>
-            <li
-                class="color"
-                style="background-color: #c1c1c1"
-                @click="changeColor($event, '#C1C1C1')"
-            ></li>
-            <li
-                class="color"
                 style="background-color: #bfe4dd"
-                @click="changeColor($event, '#BFE4DD')"
+                @click="changeColor($event, '#bfe4dd')"
             ></li>
             <li
                 class="color"
-                style="background-color: #ffffff"
-                @click="changeColor($event, '#FFFFFF')"
+                style="background-color: #ffe9b2"
+                @click="changeColor($event, '#ffe9b2')"
             ></li>
             <li
                 class="color"
-                style="background-color: #f5ffc6"
-                @click="changeColor($event, '#F5FFC6')"
+                style="background-color: #f5cfa4"
+                @click="changeColor($event, '#f5cfa4')"
+            ></li>
+            <li
+                class="color"
+                style="background-color: #e0dfdf"
+                @click="changeColor($event, '#e0dfdf')"
+            ></li>
+            <li
+                class="color"
+                style="background-color: #f6b6b4"
+                @click="changeColor($event, '#f6b6b4')"
             ></li>
         </ul>
     </section>

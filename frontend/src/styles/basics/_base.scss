@@ -3,7 +3,8 @@
 }
 
 html {
-    font-family: sans-serif;
+    font-family: MontserratSB, sans-serif;
+    // font-weight: 400;
 }
 
 body {
@@ -14,19 +15,21 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-repeat: no-repeat;
-    background-size: cover;
+    // background-repeat: no-repeat;
+    // background-size: cover;
     overflow-y: hidden;
     overflow-x: hidden;
     @include scrollbar2;
 
 }
 
-.app-container{
-display: flex;
-flex-direction: column;
+.app-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-repeat: no-repeat;
+    background-size: cover;
 
-flex: 1;
 }
 
 h1,

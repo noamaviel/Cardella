@@ -1,7 +1,13 @@
 .board-filter {
+    display: flex;
+    justify-content: center;
     padding: rem(5px);
     margin: 0 4px;
     @include bright-buttons;
+
+    :placeholder-shown {
+        color: white;
+    }
 
     input {
         @include input;

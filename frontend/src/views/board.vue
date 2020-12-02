@@ -1,6 +1,6 @@
 <template>
     <section
-        class="app"
+        class="app-container"
         v-if="board && board.style"
         :style="{
             'background-color': board.style.backgroundColor,
@@ -20,7 +20,7 @@
                         :list="list"
                         :index="index"
                         :lists="board.lists"
-                        :board="board"
+                        :board="board"   
                     />
                 </Draggable>
                 <list-add />

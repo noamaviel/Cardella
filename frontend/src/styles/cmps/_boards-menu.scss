@@ -1,26 +1,28 @@
 .boards-menu-container {
 
-    background-color: rgb(211, 211, 211);
-    position: fixed;
+    // font-size: rem(20px);
+    @include menu;
     top: 40px;
     right: 0;
-    z-index: 2;
-    font-size: rem(20px);
+    z-index: 5;
 
 
     .boards-menu {
-        display: flex;
-        flex-direction: column;
-        width: 300px;
-        color: $clr1;
-
-        .boards-list >*{
-           padding: 10px 40px;
+        // display: flex;
+        // flex-direction: column;
+        // width: 300px;
+        // color: $clr1;
+        
+        .boards-list>* {
+            padding: 10px 40px;
         }
 
         .create-board-btn {
             margin: 10px;
+           
         }
+       
 
     }
 }
+

@@ -2,7 +2,8 @@ header.main-header {
 
     color: $clr2;
     height: 40px;
-    background-color: #CD687C;
+    // background-color: #CD687C;
+    background-color: #333333;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "leftHeader logo rightHeader";
@@ -29,8 +30,10 @@ header.main-header {
         grid-area: logo;
         align-self: center;
 
-        h1 {
-            margin-bottom: 0;
+        img {
+            max-width: rem(90px);
+            margin-top: 6px;
+
         }
     }
 
@@ -41,6 +44,7 @@ header.main-header {
         align-self: center;
 
         button {
+            font-family: MontserratSB;
             font-size: inherit;
             color: inherit;
             border: none;
@@ -52,7 +56,7 @@ header.main-header {
         h4 {
             margin-right: 20px;
         }
-       
+
 
     }
 

@@ -37,7 +37,7 @@ function addBoard() {
                     title: "New card",
                     description: "",
                     createdAt: Date.now(),
-                    style: { "bgColor": "#C1C1C1" },
+                    style: { "bgColor": "#E0DFDF" },
                     createdBy: _getCreatedBy(),
                     members: [],
                     labels: [],
@@ -69,7 +69,7 @@ function getEmptyCard(title = '') {
         description: '',
         uploadImgUrl: '',
         style: {
-            bgColor: '#C1C1C1'
+            bgColor: '#E0DFDF'
         },
         createdBy: _getCreatedBy(),
         members: [_getCreatedBy()],
