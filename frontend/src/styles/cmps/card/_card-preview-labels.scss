@@ -1,50 +1,41 @@
+
 .labels-closed {
     display: flex;
+    // color: transparent;
 
     ul {
-        // display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        margin: 0;
+        margin: 3px 0 3px 0;
+
     }
 
     li {
         height: 10px;
         width: 30px;
-        border-radius: 20%;
-        color: transparent;
+        border-radius: 4px;
+        // color: transparent;
         margin: 1px;
     }
 }
 
 
-    .labels-list {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-    }
+.labels-list {
+    line-height: rem(20px);
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 3px;
+}
 
-    .li-label {
-        width: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 22px;
-        margin: 3px;
-        font-size: 13px;
-        padding: 5px;
-        text-align: center;
-        border-radius: 9%;
-    }
+.li-label {
+    justify-content: center;
+    align-items: center;
+    font-size: rem(13px);
+    text-align: center;
+    padding: 0 10px;
+    border-radius: 8px;
+    margin: 0 8px 8px 0;
 
+}
 
-// .labels-list{
-//     .lable{
-
-//         font-size: 50px;
-//     }
-//     .edit-label-btn{
-//         background-color: black;
-//     }
-// }
 

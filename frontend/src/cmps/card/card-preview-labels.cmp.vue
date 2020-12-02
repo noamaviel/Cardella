@@ -4,14 +4,14 @@
         v-if="labels.length"
     >
         <ul class="labels-list flex">
-            <li class="li-label flex"
+            <li class="li-label clr-btn flex"
                 v-for="(label, index) in labels"
                 :key="label.id"
                 @click.prevent="onIsTitled"
-                :style="{ backgroundColor: label.color }"
+                :style="{ backgroundColor: label.bgcColor, color: label.color }"
             >
                 {{ labelForLiDisplay(label.title) }}
-                <button @click.stop.prevent="onRemoveLabel(index)" v-if="isTitled"><i class="fas fa-times"></i></button>
+                <button class="clr-btn" @click.stop.prevent="onRemoveLabel(index)" v-if="isTitled"><i class="fas fa-times"></i></button>
             </li>
         </ul>
     </section>
@@ -33,7 +33,7 @@ export default {
         },
         labelForLiDisplay(title) {
             if (this.isTitled) return title
-            else return '...'
+            else return ''  // ('...') Ask Noam   <------
         },
         onRemoveLabel(index) {
             this.labels.splice(index, 1);

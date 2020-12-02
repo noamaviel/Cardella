@@ -11,7 +11,7 @@
         </div>
         <div class="progress-bar">
             <div class="progress-bar-percent" :style="{ width: getPercentage }">
-                {{ getPercentage }} %
+                {{ getPercentage }}%
             </div>
         </div>
         <ul v-if="checklist.todos">
@@ -41,7 +41,7 @@
                     {{ todo.title }}
                 </label>
                 <button class="checklist-btn" @click="onRemoveTodo(index)">
-                    X
+                    <i class="fas fa-times"></i>
                 </button>
             </li>
         </ul>
@@ -61,7 +61,7 @@
             />
             <button class="checklist-btn">Add Todo</button>
             <button class="checklist-btn close" @click="onCloseAddTodo">
-                X
+               <i class="fas fa-times"></i>
             </button>
         </form>
     </section>

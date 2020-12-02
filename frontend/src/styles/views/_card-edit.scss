@@ -4,7 +4,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background: rgba(68, 68, 68, 0.465);
+    background: rgba(68, 68, 68, 0.555);
 }
 
 .modal-route .modal-content {
@@ -19,112 +19,253 @@
     transform: translate(-50%, -50%);
 }
 
-
 .card-edit-container {
+    color: $clr1;
+    width: rem(600px);
+    min-height: rem(600px);
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: 95vh;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 3px;
-    background-color: $clr2;
+    @include scrollbar1;
+    max-height: 86vh;
+    border-radius: rem(8px);
+    background-color: #f0f0f0;
     position: relative;
-    width: rem(768px);
-    z-index: 10;
+    z-index: 100;
+    padding: rem(15px);
+    justify-content: space-between;
+    gap: rem(15px);
+
 
     .main-area {
-        flex-grow: 1;
-        line-height: rem(40px);
-        margin-left: 10px;
-        margin-right: 10px;
 
-        i {
-            font-size: rem(15px);
-            margin: 0 10px
+        flex-basis: 80%;
+
+        .edit-card-title {
+            // border: 1px solid black;
+            margin-bottom: rem(20px);
+
+            i {
+                width: 20px;
+            }
+
         }
 
-        h4 {
-            line-height: rem(25px);
-            margin-bottom: 10px;
+        .contenteditable-title:hover{
+            transition-duration: 150ms;
+            background-color: rgb(219, 219, 219);
+               
+            // :not(i){}
+        }
 
+
+        // border: 1px solid black;
+        .edit-card-in-list {
+
+            // border: 1px solid black;
+            margin-bottom: rem(20px);
+
+            :first-child {
+                margin-left: rem(27px);
+
+            }
+
+            :nth-child(2) {
+                text-decoration: underline;
+                margin-left: rem(3px);
+            }
+        }
+
+
+        .card-preview-labels {
+            // border: 1px solid black;
+            margin-bottom: rem(20px);
+            margin-left: rem(27px);
+
+        }
+
+
+
+        .members-dueDate-container {
+            // border: 1px solid black;
+            flex-wrap: wrap;
+            margin-bottom: rem(20px);
+            gap: rem(20px);
+            margin-left: rem(27px);
+
+
+
+
+
+            .members-container {
+                // border: 1px solid rgb(194, 16, 16);
+                flex-wrap: wrap;
+                margin-bottom: rem(20px);
+
+                h5 {
+                    margin-bottom: rem(20px);
+                }
+
+                .avatar-list {
+                    margin: 0px;
+                }
+
+                .avatar {
+                    margin-right: 1px;
+                }
+            }
+
+            .due-date-container {
+                // border: 1px solid rgb(70, 30, 204);
+                justify-content: flex-start;
+
+                h5 {
+                    margin-bottom: rem(27px);
+                }
+
+            }
+        }
+
+        .edit-card-desc {
+            margin-bottom: rem(20px);
+
+
+            textarea {
+                width: 90%;
+                min-height: 50px;
+                border: none;
+                margin-left: rem(27px);
+                background-color: &clr2;
+                font-family: sans-serif;
+                border-radius: 5px;
+                resize: none;
+
+                &:focus {
+                    min-height: 150px;
+                }
+
+                &:hover {
+                    transition-duration: 150ms;
+                    background-color: rgb(219, 219, 219);
+                }
+            }
+
+        }
+
+        .edit-card-img {
+            margin-bottom: rem(20px);
+
+            .uploaded-img {
+                width: 60%;
+                max-height: 50%;
+            }
+
+            // .loading-img {
+            // width: 100%;
+            // }
+
+            .remove-img {
+                i {
+                    margin-right: 5px;
+                }
+            }
+
+        }
+
+    }
+
+    .checklists {
+        .progress-bar {
+            margin-bottom: rem(20px);
+        }
+
+        li {
+            margin-left: rem(27px);
+            margin-bottom: rem(20px);
         }
 
         h3 {
-            margin-bottom: 7px;
-
-            &:hover {
-                background-color: rgba(65, 65, 65, 0.363);
-                transition-duration: 150ms;
-                background-color: $clr2;
-
-            }
-        }
-
-        .due-date-container h4 {
-            margin-bottom: 2px;
-        }
-
-        .members-container {
-            h4 {
-                margin: 15px 6px 0 0;
-            }
-
-        }
-
-
-    }
-
-    // img {
-    //     max-width: 300px;
-    // }
-
-    textarea {
-        width: 100%;
-        border: none;
-        background-color: $clr2;
-        font-family: sans-serif;
-
-        &:hover {
-            background-color: rgba(65, 65, 65, 0.363);
-            transition-duration: 150ms;
-            background-color: $clr2;
+            margin-bottom: rem(20px);
 
         }
     }
 
-    .edit-card-menu-area {
-        display: flex;
-        // flex-grow: 1;
+
+    .edit-card-buttons-area {
+        // border: 1px solid black;
         flex-direction: column;
-        margin-right: 8px;
 
+        .edit-card-buttons-container {
+            .main-btn-card-edit {
+                @include card-edit-btns;
 
-        .main-btn-card-edit {
-            @include dark-buttons;
-            height: 32px;
-            margin-top: 8px;
-            width: 300px;
-            overflow: hidden;
-            background-color: rgba(9, 30, 66, 0.096);
-            padding: 6px 12px;
-
-            &:hover {
-                background-color: rgba(65, 65, 65, 0.363);
-                transition-duration: 150ms;
             }
         }
 
-        .add-checklist-container {
-            justify-content: space-between;
+        .close-edit-card {
+            font-size: rem(25px);
+            justify-content: flex-end;
+            margin-bottom: rem(20px);
+        }
 
-            button {
-                padding: 2px;
-                font-size: rem(14px);
-                background-color: transparent;
-                margin-left: 8px;
-                width: 100px;
-               
+        .edit-label {
+            font-size: rem(14px);
+            margin-bottom: rem(8px);
+            width: rem(130px);
+            text-align: right;
+            border-radius: 3px;
+
+        }
+
+        .add-members {
+            margin-bottom: rem(20px);
+
+            .member-name {
+                font-size: 12px;
+
             }
+
+            .edit-card-member {
+                justify-content: space-around;
+                padding: 3px;
+                align-items: center;
+                background-color: rgb(255, 255, 255);
+                margin-bottom: rem(8px);
+                border-radius: 2px;
+                box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
+                cursor: pointer;
+
+            }
+
+            // .el-input--prefix{
+            //     .el-input__inner {
+            //         width: 180px;
+            //     }
+            // } 
+            // .el-input--suffix{
+            //     .el-input__inner {
+            //         width: 180px;
+            //     }
+            // } 
+
+            .colors-container {
+                // margin-top: 10px;
+                // align-items: center;
+                // justify-content: space-around;
+                // width: 120px;
+                // padding-right: 40px;
+
+                // .color {
+                //     cursor: pointer;
+                //     width: 18px;
+                //     height: 18px;
+                //     border-radius: 50%;
+                //     border: 1px solid rgb(59, 59, 59);
+                //     margin-bottom: 3px;
+                // }
+            }
+
+
+
         }
 
 

@@ -57,8 +57,13 @@
 
     .side-activities {
         overflow-y: auto;
+        overflow-x: hidden;
+        @include scrollbar1;
+
 
         .activity-preview {
+            // @include scrollbar;
+            // background-color: rgb(163, 78, 78);
             display: flex;
             align-items: center;
             font-size: rem(14px);

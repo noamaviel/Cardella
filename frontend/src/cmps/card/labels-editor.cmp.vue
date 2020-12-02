@@ -1,98 +1,105 @@
 <template>
-    <section>
-        <form @submit.prevent="onCustomLabel" v-if="isCustomEdit">
-            <input type="text" v-model="customLabelTitle" />
-            <button>Save</button>
-            <button @click.prevent="onCloseCustomEdit"><i class="fas fa-times"></i></button>
-        </form>
-        <ul>
-            <li
-                v-for="(label, index) in labelsPallette"
-                :key="label.id"
-                :style="{ backgroundColor: label.color }"
-                @click="onAddLabel(index)"
-            >
-                {{ label.title }}
-                <button class="edit-label-btn" @click.stop="onLabelEdit(index)">Edit</button>
-            </li>
-        </ul>
-    </section>
+  <section>
+    <form @submit.prevent="onCustomLabel" v-if="isCustomEdit">
+      <input type="text" v-model="customLabelTitle" />
+      <button>Save</button>
+      <button @click.prevent="onCloseCustomEdit">
+        <i class="fas fa-times"></i>
+      </button>
+    </form>
+    <ul class="flex f-center f-col">
+      <li
+        class="edit-label "
+        v-for="(label, index) in labelsPallette"
+        :key="label.id"
+        :style="{ backgroundColor: label.bgcColor, color: label.color }"
+        @click="onAddLabel(index)"
+      >
+        {{ label.title }}
+        <button class="edit-label-btn clr-btn" @click.stop="onLabelEdit(index)">
+          <i class="fas fa-pencil-alt"> </i>
+        </button>
+      
+      </li>
+    </ul>
+  </section>
 </template>
 
 <script>
 import { utilService } from "../../services/util-service.js";
 
 export default {
-    props: {
-        labels: Array,
-    },
-    data() {
-        return {
-            isCustomEdit: false,
-            customLabelIndex: 0,
-            customLabelTitle: "",
-            labelsPallette: [
-                {
-                    id: "101",
-                    title: "Fun",
-                    color: "#A54657",
-                },
-                {
-                    id: "102",
-                    title: "High Priority",
-                    color: "#582630",
-                },
-                {
-                    id: "103",
-                    title: "Low Priority",
-                    color: "#F7EE7F",
-                },
-                {
-                    id: "104",
-                    title: "Back-end",
-                    color: "#3D5467",
-                },
-                {
-                    id: "105",
-                    title: "Front-end",
-                    color: "#F1A66A",
-                },
-                {
-                    id: "106",
-                    title: "Extra",
-                    color: "#F26157",
-                },
-            ],
-        };
-    },
-    methods: {
-        onAddLabel(index) {
-            let tmpLabel = JSON.parse(
-                JSON.stringify(this.labelsPallette[index])
-            );
-            tmpLabel.id = utilService.makeId();
-            this.labels.splice(this.labels.length, 0, tmpLabel);
-            this.$emit('updateCard');
+  props: {
+    labels: Array,
+  },
+  data() {
+    return {
+      isCustomEdit: false,
+      customLabelIndex: 0,
+      customLabelTitle: "",
+      labelsPallette: [
+        {
+          id: "101",
+          title: "Fun",
+          bgcColor: "#A54657",
+          color: "#F4F5F7",
         },
-        onLabelEdit(index) {
-            this.isCustomEdit = true;
-            this.customLabelTitle = this.labelsPallette[index].title;
-            this.customLabelIndex = index;
+        {
+          id: "102",
+          title: "High Priority",
+          bgcColor: "#582630",
+          color: "#F4F5F7",
         },
-        onCustomLabel() {
-            console.log("onCustomLabel", this.customLabelTitle);
-            this.labelsPallette[
-                this.customLabelIndex
-            ].title = this.customLabelTitle;
-            this.isCustomEdit = false;
+        {
+          id: "103",
+          title: "Low Priority",
+          bgcColor: "#F7EE7F",
+          color: "$clr1",
         },
-        onCloseCustomEdit() {
-            this.isCustomEdit = false;
+        {
+          id: "104",
+          title: "Back-end",
+          bgcColor: "#6089AC",
+          color: "#F4F5F7",
         },
+        {
+          id: "105",
+          title: "Front-end",
+          bgcColor: "#F1A66A",
+          color: "$clr1",
+        },
+        {
+          id: "106",
+          title: "Extra",
+          bgcColor: "#F26157",
+          color: "$clr1",
+        },
+      ],
+    };
+  },
+  methods: {
+    onAddLabel(index) {
+      let tmpLabel = JSON.parse(JSON.stringify(this.labelsPallette[index]));
+      tmpLabel.id = utilService.makeId();
+      this.labels.splice(this.labels.length, 0, tmpLabel);
+      this.$emit("updateCard");
     },
-    components: {},
-    created() {
-       
+    onLabelEdit(index) {
+      this.isCustomEdit = true;
+      this.customLabelTitle = this.labelsPallette[index].title;
+      this.customLabelIndex = index;
     },
+    onCustomLabel() {
+      console.log("onCustomLabel", this.customLabelTitle);
+      this.labelsPallette[this.customLabelIndex].title = this.customLabelTitle;
+      this.isCustomEdit = false;
+    },
+    onCloseCustomEdit() {
+      this.isCustomEdit = false;
+    },
+  },
+  components: {},
+  created() {},
 };
 </script>
+

@@ -37,13 +37,13 @@
         </Container>
         <div class="add-card-container">
             <button
-                class="add-another-card-button"
+                class="add-another-card-button clr-btn"
                 v-if="!isNew"
                 @click="onOpenNewCard"
             >
                 + Add another card
             </button>
-            <div class="add-card-button-inside flex" v-else>
+            <div class="add-card-button-inside clr-btn flex" v-else>
                 <input
                     type="text"
                     v-model="newCardTitle"
