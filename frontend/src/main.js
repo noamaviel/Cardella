@@ -11,10 +11,10 @@ import '@/styles/styles.scss';
 Vue.config.productionTip = false
 Vue.use(ElementUI, { locale });
 
-
 new Vue({
   router,
   store,
   render: h => h(app)
 }).$mount('#app')
+
 

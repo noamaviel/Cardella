@@ -57,6 +57,7 @@
 import boardActivityLog from "@/cmps/board/board-activity-log.cmp.vue";
 import imagePicker from "@/cmps/image-picker.cmp.vue";
 import colorPicker from "@/cmps/color-picker.cmp.vue";
+import Swal from "sweetalert2";
 
 export default {
     props: {
@@ -72,12 +73,20 @@ export default {
     },
     computed: {},
     methods: {
-        removeBoard() {
-            this.$store.dispatch({
-                type: "removeBoard",
-                boardId: this.board._id,
+        async removeBoard() {
+            const result = await Swal.fire({
+                title: "Are you Sure you want to delete this board?",
+                showDenyButton: true,
+                confirmButtonText: `Yes`,
+                denyButtonText: `No`,
             });
-            this.$router.push("/");
+            if (result.isConfirmed) {
+                this.$store.dispatch({
+                    type: "removeBoard",
+                    boardId: this.board._id,
+                });
+                this.$router.push("/");
+            }
         },
         closeMenu() {
             this.isClose = true;

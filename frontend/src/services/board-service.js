@@ -32,7 +32,7 @@ function addBoard() {
         title: "New board",
         style: {
             "backgroundColor": "white",
-            "backgroundImgUrl": "url('https://res.cloudinary.com/morshva/image/upload/v1606573383/5_mavwxz.jpg')"
+            "backgroundImgUrl": "https://res.cloudinary.com/morshva/image/upload/v1606573383/5_mavwxz.jpg"
         },
         createdBy: _getCreatedBy(),
         members: [_getCreatedBy()],

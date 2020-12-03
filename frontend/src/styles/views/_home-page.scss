@@ -1,0 +1,98 @@
+.home {
+    color: #333333;
+    overflow-y: auto;
+    overflow-x: hideen;
+
+    .hero-container {
+        margin: auto;
+        justify-content: center;
+
+        .hero-title {
+            flex-direction: column;
+            text-align: center;
+            align-self: center;
+
+            .link {
+                width: 400px;
+                height: 100px;
+                background: #f6f9fe;
+                position: relative;
+                border-radius: 32px;
+                text-align: center;
+                align-items: center;
+                cursor: pointer;
+                transition: all 0.1s ease-in-out;
+
+                &:hover {
+                    opacity: 0.6;
+                    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+                        6px 6px 10px rgba(0, 0, 0, 0.2);
+                }
+
+                &:active {
+                    opacity: 1;
+                    box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5),
+                        inset 8px 8px 16px rgba(0, 0, 0, 0.1);
+                    // color: #79e3b6;
+                }
+            }
+
+        }
+    }
+
+    img {
+        width: 61.5rem;
+        border: white solid 1px;
+    }
+
+    h4 {
+        font-size: rem(50px);
+    }
+
+    a {
+        flex-grow: 1;
+        justify-content: center;
+    }
+}
+
+.main-container {
+
+    max-width: 960px;
+    padding-top: 50px;
+    flex-direction: column;
+    margin: auto;
+
+    .couple:nth-child(2) {
+        flex-direction: row-reverse;
+        margin: 50px auto;
+
+        .text {
+            margin: 0 25px;
+            align-self: center;
+        }
+    }
+
+    .couple {
+
+        img {
+            width: 40%;
+        }
+
+        .text {
+            margin: 0 10px;
+            align-self: center;
+
+            .title {
+                align-self: center;
+                font-size: rem(35px);
+            }
+
+            .desc {
+                font-size: rem(20px);
+                line-height: 30px;
+                // max-width: 42ch;
+            }
+        }
+
+    }
+}

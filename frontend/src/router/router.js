@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import homePage from '../views/home-page.vue'
-import publicBoard from '../views/board.vue'
+import board from '../views/board.vue'
 // import createBoard from '../views/board-create.vue'
 import login from '../views/login-signup.vue'
 import userDetails from '../views/user-details.vue'
@@ -18,8 +18,8 @@ const routes = [
   },
   {
     path: '/board/:boardId?',
-    name: 'Public Board',
-    component: publicBoard,
+    name: 'Board',
+    component: board,
     children: [
       {
         path: '/board/:boardId/list/:listId/card/:cardId',
@@ -31,16 +31,6 @@ const routes = [
       }
     ]
   },
-  // {
-  //   path: '/board/:boardId/list/:listId', 
-  //   name: 'List',
-  //   component: listCmp
-  // },
-  // {
-  //   path: '/board/create',
-  //   name: 'Create Board',
-  //   component: createBoard
-  // },
   {
     path: '/login',
     name: 'Login',

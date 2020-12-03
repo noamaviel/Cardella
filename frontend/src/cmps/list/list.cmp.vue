@@ -1,6 +1,6 @@
 
 <template>
-    <section class="list-container flex ">
+    <section class="list-container flex">
         <div class="list-menu-container flex f-center">
             <h5
                 class="list-title"
@@ -16,7 +16,11 @@
             </div>
         </div>
 
-        <list-menu v-if="isMenuOpen" :list="list" />
+        <list-menu
+            v-if="isMenuOpen"
+            :list="list"
+            @closeListMenu="closeListMenu"
+        />
 
         <Container
             group-name="list"
@@ -52,7 +56,9 @@
                 />
                 <div class="add-card-inside-cont">
                     <button @click="addCard">Add card</button>
-                    <button @click="onCloseNewCard"><i class="fas fa-times"></i></button>
+                    <button @click="onCloseNewCard">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -63,6 +69,8 @@ import { Container, Draggable } from "vue-smooth-dnd";
 import { utilService } from "../../services/util-service.js";
 import cardPreview from "../card/card-preview.cmp";
 import listMenu from "../list/list-menu.cmp";
+import Swal from "sweetalert2";
+
 export default {
     props: {
         board: Object,
@@ -81,6 +89,9 @@ export default {
     methods: {
         toggleOpenListMenu() {
             this.isMenuOpen = !this.isMenuOpen;
+        },
+        closeListMenu() {
+            this.isMenuOpen = false;
         },
         onDrop(dropResult) {
             this.list.cards = utilService.applyDrag(
@@ -125,15 +136,24 @@ export default {
             this.isNew = false;
             this.newCardTitle = "";
         },
-        removeCard(cardId) {
-            this.$store.dispatch({
-                type: "removeCard",
-                cardId,
-                listId: this.list.id,
+        async removeCard(cardId) {
+            const result = await Swal.fire({
+                title: "Are you Sure you want to delete this card?",
+                showDenyButton: true,
+                confirmButtonText: `Yes`,
+                denyButtonText: `No`,
             });
+            if (result.isConfirmed) {
+                this.$store.dispatch({
+                    type: "removeCard",
+                    cardId,
+                    listId: this.list.id,
+                });
+                // this.$router.push(`/board/${this.board._id}`);
+            }
         },
         onUpdateBoard() {
-          console.log('onUpdateBoard in list.cmp');
+            console.log("onUpdateBoard in list.cmp");
             let updtBoard = JSON.parse(JSON.stringify(this.board));
             this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
         },

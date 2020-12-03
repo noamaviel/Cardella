@@ -169,10 +169,7 @@
                     @setColor="changeColor"
                 />
 
-                <router-link
-                    class="main-btn-card-edit flex f-center"
-                    to="../../.."
-                >
+                <router-link class="main-btn-card-edit flex f-center" to="">
                     <button
                         class="card-edit-delete-button clr-btn"
                         @click="removeCard"
@@ -197,6 +194,7 @@ import cardPreviewLabels from "@/cmps/card/card-preview-labels.cmp.vue";
 import labelsEditor from "@/cmps/card/labels-editor.cmp.vue";
 import moment from "moment";
 // import cardLabelsCmp from '@/cmps/card/card-labels.cmp.vue';
+import Swal from "sweetalert2";
 
 export default {
     props: {},
@@ -311,12 +309,21 @@ export default {
             this.isDisplayUploadImg = false;
             this.updateCard();
         },
-        removeCard() {
-            this.$store.dispatch({
-                type: "removeCard",
-                cardId: this.card.id,
-                listId: this.list.id,
+        async removeCard() {
+            const result = await Swal.fire({
+                title: "Are you Sure you want to delete this card?",
+                showDenyButton: true,
+                confirmButtonText: `Yes`,
+                denyButtonText: `No`,
             });
+            if (result.isConfirmed) {
+                this.$store.dispatch({
+                    type: "removeCard",
+                    cardId: this.card.id,
+                    listId: this.list.id,
+                });
+                this.$router.push(`/board/${this.board._id}`);
+            }
         },
         removeImg() {
             this.card.uploadImgUrl = "";

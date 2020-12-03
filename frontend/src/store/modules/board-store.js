@@ -1,5 +1,6 @@
 import { boardService } from '@/services/board-service.js';
 import socketService from '@/services/socket-service.js';
+import Swal from "sweetalert2";
 
 
 export const boardStore = {
@@ -96,7 +97,10 @@ export const boardStore = {
             }
             catch (err) {
                 console.error('Cannot add board', err);
-                // $swal.error();
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Cannot add board',
+                })
             }
         },
         async query({ commit }, { filterBy }) {
@@ -113,7 +117,10 @@ export const boardStore = {
             }
             catch (err) {
                 console.error('Cannot load board', err);
-                // $swal.error();
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Cannot load board',
+                })
             }
         },
         async loadBoards({ commit }) {
@@ -123,7 +130,10 @@ export const boardStore = {
             }
             catch (err) {
                 console.error('Cannot load boards', err);
-                // $swal.error();
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Cannot load boards',
+                })
             }
         },
         // async updateBoard({ state }) {
@@ -136,7 +146,10 @@ export const boardStore = {
                 socketService.emit('update', board);
             } catch (err) {
                 console.error('Cannot update board', err);
-                // $swal.error();
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Cannot update board',
+                })
             }
         },
         async removeBoard({ commit }, { boardId }) {
@@ -145,7 +158,10 @@ export const boardStore = {
                 commit({ type: 'removeBoard', boardId })
             } catch (err) {
                 console.error('Cannot remove board', err);
-                // $swal.error();
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Cannot remove board',
+                })
             }
         },
         //CARD//
@@ -158,7 +174,10 @@ export const boardStore = {
                 socketService.emit('update', state.currBoard);
             } catch (err) {
                 console.error('Cannot add card', err);
-                // $swal.error();
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Cannot add card',
+                })
             }
         },
         async updateCard({ commit, state }, { list, card }) {
@@ -170,7 +189,10 @@ export const boardStore = {
                 socketService.emit('update', state.currBoard);
             } catch (err) {
                 console.error('Cannot update card', err);
-                // $swal.error();
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Cannot update card',
+                })
             }
         },
         async removeCard({ commit, state }, { listId, cardId }) {
@@ -180,7 +202,10 @@ export const boardStore = {
                 socketService.emit('update', state.currBoard);
             } catch (err) {
                 console.error('Cannot remove card', err);
-                // $swal.error();
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Cannot remove card',
+                })
             }
         },
         //LIST//
@@ -192,7 +217,10 @@ export const boardStore = {
                 socketService.emit('update', state.currBoard);
             } catch (err) {
                 console.error('Cannot add list', err);
-                // $swal.error();
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Cannot add list',
+                })
             }
         },
         async updateList({ commit, state }, { list }) {
@@ -202,7 +230,10 @@ export const boardStore = {
                 socketService.emit('update', state.currBoard);
             } catch (err) {
                 console.error('Cannot update list', err);
-                // $swal.error();
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Cannot update list',
+                })
             }
         },
         async removeList({ commit, state }, { listId }) {
@@ -212,7 +243,10 @@ export const boardStore = {
                 socketService.emit('update', state.currBoard);
             } catch (err) {
                 console.error('Cannot remove list', err);
-                // $swal.error();
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Cannot remove list',
+                })
             }
         },
     }
