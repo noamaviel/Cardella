@@ -20,7 +20,7 @@
                         :list="list"
                         :index="index"
                         :lists="board.lists"
-                        :board="board"   
+                        :board="board"
                     />
                 </Draggable>
                 <list-add />
@@ -66,6 +66,10 @@ export default {
             const boardId = this.$route.params.boardId;
             this.$store.dispatch({ type: "loadBoard", boardId });
         },
+        onSocketEvent(updatedBoard) {
+            // console.log("socket update event", updatedBoard);
+            this.$store.commit({ type: "setCurrBoard", board: updatedBoard });
+        },
         //      sendUpdate() {
         //   socketService.emit('update', 'board')
         // },
@@ -81,15 +85,18 @@ export default {
         listAdd,
     },
     created() {
+        socketService.setup();
+        socketService.on("update", this.onSocketEvent);
+
         const boardId = this.$route.params.boardId;
         this.$store.dispatch({ type: "loadBoard", boardId });
 
-        socketService.setup();
+      
         // socketService.emit("update topic", boardId);
         // socketService.on("update", this.onUpdate);
     },
     destroyed() {
-        socketService.off("update", this.onUpdate);
+       socketService.off("update", this.onSocketEvent);
         socketService.terminate();
     },
     watch: {

@@ -7,6 +7,7 @@ export const boardStore = {
     state: {
         boards: [],
         currBoard: {},
+        filteredList: []
     },
     getters: {
         getCurrBoard(state) {
@@ -14,6 +15,9 @@ export const boardStore = {
         },
         getBoards(state) {
             return state.boards;
+        },
+        getFilteredList(state) {
+            return state.filteredList;
         }
     },
     mutations: {
@@ -24,6 +28,9 @@ export const boardStore = {
 
         setCurrBoard(state, { board }) {
             state.currBoard = board;
+        },
+        setFilteredList(state, { filteredList }) {
+            state.filteredList = filteredList;
         },
         addBoard(state, { newBoard }) {
             state.boards.push(newBoard);
@@ -91,6 +98,12 @@ export const boardStore = {
                 console.error('Cannot add board', err);
                 // $swal.error();
             }
+        },
+        async query({ commit }, { filterBy }) {
+            console.log('filterBy - query action', filterBy)
+            let res = await boardService.getBoards(filterBy)
+            console.log('action query getBoards RESULT', res);
+            commit({ type: 'setFilteredList', filteredList: res });
         },
         async loadBoard({ commit }, { boardId }) {
             try {

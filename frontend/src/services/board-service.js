@@ -11,8 +11,17 @@ export const boardService = {
     getEmptyList
 }
 
-function getBoards() {
-    return HttpService.get('board')
+function getBoards(filterBy = {}) {
+    let qs = '';
+    if (filterBy !== {}) {
+        console.log('board-service getBoards filterBy', filterBy)
+        qs = '?' + Object.keys(filterBy)
+            .map(key => `${key}=${filterBy[key]}`)
+            .join('&');
+
+        console.log('board service, getBoards, QS', qs);
+    }
+    return HttpService.get(`board/${qs}`, filterBy)
 }
 function getBoardById(boardId) {
     return HttpService.get(`board/${boardId}`)
