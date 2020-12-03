@@ -5,23 +5,7 @@
     color: $clr1;
 
     .list-title {
-        font-family: MontserratEB, sans-serif;
         font-size: rem(13px);
         font-weight: bold;
     }
-}
-
-.list-open-menu {
-    text-align: center;
-    cursor: pointer;
-    padding: 4px;
-    @include dark-buttons;
-}
-
-.list-menu{
-    line-height: 25px;
-}
-
-.add-card-btn {
-    width: 100%;
 }

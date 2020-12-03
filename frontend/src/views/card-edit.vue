@@ -10,7 +10,7 @@
                 @keypress.enter.prevent="updateCardTitle"
                 @blur="updateCardTitle"
             >
-                <i class="far fa-clipboard"></i> {{ card.title }}
+                <i class="el-icon-postcard"></i> {{ card.title }}
             </h3>
 
             <div class="edit-card-in-list flex">
@@ -42,7 +42,7 @@
 
             <div class="edit-card-desc">
                 <h3 class="edit-card-title">
-                    <i class="fas fa-stream"></i> Description
+                    <i class="el-icon-document"></i> Description
                 </h3>
                 <textarea
                     type="textarea"
@@ -57,7 +57,7 @@
 
             <div class="edit-card-img" v-if="card.uploadImgUrl">
                 <h3 class="edit-card-title">
-                    <i class="fas fa-paperclip"></i>Image
+                    <i class="el-icon-paperclip"></i>Image
                 </h3>
                 <img
                     class="uploaded-img"
@@ -70,7 +70,7 @@
                     src="https://i.pinimg.com/originals/78/e8/26/78e826ca1b9351214dfdd5e47f7e2024.gif"
                 />
                 <h5 @click="removeImg" class="remove-img">
-                    <i class="far fa-trash-alt"></i>Remove
+                    <i class="el-icon-delete"></i>Remove
                 </h5>
             </div>
 

@@ -10,14 +10,11 @@
         {{ board.title }}
       </h2>
     </div>
-    <!-- <div class="avater-board-header flex f-center">
+    <div class="avater-board-header flex f-center">
       <members-cmp :members="board.members" />
-    </div> -->
+    </div>
 
     <div class="right-board-header flex">
-      <div class="avater-board-header flex">
-        <members-cmp :members="board.members" />
-      </div>
       <board-filter :board="board" />
       <button @click="toggleMenu">Menu</button>
       <!-- @blur="toggleMenu" -->

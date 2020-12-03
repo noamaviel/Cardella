@@ -13,8 +13,8 @@
             ></li>
             <li
                 class="color"
-                style="background-color: #f5cfa4"
-                @click="changeColor($event, '#f5cfa4')"
+                style="background-color: #FFFFFF"
+                @click="changeColor($event, '#FFFFFF')"
             ></li>
             <li
                 class="color"

@@ -35,22 +35,22 @@
 import boardsMenu from "@/cmps/boards-menu.cmp.vue";
 
 export default {
-    props: {},
-    data() {
-        return {
-            isOpen: false,
-        };
+  props: {},
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
+  methods: {
+    toggleBoardsMenu() {
+      this.isOpen = !this.isOpen;
     },
-    methods: {
-        toggleBoardsMenu() {
-            this.isOpen = !this.isOpen;
-        },
-        closeBoardsMenu() {
-            this.isOpen = false;
-        },
+    closeBoardsMenu() {
+      this.isOpen = false;
     },
-    components: {
-        boardsMenu,
-    },
+  },
+  components: {
+    boardsMenu,
+  },
 };
 </script>

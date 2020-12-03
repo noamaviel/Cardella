@@ -6,7 +6,7 @@
         </div>
         <div class="side-menu-nav">
             <h5 @click="removeBoard">
-                <i class="far fa-trash-alt"></i> Delete Board
+                <i class="el-icon-delete"></i> Delete Board
             </h5>
             <h5 @click="toggleChangeBgcMenu">
                 <i class="fas fa-palette"></i> Change Background

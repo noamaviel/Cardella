@@ -78,7 +78,7 @@ function getEmptyCard(title = '') {
         description: '',
         uploadImgUrl: '',
         style: {
-            bgColor: '#E0DFDF'
+            bgColor: '#FFFFFF'
         },
         createdBy: _getCreatedBy(),
         members: [],
