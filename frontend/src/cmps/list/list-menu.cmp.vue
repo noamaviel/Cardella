@@ -48,7 +48,7 @@ export default {
         },
         async removeList() {
             const result = await Swal.fire({
-                title: "Are you Sure you want to delete this list?",
+                title: "Are you sure you want to delete this list?",
                 showDenyButton: true,
                 confirmButtonText: `Yes`,
                 denyButtonText: `No`,

@@ -142,7 +142,7 @@ export default {
         },
         async removeCard(cardId) {
             const result = await Swal.fire({
-                title: "Are you Sure you want to delete this card?",
+                title: "Are you sure you want to delete this card?",
                 showDenyButton: true,
                 confirmButtonText: `Yes`,
                 denyButtonText: `No`,

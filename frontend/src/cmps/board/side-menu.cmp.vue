@@ -75,7 +75,7 @@ export default {
     methods: {
         async removeBoard() {
             const result = await Swal.fire({
-                title: "Are you Sure you want to delete this board?",
+                title: "Are you sure you want to delete this board?",
                 showDenyButton: true,
                 confirmButtonText: `Yes`,
                 denyButtonText: `No`,
