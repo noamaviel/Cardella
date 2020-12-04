@@ -28,7 +28,7 @@ const routes = [
         meta: {
           showModal: true
         }
-      }
+      },
     ]
   },
   {

@@ -13,7 +13,7 @@ var axios = Axios.create({
 
 export default {
     get(endpoint, data) {
-        console.log('http-service GET-data', data);
+        // console.log('http-service GET-data', data);
         return ajax(endpoint, 'GET', data)
     },
     post(endpoint, data) {
@@ -28,7 +28,7 @@ export default {
 }
 
 async function ajax(endpoint, method = 'get', data = null) {
-    console.log('http-service AJAX', data)
+    // console.log('http-service AJAX', data)
     try {
         const res = await axios({
             url: `${BASE_URL}${endpoint}`,

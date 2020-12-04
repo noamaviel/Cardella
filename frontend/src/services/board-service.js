@@ -13,15 +13,15 @@ export const boardService = {
 
 function getBoards(filterBy = {}) {
     let qs = '';
-    if (filterBy !== {}) {
-        console.log('board-service getBoards filterBy', filterBy)
-        qs = '?' + Object.keys(filterBy)
+    let keys = Object.keys(filterBy);
+    if (keys.length > 0) {
+        // console.log('board-service getBoards filterBy', filterBy)
+        qs = '?' + keys
             .map(key => `${key}=${filterBy[key]}`)
             .join('&');
-
-        console.log('board service, getBoards, QS', qs);
     }
-    return HttpService.get(`board/${qs}`, filterBy)
+    // console.log('board service, getBoards, QS', qs);
+    return HttpService.get(`board/${qs}`)
 }
 function getBoardById(boardId) {
     return HttpService.get(`board/${boardId}`)
