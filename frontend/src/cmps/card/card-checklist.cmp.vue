@@ -61,7 +61,7 @@
             />
             <button class="checklist-btn">Add Todo</button>
             <button class="checklist-btn close" @click="onCloseAddTodo">
-               <i class="fas fa-times"></i>
+                <i class="fas fa-times"></i>
             </button>
         </form>
     </section>
@@ -94,9 +94,10 @@ export default {
                 return "0";
             } else {
                 return (
-                    (doneCount / this.checklist.todos.length) *
-                    100
-                ).toFixed(0);
+                    ((doneCount / this.checklist.todos.length) * 100).toFixed(
+                        0
+                    ) + "%"
+                );
             }
         },
     },

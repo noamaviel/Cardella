@@ -61,9 +61,9 @@ export default {
         },
         pauseDrag() {
             if (this.preventDrag) {
-                return '.drag-component'
+                return ".drag-component";
             } else {
-                return ""
+                return "";
             }
         },
     },
@@ -85,7 +85,6 @@ export default {
         },
         onWindowWidthChange() {
             if (mediaQuery.matches) {
-                console.log("onWindowWidthChange - mediaQuery.matches");
                 this.preventDrag = true;
             } else {
                 console.log("onWindowWidthChange - else");

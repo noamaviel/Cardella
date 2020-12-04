@@ -34,13 +34,13 @@ function applyDrag(arr, dragResult) {
     return result
 }
 
-function generateItems (count, creator) {
+function generateItems(count, creator) {
     const result = []
     for (let i = 0; i < count; i++) {
-      result.push(creator(i))
+        result.push(creator(i))
     }
     return result
-  }
+}
 
   //Example for using generateItems
 

@@ -1,15 +1,15 @@
 
 <template>
-    <section class="list-container flex">
-        <div class="list-header flex f-center">
-            <h4
-                class="list-title flex"
-                contenteditable="true"
-                @keypress.enter.prevent="updateListTitle"
-                @blur="updateListTitle"
-            >
-                {{ list.title }}
-            </h4>
+  <section class="list-container flex">
+    <div class="list-header flex f-center">
+      <h4
+        class="list-title flex"
+        contenteditable="true"
+        @keypress.enter.prevent="updateListTitle"
+        @blur="updateListTitle"
+      >
+        {{ list.title }}
+      </h4>
 
       <div class="list-open-menu flex" @click="toggleOpenListMenu">
         <i class="el-icon-more"></i>
@@ -24,55 +24,51 @@
             @closeListMenu="closeListMenu"
         /> -->
 
-            <Container
-                :non-drag-area-selector="pauseDrag"
-                group-name="list"
-                @drop="(dropResult) => onDrop(dropResult)"
-                :get-child-payload="getCardPayload(list.id)"
-                :animation-duration="350"
-            >
-                <Draggable v-for="card in list.cards" :key="card.id">
-                    <router-link :to="`list/${list.id}/card/${card.id}`" append>
-                        <card-preview
-                            class="drag-component"
-                            v-bind:style="{
-                                backgroundColor: card.style.bgColor,
-                            }"
-                            :card="card"
-                            @removeCard="removeCard"
-                            @updateCard="onUpdateBoard"
-                        />
-                    </router-link>
-                </Draggable>
-            </Container>
-        </div>
+      <Container
+        group-name="list"
+        @drop="(dropResult) => onDrop(dropResult)"
+        :get-child-payload="getCardPayload(list.id)"
+        :animation-duration="350"
+      >
+        <Draggable v-for="card in list.cards" :key="card.id">
+          <router-link :to="`list/${list.id}/card/${card.id}`" append>
+            <card-preview
+              v-bind:style="{ backgroundColor: card.style.bgColor }"
+              :card="card"
+              @removeCard="removeCard"
+              @updateCard="onUpdateBoard"
+            />
+          </router-link>
+        </Draggable>
+      </Container>
+    </div>
 
-        <div class="add-card-container">
-            <button
-                class="add-another-card-button clr-btn"
-                v-if="!isNew"
-                @click="onOpenNewCard"
-            >
-                <i class="fas fa-plus"></i> Add another card
-            </button>
-            <div class="add-card-button-inside clr-btn flex" v-else>
-                <input
-                    type="text"
-                    v-model="newCardTitle"
-                    placeholder="Enter a title for this card..."
-                    @keyup.enter="addCard"
-                />
-                <div class="add-card-inside-cont">
-                    <button class="add-card-btn clr-btn" @click="addCard">
-                        Add card
-                    </button>
-                    <button class="clr-btn" @click="onCloseNewCard">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
+    <div class="add-card-container">
+      <button
+        class="add-another-card-button clr-btn"
+        v-if="!isNew"
+        @click="onOpenNewCard"
+      >
+        <i class="fas fa-plus"></i> Add another card
+      </button>
+      <div class="add-card-button-inside clr-btn flex" v-else>
+        <input
+          type="text"
+          v-model="newCardTitle"
+          placeholder="Enter a title for this card..."
+          @keyup.enter="addCard"
+        />
+        <div class="add-card-inside-cont flex">
+          <button class="add-card-btn clr-btn" @click="addCard">
+            Add card
+          </button>
+          <button class="clr-btn" @click="onCloseNewCard">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </template>
 <script>
 import { Container, Draggable } from "vue-smooth-dnd";
@@ -80,8 +76,6 @@ import { utilService } from "../../services/util-service.js";
 import cardPreview from "../card/card-preview.cmp";
 import listMenu from "../list/list-menu.cmp";
 import Swal from "sweetalert2";
-
-const mediaQuery = window.matchMedia("(max-width: 770px)");
 
 export default {
     props: {
@@ -95,28 +89,10 @@ export default {
             isNew: false,
             newCardTitle: "",
             isMenuOpen: false,
-            preventDrag: false,
         };
     },
-    computed: {
-        pauseDrag() {
-            if (this.preventDrag) {
-                return ".drag-component";
-            } else {
-                return "";
-            }
-        },
-    },
+    computed: {},
     methods: {
-        onWindowWidthChange() {
-            if (mediaQuery.matches) {
-                console.log("onWindowWidthChange - mediaQuery.matches");
-                this.preventDrag = true;
-            } else {
-                console.log("onWindowWidthChange - else");
-                this.preventDrag = false;
-            }
-        },
         toggleOpenListMenu() {
             this.isMenuOpen = !this.isMenuOpen;
         },
@@ -194,11 +170,6 @@ export default {
         cardPreview,
         listMenu,
     },
-    created() {
-        mediaQuery.addEventListener("change", () => {
-            this.onWindowWidthChange();
-        });
-        this.onWindowWidthChange();
-    },
+    created() {},
 };
 </script>
