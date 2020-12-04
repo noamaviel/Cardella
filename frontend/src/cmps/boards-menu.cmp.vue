@@ -25,7 +25,7 @@
                     </router-link>
                 </li>
             </ul>
-            <button @click="addBoard" class="create-board-btn">
+            <button @click="addBoard" class="create-board-btn clr-btn">
                 + Create a board
             </button>
         </div>

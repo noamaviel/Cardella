@@ -13,19 +13,17 @@
 
       <div class="list-open-menu flex" @click="toggleOpenListMenu">
         <i class="el-icon-more"></i>
-        
       </div>
+      <list-menu v-if="isMenuOpen" :list="list" />
     </div>
 
     <div class="list-cards">
-      <list-menu v-if="isMenuOpen" :list="list" />
-
-       <list-menu
+      <!-- <list-menu
             v-if="isMenuOpen"
             :list="list"
             @closeListMenu="closeListMenu"
-        />
-        
+        /> -->
+
       <Container
         group-name="list"
         @drop="(dropResult) => onDrop(dropResult)"
@@ -60,9 +58,13 @@
           placeholder="Enter a title for this card..."
           @keyup.enter="addCard"
         />
-        <div class="add-card-inside-cont">
-          <button class="add-card-btn clr-btn " @click="addCard">Add card</button>
-          <button class=" clr-btn" @click="onCloseNewCard"><i class="fas fa-times"></i></button>
+        <div class="add-card-inside-cont flex">
+          <button class="add-card-btn clr-btn" @click="addCard">
+            Add card
+          </button>
+          <button class="clr-btn" @click="onCloseNewCard">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
       </div>
     </div>

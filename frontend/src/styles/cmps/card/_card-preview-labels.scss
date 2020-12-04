@@ -1,10 +1,14 @@
 .labels-closed {
     display: flex;
     color: transparent;
+    display: inline-block;
+    transition: .2s ease-in;
+
 
     ul {
         flex-wrap: wrap;
         justify-content: space-around;
+        
 
 
     }
@@ -14,6 +18,7 @@
         width: 30px;
         border-radius: 4px;
         color: transparent;
+
     }
 }
 
@@ -33,6 +38,7 @@
     padding: 0 10px;
     border-radius: 8px;
     margin: 0 4px 4px 0;
+
 
     i {
         color: white;

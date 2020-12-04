@@ -14,7 +14,7 @@
         placeholder="Enter list title..."
         @keyup.enter="addList"
       />
-      <div class="add-list-inside-cont">
+      <div class="add-list-inside-cont flex">
         <button class="clr-btn" @click="addList">Add list</button>
         <button class="clr-btn" @click="onCloseNewList"><i class="fas fa-times"></i></button>
       </div>

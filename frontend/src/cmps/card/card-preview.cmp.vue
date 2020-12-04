@@ -2,23 +2,32 @@
   <section class="card-preview-container">
     <img v-if="card.uploadImgUrl" :src="card.uploadImgUrl" />
     <div class="card-content">
+
       <card-preview-labels
         class="card-top-labels"
         v-if="card.labels && card.labels.length"
         :labels="card.labels"
         @updateCard="onUpdateCard"
       />
-
-      <p class="card-title">{{ card.title }}</p>
+      
+      <div class="card-title-delete flex">
+        <p class="card-title">{{ card.title }}</p>
+        <span
+          ><i
+            class="el-icon-delete card-trash"
+            @click.prevent="emitRemoveCard"
+          ></i
+        ></span>
+      </div>
 
       <section class="card-bottom flex">
         <div class="card-bottom-left">
-          <members-cmp v-if="card.members && card.members.length" :members="card.members" />
+          <members-cmp
+            v-if="card.members && card.members.length"
+            :members="card.members"
+          />
         </div>
         <div class="card-bottom-right flex">
-          <!-- <span
-            ><i class="el-icon-delete card-trash" @click.prevent="emitRemoveCard"></i
-          ></span> -->
           <span v-if="card.checklists && card.checklists.length">
             <i class="el-icon-finished"></i>
             {{ checklistCount }}

@@ -1,37 +1,83 @@
 .add-list-container {
     .add-another-list-button {
         @include bright-buttons;
+        background-color: rgba(255, 255, 255, 0.24);
         text-align: left;
         padding: 10px;
-        width: rem(220px);
+        margin: 0 8px 0 4px;
+        width: 256px;
+        color: whitesmoke;
+
+        ::placeholder {
+            color: whitesmoke;
+        }
+
+        &:hover {
+            font-weight: 600;
+            color: rgb(41, 41, 41);
+        }
     }
 
     .add-list-button-inside {
-        align-self: center;
         justify-content: center;
         align-items: center;
         flex-direction: column;
 
-        button {
-            padding: 10px;
-            margin: 8px 4px 12px;
-        }
 
         input {
             border-radius: 3px;
-            width: rem(200px);
+            width: 256px;
             padding: 25px 5px;
             box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
             border: none;
             margin: 0 4px 4px
-            
         }
 
         .add-list-inside-cont {
+            justify-content: space-between;
+            width: 258px;
+
             button {
-                @include bright-buttons;
+                margin: 4px 0 4px;
+                font-weight: 500;
+                color: #e2e2e2;
+
+
+                &:first-of-type {
+                    padding: 5px;
+                    width: 230px;
+                    border-radius: 4px;
+                    background-color: $label1;
+                }
+
+                &:hover:first-of-type {
+                    border-radius: 3px;
+                    background-color: #2e6880;
+                    transition-duration: 150ms;
+                }
+
+                &:last-of-type {
+                    color: whitesmoke;
+                    height: 30px;
+                    font-weight: 600;
+                    background-color: rgba(255, 255, 255, 0.24);
+                    border-radius: 4px;
+                    margin: 4px 0 4px 3px;
+                }
+
+                &:hover:last-of-type {
+                    background-color: rgba(255, 255, 255, 0.377);
+                    color: rgb(41, 41, 41);
+                    transition-duration: 150ms;
+                }
             }
         }
+
+
+
+
+
+
 
     }
 }

@@ -1,16 +1,27 @@
-.board-filter {
+.filter-container {
+    color: whitesmoke;
+    font-size: (16px);
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.24);
+    border-radius: 4px;
+    margin: 3px;
+    padding: 5px;
     display: flex;
     justify-content: center;
-    padding: rem(5px);
-    margin: 0 4px;
-    @include bright-buttons;
+    align-items: center;
 
-    :placeholder-shown {
-        color: white;
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.377);
+        transition-duration: 150ms;
     }
 
+    // ::placeholder{
+    //     color: whitesmoke;
+    // }
+
     input {
+        color: whitesmoke;
         @include input;
-        height: rem(17px);
+        margin-right: 4px;
     }
 }

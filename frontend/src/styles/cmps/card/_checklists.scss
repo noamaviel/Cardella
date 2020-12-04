@@ -10,11 +10,14 @@
         border-radius: 4px;
         border: none;
         color: #353535;
-        height: 25px;
+        // height: 25px;
 
+        i{
+           margin-bottom: 0; 
+        }
         &:hover {
             cursor: pointer;
-            background-color: rgba(65, 65, 65, 0.363);
+            background-color: rgba(65, 65, 65, 0.123);
             transition-duration: 150ms;
         }
     }

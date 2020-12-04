@@ -19,12 +19,31 @@
         font-size: 14px;
         font-weight: 400;
 
+        .card-title-delete {
+            justify-content: space-between;
+            color: transparent;
 
-        .card-title {
+            &:hover {
+                color: #5d5d5d;
+            }
 
-            display: block;
-            margin-bottom: 4px;
+            .card-title {
+                display: block;
+                margin-bottom: 4px;
+                color: #5d5d5d;
+            }
+
+            // span {
+            //     font-size: 15px;
+            //     margin-left: 10px;
+            //     .card-trash {
+            //         color: transparent;
+            //     }
+
+
+            // }
         }
+
 
         .card-bottom {
             justify-content: space-between;
@@ -49,11 +68,6 @@
                     font-size: 15px;
                     margin-left: 10px;
 
-                    .card-trash {
-                        color: transparent;
-                        // color: #5d5d5d;
-                    
-                    }
 
                 }
             }
