@@ -1,33 +1,32 @@
 <template>
-    <section>
-        <header class="main-header">
-            <div class="main-header-left">
-                <router-link to="/"
-                    ><h4><i class="fas fa-home"></i></h4
-                ></router-link>
-            </div>
-            <div class="logo">
-                <router-link to="/">
-                    <img src="@/assets/img/logo.png"
-                /></router-link>
-                <!-- <router-link to="/"><h1>Cardella</h1></router-link> -->
-            </div>
-            <div class="main-header-right">
-                <h4>
-                    <button class="board-open-menu" @click="toggleBoardsMenu">
-                        Boards
-                    </button>
-                </h4>
-                <!-- @blur="toggleBoardsMenu" -->
-                <boards-menu
-                    v-if="isOpen"
-                    :isOpen="isOpen"
-                    @closeBoardsMenu="closeBoardsMenu"
-                />
-                <router-link to="/login"><h4>Login</h4></router-link>
-            </div>
-        </header>
-    </section>
+  <section>
+    <header class="main-header">
+      <div class="main-header-left">
+        <button class="clr-btn">
+          <router-link to="/"><i class="fas fa-home"></i> </router-link>
+        </button>
+      </div>
+
+      <div class="logo">
+        <router-link to="/"> <img src="@/assets/img/logo.png" /></router-link>
+      </div>
+      <div class="main-header-right">
+        <button class="clr-btn board-open-menu" @click="toggleBoardsMenu">
+          <i class="fas fa-th"></i>
+          Boards
+        </button>
+
+        <boards-menu
+          v-if="isOpen"
+          :isOpen="isOpen"
+          @closeBoardsMenu="closeBoardsMenu"
+        />
+        <button class="clr-btn">
+          <router-link to="/login">Login</router-link>
+        </button>
+      </div>
+    </header>
+  </section>
 </template>
 
 

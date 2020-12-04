@@ -1,4 +1,4 @@
-import HttpService from './http-service'
+import HttpService from './http-service.js'
 import { utilService } from '@/services/util-service.js';
 
 export const boardService = {

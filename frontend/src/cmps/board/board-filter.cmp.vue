@@ -6,7 +6,7 @@
                 placeholder="Search"
                 v-model="filterBy.txt"
                 @input="onSearchTxt"
-            /><i class="fas fa-search"></i>
+            /><i class="el-icon-search"></i>
         </div>
         <button @click.stop.prevent="onCleanSearch">X</button>
         

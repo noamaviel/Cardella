@@ -11,19 +11,18 @@
                 {{ list.title }}
             </h4>
 
-            <div class="list-open-menu flex" @click="toggleOpenListMenu">
-                <i class="el-icon-more"></i>
-            </div>
-        </div>
+      <div class="list-open-menu flex" @click="toggleOpenListMenu">
+        <i class="el-icon-more"></i>
+      </div>
+      <list-menu v-if="isMenuOpen" :list="list" />
+    </div>
 
-        <div class="list-cards">
-            <list-menu v-if="isMenuOpen" :list="list" />
-
-            <list-menu
-                v-if="isMenuOpen"
-                :list="list"
-                @closeListMenu="closeListMenu"
-            />
+    <div class="list-cards">
+      <!-- <list-menu
+            v-if="isMenuOpen"
+            :list="list"
+            @closeListMenu="closeListMenu"
+        /> -->
 
             <Container
                 :non-drag-area-selector="pauseDrag"

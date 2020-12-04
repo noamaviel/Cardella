@@ -1,15 +1,26 @@
 header.main-header {
 
-    color: $clr2;
+    color: whitesmoke;
     height: 40px;
-    // background-color: #CD687C;
     background-color: #333333;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "leftHeader logo rightHeader";
 
-    h4 {
-        margin-bottom: 0;
+    button {
+        color: whitesmoke;
+        font-size: (16px);
+        font-weight: 600;
+        background-color: rgba(255, 255, 255, 0.24);
+        border-radius: 4px;
+        margin: 3px;
+        padding: 5px;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.377);
+            transition-duration: 150ms;
+        }
+
     }
 
     .main-header-left {
@@ -17,9 +28,10 @@ header.main-header {
         justify-content: flex-start;
         grid-area: leftHeader;
         align-self: center;
+        margin-left: rem(20px);
 
-        h4 {
-            margin-left: 20px;
+        button {
+            width: 32px;
         }
     }
 
@@ -34,6 +46,9 @@ header.main-header {
             max-width: rem(90px);
             margin-top: 6px;
 
+            &:hover {
+                opacity: 0.5;
+            }
         }
     }
 
@@ -42,22 +57,6 @@ header.main-header {
         justify-content: flex-end;
         grid-area: rightHeader;
         align-self: center;
-
-        button {
-            // font-family: MontserratSB;
-            font-size: inherit;
-            color: inherit;
-            border: none;
-            background-color: transparent;
-            outline: none;
-            cursor: pointer;
-        }
-
-        h4 {
-            margin-right: 20px;
-        }
-
-
+        margin-right: rem(20px);
     }
-
 }
