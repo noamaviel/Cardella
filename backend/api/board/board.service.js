@@ -5,67 +5,40 @@ const ObjectId = require('mongodb').ObjectId
 
 async function query(filterBy = {}) {
     let boards;
-    // TODO: Build the criteria with $regex
-    const criteria = _buildCriteria(filterBy)
-    console.log('criteria', criteria);
-    const collection = await dbService.getCollection('board')
+    const collection = await dbService.getCollection('board');
+    let keys = Object.keys(filterBy);
     try {
-        if (criteria.title) {
-            console.log('criteria.title in query -boardService', criteria.title);
-            // boards = await collection.find(criteria, { $project: { title: '1' } }).toArray();
+        if (keys.length > 0) {
 
             boards = await collection.aggregate([
                 {
-                    $match: {$or: [{title: { $regex: filterBy.txt, $options: 'i' } }, {"createdBy.fullName" : { $regex: filterBy.txt, $options: 'i' } }]}
+                    $match: {
+                        $text: {
+                            $search: filterBy.txt,
+                            $caseSensitive: false
+                        }
+                    }
                 },
-
-                // { $match: { $or: [ { score: { $gt: 70, $lt: 90 } }, { views: { $gte: 1000 } } ] } },
                 {
                     $project: {
                         "title": 1,
-                        "createdBy.fullName" : 1
+                        "lists.id": 1,
+                        "lists.title": 1,
+                        "lists.cards.id": 1,
+                        "lists.cards.title": 1,
+                        "lists.cards.description": 1,
                     }
                 }
-                // {
-                //     $lookup:
-                //     {
-                //         localField: 'byUserId',
-                //         from: 'user',
-                //         foreignField: '_id',
-                //         as: 'byUser'
-                //     }
-                // },
-                // {
-                //     $unwind: '$byUser'
-                // },
-                // {
-                //     $lookup:
-                //     {
-                //         localField: 'aboutUserId',
-                //         from: 'user',
-                //         foreignField: '_id',
-                //         as: 'aboutUser'
-                //     }
-                // },
-                // {
-                //     $unwind: '$aboutUser'
-                // }
+
             ]).toArray()
         } else {
-            boards = await collection.find(criteria).toArray();
+            boards = await collection.find().toArray();
         }
 
-        // boards = boards.map(board => {
-        //     board.byUser = { _id: board.byUser._id, username: board.byUser.username }
-        //     board.aboutUser = { _id: board.aboutUser._id, username: board.aboutUser.username }
-        //     delete board.byUserId;
-        //     delete board.aboutUserId;
-        //     return board;
-        // })
 
         return boards
     } catch (err) {
-        console.log('ERROR: cannot find boards')
+        console.log('ERROR: cannot find boards', err);
         throw err;
     }
 }
@@ -139,3 +112,44 @@ module.exports = {
 }
 
 
+  //     }
+                //     // $match: { $or:
+                //     //         [
+                //     //             { title: { $regex: filterBy.txt, $options: 'i' } },
+                //     //             { "createdBy.fullName": { $regex: filterBy.txt, $options: 'i' } }
+                //     //         ]
+                //     // }
+                // },
+
+                  // {
+                //     $lookup:
+                //     {
+                //         localField: 'byUserId',
+                //         from: 'user',
+                //         foreignField: '_id',
+                //         as: 'byUser'
+                //     }
+                // },
+                // {
+                //     $unwind: '$byUser'
+                // },
+                // {
+                //     $lookup:
+                //     {
+                //         localField: 'aboutUserId',
+                //         from: 'user',
+                //         foreignField: '_id',
+                //         as: 'aboutUser'
+                //     }
+                // },
+                // {
+                //     $unwind: '$aboutUser'
+                // }
+
+                  // boards = boards.map(board => {
+        //     board.byUser = { _id: board.byUser._id, username: board.byUser.username }
+        //     board.aboutUser = { _id: board.aboutUser._id, username: board.aboutUser.username }
+        //     delete board.byUserId;
+        //     delete board.aboutUserId;
+        //     return board;
+        // })

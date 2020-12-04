@@ -8,6 +8,7 @@
         }"
     >
         <board-header :board="board" />
+         <filtered-list-cmp/>
         <div class="lists-container">
             <!-- Outer Component Start -->
             <Container
@@ -42,6 +43,7 @@ import boardHeader from "@/cmps/board/board-header.cmp.vue";
 import listCmp from "@/cmps/list/list.cmp.vue";
 import listAdd from "@/cmps/list/list-add.cmp.vue";
 import socketService from "@/services/socket-service.js";
+import filteredListCmp from '../cmps/board/filtered-list.cmp.vue';
 
 export default {
     data() {
@@ -83,6 +85,7 @@ export default {
         boardHeader,
         listCmp,
         listAdd,
+        filteredListCmp,
     },
     created() {
         socketService.setup();

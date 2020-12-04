@@ -7,7 +7,10 @@ export const boardStore = {
     state: {
         boards: [],
         currBoard: {},
-        filteredList: []
+        filterBy: {
+            txt: "",
+        },
+        filteredList: [],
     },
     getters: {
         getCurrBoard(state) {
@@ -17,7 +20,58 @@ export const boardStore = {
             return state.boards;
         },
         getFilteredList(state) {
-            return state.filteredList;
+            var cardsList = [];
+            if (state.filteredList.length > 0) {
+                //boards
+                state.filteredList.filter((board) => {
+                    // console.log("board", board);
+                    //lists
+                    board.lists.filter((list) => {
+                        // console.log("list", list);
+                        let cards = list.cards.filter((card) => {
+                            // console.log("card", card);
+                            let res = false;
+                            if (card.title) {
+                                if (
+                                    card.title
+                                        .toLowerCase()
+                                        .includes(
+                                            state.filterBy.txt.toLowerCase()
+                                        )
+                                ) {
+                                    res = true;
+                                }
+                            }
+                            if (card.description) {
+                                if (
+                                    card.description
+                                        .toLowerCase()
+                                        .includes(
+                                            state.filterBy.txt.toLowerCase()
+                                        )
+                                ) {
+                                    res = true;
+                                }
+                            }
+                            if (res) {
+                                card.boardId = board._id;
+                                card.boardTitle = board.title;
+                                card.listId = list.id;
+                                card.listTitle = list.title;
+                            }
+                            return res;
+                        });
+                        // console.log("cards", cards);
+
+                        cardsList = cardsList.concat(cards);
+                        // console.log("cardsList", cardsList);
+
+                        return false;
+                    });
+                    return false;
+                });
+            }
+            return cardsList;
         }
     },
     mutations: {
@@ -31,6 +85,9 @@ export const boardStore = {
         },
         setFilteredList(state, { filteredList }) {
             state.filteredList = filteredList;
+        },
+        setFilterBy(state, {filterBy}) {
+          state.filterBy = filterBy;
         },
         addBoard(state, { newBoard }) {
             state.boards.push(newBoard);
@@ -100,9 +157,11 @@ export const boardStore = {
             }
         },
         async query({ commit }, { filterBy }) {
-            console.log('filterBy - query action', filterBy)
+            // console.log('filterBy - query action', filterBy)
+            commit({type: 'setFilteredList', filteredList: []})
+            commit({ type: 'setFilterBy', filterBy: filterBy })
             let res = await boardService.getBoards(filterBy)
-            console.log('action query getBoards RESULT', res);
+            // console.log('action query getBoards RESULT', res);
             commit({ type: 'setFilteredList', filteredList: res });
         },
         async loadBoard({ commit }, { boardId }) {
