@@ -2,7 +2,7 @@
     <section class="home">
         <div class="hero-container flex">
             <div class="hero-title flex">
-                <h1>Noam's punch line</h1>
+                <h1>Putting the pieces together can be rewarding. Cardella is here to help lead your team on the path to success! </h1>
                 <router-link class="link flex" to="/board/5fc4ba9114c9a871c81fe2bb"
                     ><h4>Let's Get Started</h4></router-link
                 >
@@ -15,12 +15,10 @@
         <div class="main-container flex">
             <div class="couple flex">
                 <div class="text">
-                    <h2 class="title">Power Up Your Workflow</h2>
+                    <h2 class="title">Working together is easy!</h2>
                     <p class="desc">
-                        You and your team members can organize your
-                        project, add lists, add task cards, search
-                        by name/category, change task status, and distribute
-                        responsibilities between your team members.
+                       Who said teamwork can't be fun? With Cardella it is simple to organize your
+                        project, keep together in progress, and achieve more. 
                     </p>
                 </div>
                 <img
@@ -29,7 +27,7 @@
             </div>
             <div class="couple flex">
                 <div class="text">
-                    <h2 class="title">Diving into the details</h2>
+                    <h2 class="title">Cardella loves cards!</h2>
                     <p class="desc">
                         You can post, edit, choose labels, add members,
                         additional task descriptions, and check-lists. A card

@@ -8,16 +8,18 @@
         }"
     >
         <board-header :board="board" />
-         <filtered-list-cmp/>
-        <div class="lists-container">
+        <filtered-list-cmp />
+        <div class="lists-container drag-component">
             <!-- Outer Component Start -->
             <Container
+                :non-drag-area-selector="pauseDrag"
                 orientation="horizontal"
                 @drop="onColumnDrop($event)"
                 :animation-duration="400"
             >
                 <Draggable v-for="(list, index) in board.lists" :key="list.id">
                     <list-cmp
+                        class="drag-component"
                         :list="list"
                         :index="index"
                         :lists="board.lists"
@@ -43,17 +45,26 @@ import boardHeader from "@/cmps/board/board-header.cmp.vue";
 import listCmp from "@/cmps/list/list.cmp.vue";
 import listAdd from "@/cmps/list/list-add.cmp.vue";
 import socketService from "@/services/socket-service.js";
-import filteredListCmp from '../cmps/board/filtered-list.cmp.vue';
+import filteredListCmp from "../cmps/board/filtered-list.cmp.vue";
 
+const mediaQuery = window.matchMedia("(max-width: 770px)");
 export default {
     data() {
         return {
             showModal: false,
+            preventDrag: false,
         };
     },
     computed: {
         board() {
             return this.$store.getters.getCurrBoard;
+        },
+        pauseDrag() {
+            if (this.preventDrag) {
+                return '.drag-component'
+            } else {
+                return ""
+            }
         },
     },
     methods: {
@@ -72,12 +83,15 @@ export default {
             // console.log("socket update event", updatedBoard);
             this.$store.commit({ type: "setCurrBoard", board: updatedBoard });
         },
-        //      sendUpdate() {
-        //   socketService.emit('update', 'board')
-        // },
-        // changeRoom() {
-        //   socketService.emit('topic', boardId)
-        // }
+        onWindowWidthChange() {
+            if (mediaQuery.matches) {
+                console.log("onWindowWidthChange - mediaQuery.matches");
+                this.preventDrag = true;
+            } else {
+                console.log("onWindowWidthChange - else");
+                this.preventDrag = false;
+            }
+        },
     },
     components: {
         Container,
@@ -94,12 +108,13 @@ export default {
         const boardId = this.$route.params.boardId;
         this.$store.dispatch({ type: "loadBoard", boardId });
 
-      
-        // socketService.emit("update topic", boardId);
-        // socketService.on("update", this.onUpdate);
+        mediaQuery.addEventListener("change", () => {
+            this.onWindowWidthChange();
+        });
+        this.onWindowWidthChange();
     },
     destroyed() {
-       socketService.off("update", this.onSocketEvent);
+        socketService.off("update", this.onSocketEvent);
         socketService.terminate();
     },
     watch: {
