@@ -1,48 +1,66 @@
 .card-preview-container {
-    display: inline-block;
-    margin: rem(3px);
-    width: rem(244px);
+    display: block;
+    width: 100%;
     border-radius: 3px;
     color: $clr1;
     box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
+    cursor: pointer;
+    margin-bottom: 8px;
+
+    img {
+        width: 100%;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
 
     .card-content {
-        margin: 0 rem(10px);
-
-        .card-trash {
-            .fa-trash-alt {
-                margin-top: 5px;
-                color: transparent;
-                align-items: end;
-            }
-
-
-            &:hover {
-                .fa-trash-alt {
-                    color: inherit;
-                }
-            }
-        }
-   
-
-
+        width: 256px;
+        padding: 6px 8px 2px;
+        font-size: 14px;
+        font-weight: 400;
 
 
         .card-title {
-            font-size: rem(13px);
+
+            display: block;
+            margin-bottom: 4px;
         }
 
-        img {
-            border-top-left-radius: 3px;
-            border-top-right-radius: 3px;
+        .card-bottom {
+            justify-content: space-between;
+            margin-bottom: 2px;
+
+            .card-bottom-left {
+                .avatar-list {
+                    margin: 0;
+                    padding: 0;
+
+                    .avatar {
+                        margin-right: 1px;
+                    }
+                }
+
+            }
+
+            .card-bottom-right {
+                align-items: flex-end;
+
+                span {
+                    font-size: 15px;
+                    margin-left: 10px;
+
+                    .card-trash {
+                        color: transparent;
+                        // color: #5d5d5d;
+                    
+                    }
+
+                }
+            }
+
+
         }
 
-        .fa-trash-alt {
-            margin: 3px 0 6px;
-            color: transparent;
-
-        }
     }
-
 
 }

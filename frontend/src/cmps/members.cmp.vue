@@ -1,14 +1,14 @@
 <template>
     <section class="board-avatar">
         <ul class="avatar-list flex">
-            <li
+            <li 
                 class="avatar"
                 v-for="member in members"
                 :key="member._id"
                 :title="member.fullName"
             >
-                <avatar
-                    class="avatar"
+                <avatar 
+                    class="avatar" 
                     :src="member.imgUrl"
                     :username="member.fullName"
                     :lighten="100"

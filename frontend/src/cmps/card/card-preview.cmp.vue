@@ -1,5 +1,6 @@
 <template>
   <section class="card-preview-container">
+    <img v-if="card.uploadImgUrl" :src="card.uploadImgUrl" />
     <div class="card-content">
       <card-preview-labels
         class="card-top-labels"
@@ -7,18 +8,23 @@
         :labels="card.labels"
         @updateCard="onUpdateCard"
       />
-      <div class="card-trash flex">
-        <i class="far fa-trash-alt" @click.prevent="emitRemoveCard"></i>
-      </div>
 
-      <img :src="card.uploadImgUrl" />
-      <h5 class="card-title">{{ card.title }}</h5>
-      <members-cmp :members="card.members" />
+      <p class="card-title">{{ card.title }}</p>
 
-      <p v-if="card.checklists && card.checklists.length">
-        <i class="el-icon-finished"></i>
-        {{ checklistCount }}
-      </p>
+      <section class="card-bottom flex">
+        <div class="card-bottom-left">
+          <members-cmp v-if="card.members && card.members.length" :members="card.members" />
+        </div>
+        <div class="card-bottom-right flex">
+          <!-- <span
+            ><i class="el-icon-delete card-trash" @click.prevent="emitRemoveCard"></i
+          ></span> -->
+          <span v-if="card.checklists && card.checklists.length">
+            <i class="el-icon-finished"></i>
+            {{ checklistCount }}
+          </span>
+        </div>
+      </section>
     </div>
   </section>
 </template>

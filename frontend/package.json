@@ -1,10 +1,10 @@
 {
-  "name": "trello-proj",
+  "name": "cardella",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --dest ../backend/public",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
@@ -17,6 +17,7 @@
     "register-service-worker": "^1.7.1",
     "serve": "^11.3.2",
     "socket.io-client": "^2.0.2",
+    "sweetalert2": "^10.11.1",
     "vue": "^2.6.11",
     "vue-avatar": "^2.3.3",
     "vue-router": "^3.2.0",

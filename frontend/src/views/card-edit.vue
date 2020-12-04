@@ -10,7 +10,7 @@
                 @keypress.enter.prevent="updateCardTitle"
                 @blur="updateCardTitle"
             >
-                <i class="far fa-clipboard"></i> {{ card.title }}
+                <i class="el-icon-postcard"></i> {{ card.title }}
             </h3>
 
             <div class="edit-card-in-list flex">
@@ -42,7 +42,7 @@
 
             <div class="edit-card-desc">
                 <h3 class="edit-card-title">
-                    <i class="fas fa-stream"></i> Description
+                    <i class="el-icon-document"></i> Description
                 </h3>
                 <textarea
                     type="textarea"
@@ -57,7 +57,7 @@
 
             <div class="edit-card-img" v-if="card.uploadImgUrl">
                 <h3 class="edit-card-title">
-                    <i class="fas fa-paperclip"></i>Image
+                    <i class="el-icon-paperclip"></i>Image
                 </h3>
                 <img
                     class="uploaded-img"
@@ -70,7 +70,7 @@
                     src="https://i.pinimg.com/originals/78/e8/26/78e826ca1b9351214dfdd5e47f7e2024.gif"
                 />
                 <h5 @click="removeImg" class="remove-img">
-                    <i class="far fa-trash-alt"></i>Remove
+                    <i class="el-icon-delete"></i>Remove
                 </h5>
             </div>
 
@@ -169,10 +169,7 @@
                     @setColor="changeColor"
                 />
 
-                <router-link
-                    class="main-btn-card-edit flex f-center"
-                    to="../../.."
-                >
+                <router-link class="main-btn-card-edit flex f-center" to="">
                     <button
                         class="card-edit-delete-button clr-btn"
                         @click="removeCard"
@@ -197,6 +194,7 @@ import cardPreviewLabels from "@/cmps/card/card-preview-labels.cmp.vue";
 import labelsEditor from "@/cmps/card/labels-editor.cmp.vue";
 import moment from "moment";
 // import cardLabelsCmp from '@/cmps/card/card-labels.cmp.vue';
+import Swal from "sweetalert2";
 
 export default {
     props: {},
@@ -311,12 +309,21 @@ export default {
             this.isDisplayUploadImg = false;
             this.updateCard();
         },
-        removeCard() {
-            this.$store.dispatch({
-                type: "removeCard",
-                cardId: this.card.id,
-                listId: this.list.id,
+        async removeCard() {
+            const result = await Swal.fire({
+                title: "Are you sure you want to delete this card?",
+                showDenyButton: true,
+                confirmButtonText: `Yes`,
+                denyButtonText: `No`,
             });
+            if (result.isConfirmed) {
+                this.$store.dispatch({
+                    type: "removeCard",
+                    cardId: this.card.id,
+                    listId: this.list.id,
+                });
+                this.$router.push(`/board/${this.board._id}`);
+            }
         },
         removeImg() {
             this.card.uploadImgUrl = "";

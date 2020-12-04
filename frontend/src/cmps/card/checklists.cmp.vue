@@ -12,7 +12,7 @@
                     @updateCard="onUpdateCard"
                 />
                 <button class="delete-btn" @click="onRemoveChecklist(index)">
-                     <i class="far fa-trash-alt"></i>
+                     <i class="el-icon-delete"></i>
                 </button>
             </li>
         </ul>

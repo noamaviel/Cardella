@@ -5,8 +5,7 @@
     "main": "server.js",
     "scripts": {
         "start": "set NODE_ENV=development & nodemon app.js",
-        "server:dev": "set NODE_ENV=development & nodemon app.js",
-        "server:prod": "node app.js"
+        "server:prod": "set NODE_ENV=production & node server.js"
     },
     "author": "moshe pinhasi",
     "license": "ISC",

@@ -9,6 +9,7 @@
 import appHeader from "@/cmps/app-header.cmp.vue";
 
 export default {
+  title: "Cardella",
   components: {
     appHeader,
   },

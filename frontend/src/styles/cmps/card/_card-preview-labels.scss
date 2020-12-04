@@ -1,4 +1,3 @@
-
 .labels-closed {
     display: flex;
     color: transparent;
@@ -6,34 +5,37 @@
     ul {
         flex-wrap: wrap;
         justify-content: space-around;
-        margin: 3px 0 3px 0;
+
 
     }
 
     li {
-        height: 10px;
+        height: 8px;
         width: 30px;
         border-radius: 4px;
         color: transparent;
-        margin: 3px;
     }
 }
-
 
 .labels-list {
     justify-content: flex-start;
     flex-wrap: wrap;
     margin: 0;
+
 }
 
 .li-label {
     justify-content: center;
     align-items: center;
-    font-size: rem(13px);
+    font-size: rem(15px);
+    color: white;
     text-align: center;
     padding: 0 10px;
     border-radius: 8px;
-    margin: 4px 6px 0 0;
+    margin: 0 4px 4px 0;
+
+    i {
+        color: white;
+        margin-top: 5.5px;
+    }
 }
-
-

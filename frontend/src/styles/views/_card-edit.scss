@@ -110,9 +110,8 @@
 
                 .avatar-list {
                     margin: 0px;
-
                     .avatar {
-                        margin-right: 1px;
+                        margin: 1px;
                     }
                 }
             }
@@ -222,7 +221,8 @@
             text-align: right;
             border-radius: 3px;
             cursor: pointer;
-            .edit-label-btn{
+
+            .edit-label-btn {
                 position: absolute;
             }
 
@@ -249,8 +249,8 @@
             }
 
             .el-date-editor {
-                .el-input{
-                    width:100%;
+                .el-input {
+                    width: 100%;
                 }
             }
 

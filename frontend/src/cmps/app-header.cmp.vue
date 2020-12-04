@@ -5,12 +5,11 @@
                 <router-link to="/"
                     ><h4><i class="fas fa-home"></i></h4
                 ></router-link>
-                <router-link to="/board/5fc4ba9114c9a871c81fe2bb"
-                    ><h4>Public Board</h4></router-link
-                >
             </div>
             <div class="logo">
-                <router-link to="/"> <img src="@/assets/img/logo.png"></router-link>
+                <router-link to="/">
+                    <img src="@/assets/img/logo.png"
+                /></router-link>
                 <!-- <router-link to="/"><h1>Cardella</h1></router-link> -->
             </div>
             <div class="main-header-right">
@@ -36,22 +35,22 @@
 import boardsMenu from "@/cmps/boards-menu.cmp.vue";
 
 export default {
-    props: {},
-    data() {
-        return {
-            isOpen: false,
-        };
+  props: {},
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
+  methods: {
+    toggleBoardsMenu() {
+      this.isOpen = !this.isOpen;
     },
-    methods: {
-        toggleBoardsMenu() {
-            this.isOpen = !this.isOpen;
-        },
-        closeBoardsMenu() {
-            this.isOpen = false;
-        },
+    closeBoardsMenu() {
+      this.isOpen = false;
     },
-    components: {
-        boardsMenu,
-    },
+  },
+  components: {
+    boardsMenu,
+  },
 };
 </script>

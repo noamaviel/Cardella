@@ -2,10 +2,27 @@
     <section class="boards-menu-container">
         <div class="boards-menu">
             <ul class="boards-list">
-                <li v-for="board in boards" :key="board._id" @click="onClick">
-                    <router-link :to="'/board/' + board._id">{{
-                        board.title
-                    }}</router-link>
+                <li
+                    v-for="board in boards"
+                    :key="board._id"
+                    @click="closeBoardsMenu"
+                    class="board-line flex"
+                >
+                    <router-link :to="'/board/' + board._id" class="link">
+                        <img
+                            v-if="board && board.style.backgroundImgUrl"
+                            :src="board.style.backgroundImgUrl"
+                            class="img-preview"
+                        />
+                        <div
+                            v-else
+                            :style="{
+                                'background-color': board.style.backgroundColor,
+                            }"
+                            class="bgc-preview"
+                        ></div>
+                        {{ board.title }}
+                    </router-link>
                 </li>
             </ul>
             <button @click="addBoard" class="create-board-btn">
@@ -23,9 +40,10 @@ export default {
             const newBoard = await this.$store.dispatch({
                 type: "addBoard",
             });
-            this.$router.push(newBoard._id);
+            this.$router.push(`/board/${newBoard._id}`);
+            this.closeBoardsMenu();
         },
-        onClick() {
+        closeBoardsMenu() {
             this.$emit("closeBoardsMenu");
         },
     },
@@ -39,5 +57,4 @@ export default {
     },
 };
 </script>
-
 

@@ -6,7 +6,7 @@
   background-color: $clr4;
   border: none;
 
-  color: $clr2;
+  // color: $clr2;
 
   &:hover {
     background-color: $clr3;
@@ -63,42 +63,46 @@
   border: none;
 }
 
-@mixin scrollbar1 {
-  &::-webkit-scrollbar {
-    width: 13px;
-    height: 13px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: #fbfaf8;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #c2c2c2;
-    border-radius: 20px;
-    border: 3px solid #fbfaf8;
-  }
-}
-
-@mixin scrollbar2 {
-
-  //for the lists.scss
+@mixin scrollbar1 { // Activity log scrollbar
   ::-webkit-scrollbar {
-    width: 13px;
-    height: 13px;
+    width: 10px;
+    height: 10px;
+
   }
 
-  ::-webkit-scrollbar-track {
-    background: #fbfaf8;
+  ::-webkit-scrollbar-track { 
+    background:rgba(141, 141, 141, 0.281);
+    border-radius: 20px;
+
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #c2c2c2;
+    background-color: rgba(146, 141, 141, 0.534);
     border-radius: 20px;
-    border: 3px solid #fbfaf8;
+
   }
 }
 
+@mixin scrollbar2 { // List, card-edit and bottom scrollbar  
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+
+  }
+
+  ::-webkit-scrollbar-track { 
+    background:rgba(141, 141, 141, 0.281);
+    border-radius: 20px;
+
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(146, 141, 141, 0.534);
+    border-radius: 20px;
+
+  }
+}
 
 /* Media queries Breakpoint mixins */
 

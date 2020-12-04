@@ -11,7 +11,9 @@
                     @keyup.enter="addCard"
                 />
                 <button @click="addCard">Add card</button>
-                <button @click="onCloseNewCard"><i class="fas fa-times"></i></button>
+                <button @click="onCloseNewCard">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
 
             <!-- <li>Sort by</li> -->
@@ -25,6 +27,8 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
     props: {
         list: Object,
@@ -42,11 +46,24 @@ export default {
         onCloseNewCard() {
             this.isNew = false;
         },
-        removeList() {
-            this.$store.dispatch({
-                type: "removeList",
-                listId: this.list.id,
+        async removeList() {
+            const result = await Swal.fire({
+                title: "Are you sure you want to delete this list?",
+                showDenyButton: true,
+                confirmButtonText: `Yes`,
+                denyButtonText: `No`,
             });
+            if (result.isConfirmed) {
+                this.$store.dispatch({
+                    type: "removeList",
+                    listId: this.list.id,
+                });
+            } else {
+                this.closeListMenu();
+            }
+        },
+        closeListMenu() {
+            this.$emit("closeListMenu");
         },
         addCard() {
             this.$store.dispatch({

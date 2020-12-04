@@ -12,17 +12,38 @@
         // flex-direction: column;
         // width: 300px;
         // color: $clr1;
-        
+
         .boards-list>* {
             padding: 10px 40px;
         }
 
+        .board-line {
+
+            .link {
+                display: flex;
+                font-weight: bold;
+
+                .img-preview {
+                    width: 40px;
+                    height: 40px;
+                    margin-right: 10px;
+                }
+
+                .bgc-preview {
+                    width: 40px;
+                    height: 40px;
+                    margin-right: 10px;
+                    display: inline-block;
+                }
+            }
+
+        }
+
         .create-board-btn {
             margin: 10px;
-           
+
         }
-       
+
 
     }
 }
-

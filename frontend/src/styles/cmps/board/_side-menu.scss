@@ -79,7 +79,7 @@
     .side-activities {
         overflow-y: auto;
         overflow-x: hidden;
-        font-family: MontserratL;
+        // font-family: MontserratL;
         @include scrollbar1;
 
 
@@ -89,7 +89,7 @@
             // background-color: rgb(163, 78, 78);
             display: flex;
             align-items: center;
-            font-size: rem(14px);
+            // font-size: rem(14px);
             line-height: 20px;
             margin: 0 12px 8px 20px;
         }
