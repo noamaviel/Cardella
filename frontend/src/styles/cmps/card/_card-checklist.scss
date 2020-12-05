@@ -1,53 +1,215 @@
-.card-checklist {
-    .progress-bar {
-        // display: flex;
-        background-color: grey;
-        border-radius: 20px;
-    }
+.checklists {
+    .delete-btn {
+        h5 {
+            margin-bottom: 0;
+            border-radius: 4px;
+            color: transparent;
 
-    .progress-bar-percent {
-        // min-width: fit-content;
-        height: 10px;
-        background-color: #fed9b7;
-        border-radius: 20px;
-        // display: flex;
+            i {
+                padding: 5px;
+                border-radius: 3px;
+                width: auto;
+
+                &:hover {
+                    background-color: rgba(65, 65, 65, 0.123);
+                    transition-duration: 150ms;
+                    color: $clr1;
+                }
+            }
+
+            cursor: pointer;
+        }
+    }
+}
+
+.card-checklist {
+    height: 25px;
+    width: 66.5%;
+
+    .progress-bar-container {
         justify-content: center;
         align-items: center;
-        font-size: rem(12px);
-        // color: #0081a7;
-        padding: 0px 6px;
+        margin-left: rem(38px);
+        margin-bottom: rem(20px);
+
+        .progress-bar-title {
+            margin: 0;
+            width: 35px;
+            font-size: rem(15px);
+        }
+
+        .progress-bar {
+
+            width: rem(300px);
+            background: rgba(9, 30, 66, .08);
+            border-radius: 4px;
+            clear: both;
+            height: 8px;
+            margin: 0 0 0 20px;
+            overflow: hidden;
+            position: relative;
+
+        }
+
+        .progress-bar-percent {
+            background: rgb(67, 121, 143);
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            top: 0;
+            transition-property: width;
+            transition-duration: .14s;
+            transition-timing-function: ease-in;
+        }
+
     }
+
+    .checklist-list-container {
+        margin-left: rem(38px);
+        margin-bottom: 30px;
+
+        .checkbox {
+            border-radius: 2px;
+            box-shadow: inset 0 0 0 2px #dfe1e6;
+            height: 20px;
+            width: 20px;
+            transition: .2s;
+
+        }
+
+
+        li {
+            font-size: rem(19px);
+            margin-bottom: 10px;
+
+
+            label {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+
+                :first-child {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+    }
+
+
+    .checklist-title {
+        margin-bottom: rem(10px);
+        font-size: 18px;
+        height: rem(30px);
+        align-items: center;
+
+        &:hover {
+            transition-duration: 150ms;
+            background-color: rgb(219, 219, 219);
+        }
+
+    }
+
+
+
+
+
+
 
     .check-list-li {
         display: flex;
         align-items: center;
-        margin:0;
+        margin: 0;
 
     }
 
     .checklist-input {
         outline: none;
         border: none;
+        padding: 1px 6px;
         height: 25px;
+        margin-left: rem(38px);
+        border: 1px solid grey;
+
     }
 
-    .checklist-btn {
-        // height: 20%;
+    .checklist-btn-remove-todo {
+
         margin-left: em(15px);
         border: none;
-        border-radius: 4px;
-        border: none;
-        color: #353535;
+        cursor: pointer;
+        // margin-bottom: px;
+        padding-right: 1px;
+        // border: 1px solid green;
+        background-color: transparent;
+
+        i {
+            font-size: 15px;
+            margin-right: 0;
+        }
+
+
+    }
+
+
+
+    .checklist-btn-add-item {
+        border-radius: 3px;
+        margin-left: rem(38px);
+        margin-bottom: rem(50px);
         height: 25px;
+        background-color: rgba(65, 65, 65, 0.123);
 
         &:hover {
-            cursor: pointer;
-            background-color: rgba(65, 65, 65, 0.363);
+            background-color: rgba(39, 39, 39, 0.397);
+            color: whitesmoke;
             transition-duration: 150ms;
         }
-
-        &.close {
-            margin-left: em(3px);
-        }
     }
+
+
+    .add-todo-item-container {
+
+
+        .checklist-btn-add-todo {
+            margin-left: rem(10px);
+            margin-bottom: rem(50px);
+            padding: 2px 5px;
+            color: #e2e2e2;
+            border-radius: 4px;
+            background-color: #5699b4;
+
+
+            &:hover {
+                border-radius: 3px;
+                background-color: #2e6880;
+                transition-duration: 150ms;
+            }
+
+        }
+
+        .checklist-btn {
+            border: none;
+            border-radius: 4px;
+            color: #353535;
+            height: 25px;
+            padding: 2px 2px 0;
+
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(65, 65, 65, 0.246);
+                transition-duration: 150ms;
+            }
+
+            &.close {
+                margin-left: rem(10px);
+            }
+        }
+
+    }
+
+
+
+
+
 }

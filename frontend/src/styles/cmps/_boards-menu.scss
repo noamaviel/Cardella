@@ -1,17 +1,12 @@
 .boards-menu-container {
 
-    // font-size: rem(20px);
     @include menu;
+    position: fixed;
     top: 40px;
     right: 0;
     z-index: 5;
 
-
     .boards-menu {
-        // display: flex;
-        // flex-direction: column;
-        // width: 300px;
-        // color: $clr1;
 
         .boards-list>* {
             padding: 10px 40px;
@@ -36,15 +31,12 @@
                     display: inline-block;
                 }
             }
-
         }
 
         .create-board-btn {
             margin: 10px;
-background-color: inherit;
-color: $clr1;
+            background-color: inherit;
+            color: $clr1;
         }
-
-
     }
 }

@@ -11,7 +11,7 @@
                 :style="{ backgroundColor: label.color }"
             >
                 {{ labelForLiDisplay(label.title) }}
-                <button class="clr-btn" @click.stop.prevent="onRemoveLabel(index)" v-if="isTitled"><i class="fas fa-times"></i></button>
+                <button class="remove-label clr-btn" @click.stop.prevent="onRemoveLabel(index)" v-if="isTitled"><i class="el-icon-close"></i></button>
             </li>
         </ul>
     </section>
@@ -33,7 +33,7 @@ export default {
         },
         labelForLiDisplay(title) {
             if (this.isTitled) return title
-            else return ''  // ('...') Ask Noam   <------
+            else return '' 
         },
         onRemoveLabel(index) {
             this.labels.splice(index, 1);

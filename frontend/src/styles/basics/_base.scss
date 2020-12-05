@@ -2,9 +2,9 @@
     box-sizing: border-box;
 }
 
+html,
 body,
 button,
-html,
 input,
 select,
 textarea {
@@ -37,11 +37,15 @@ textarea {
 h2,
 h3,
 h4,
-h5,
-h6 {
+h5 {
     font-weight: normal;
     line-height: 1.3;
     margin: 0 0 8px;
+}
+
+h6 {
+    display: none;
+
 }
 
 p {

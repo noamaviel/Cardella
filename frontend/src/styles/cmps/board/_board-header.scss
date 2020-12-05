@@ -1,5 +1,4 @@
 .board-header {
-
     background-color: rgba(51, 51, 51, 0.26);
     height: 50px;
     color: $clr2;
@@ -13,20 +12,15 @@
         grid-area: leftBoardHeader;
         align-self: center;
 
-
         .board-title {
             color: whitesmoke;
             outline: none;
             margin-bottom: 0;
             padding: 0 10px 0 3px;
             border-radius: 4px;
-
-
-
             &:hover {
                 background-color: $clr4;
                 transition-duration: 150ms;
-
             }
 
             &:focus {
@@ -73,5 +67,4 @@
             }
         }
     }
-
 }

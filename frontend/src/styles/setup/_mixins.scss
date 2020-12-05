@@ -6,8 +6,6 @@
   background-color: $clr4;
   border: none;
 
-  // color: $clr2;
-
   &:hover {
     background-color: $clr3;
     transition-duration: 150ms;
@@ -20,14 +18,12 @@
   border-radius: 4px;
   border: none;
   color: $clr1;
-  
 
   &:hover {
     background-color: $clr5;
     transition-duration: 150ms;
   }
 }
-
 
 @mixin card-edit-btns {
   color: $clr1;
@@ -36,26 +32,24 @@
   height: rem(32px);
   margin-top: 8px;
   width: rem(180px);
-  padding: 6px 12px;
+  padding: 6px 13px;
   position: relative;
   text-overflow: ellipsis;
   white-space: nowrap;
 
   &:hover {
-    background-color: rgba(65, 65, 65, 0.363);
+    background-color: rgba(65, 65, 65, 0.123);
     transition-duration: 300ms;
   }
 }
 
-@mixin menu{
+@mixin menu {
   color: $clr1;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    z-index: 1;
-    background-color: #f4f5f7;
-    box-shadow: 0 12px 24px -6px rgba(47, 52, 59, 0.25), 0 0 0 1px rgba(9, 30, 66, .08);
-
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  background-color: #f4f5f7;
+  box-shadow: 0 12px 24px -6px rgba(47, 52, 59, 0.25), 0 0 0 1px rgba(9, 30, 66, .08);
 }
 
 @mixin input {
@@ -63,15 +57,16 @@
   border: none;
 }
 
-@mixin scrollbar1 { // Activity log scrollbar
+@mixin scrollbar1 {
+
+  // Activity log scrollbar
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
-
   }
 
-  ::-webkit-scrollbar-track { 
-    background:rgba(141, 141, 141, 0.281);
+  ::-webkit-scrollbar-track {
+    background: rgba(141, 141, 141, 0.281);
     border-radius: 20px;
 
   }
@@ -83,16 +78,16 @@
   }
 }
 
-@mixin scrollbar2 { // List, card-edit and bottom scrollbar  
+@mixin scrollbar2 {
+  // List, card-edit and bottom scrollbar  
 
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
-
   }
 
-  ::-webkit-scrollbar-track { 
-    background:rgba(141, 141, 141, 0.281);
+  ::-webkit-scrollbar-track {
+    background: rgba(141, 141, 141, 0.281);
     border-radius: 20px;
 
   }
@@ -100,7 +95,6 @@
   ::-webkit-scrollbar-thumb {
     background-color: rgba(146, 141, 141, 0.534);
     border-radius: 20px;
-
   }
 }
 
@@ -130,14 +124,12 @@
   }
 }
 
-
 /* Media  Mixins */
 
 //aspect ratio mixin
 @mixin aspect-ratio($width, $height) {
   position: relative;
   overflow: hidden;
-
 
   &:before {
     content: "";

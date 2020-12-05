@@ -1,5 +1,4 @@
 .lists-container {
-
     overflow-x: auto;
     padding: 8px 4px;
     overflow-y: hidden;
@@ -94,7 +93,6 @@
         }
 
         .add-card-button-inside {
-
             justify-content: center;
             align-items: center;
             flex-direction: column;
@@ -144,10 +142,6 @@
                 border-radius: 4px;
                 background-color: $label1;
             }
-
-
-
-
         }
     }
 }

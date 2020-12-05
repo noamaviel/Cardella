@@ -16,7 +16,7 @@
           />
           <button class="clr-btn" @click="addCard">Add card</button>
           <button class="clr-btn" @click="onCloseNewCard">
-            <i class="fas fa-times"></i>
+            <i class="< class=fas fa-times"></i>
           </button>
         </div>
 

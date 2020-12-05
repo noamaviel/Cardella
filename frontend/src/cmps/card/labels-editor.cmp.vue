@@ -4,22 +4,25 @@
       <input type="text" v-model="customLabelTitle" />
       <button>Save</button>
       <button @click.prevent="onCloseCustomEdit">
-        <i class="fas fa-times"></i>
+        <i class="el-icon-close"></i>
       </button>
     </form>
-    <ul class="flex f-center f-col">
+    <ul class="labels-list flex f-center f-col">
       <li
-        class="edit-label"
+        class="edit-label flex"
         v-for="(label, index) in labelsPallette"
         :key="label.id"
-        :style="{ backgroundColor: label.color}"
+        :style="{ backgroundColor: label.color }"
         @click="onAddLabel(index)"
       >
-        {{ label.title }}
+        <p class="label-title">
+          {{ label.title }}
+        </p>
+
         <button class="edit-label-btn clr-btn" @click.stop="onLabelEdit(index)">
-          <i class="fas fa-pencil-alt"> </i>
+          <i class="el-icon-edit"> </i>
         </button>
-      
+
       </li>
     </ul>
   </section>
@@ -45,22 +48,22 @@ export default {
         },
         {
           id: "102",
-          title: "High Priority",
+          title: "High",
           color: "#2A9D8F",
         },
         {
           id: "103",
-          title: "Low Priority",
+          title: "Low",
           color: "#E9C46A",
         },
         {
           id: "104",
-          title: "Back-end",
+          title: "Back",
           color: "#F4A261",
         },
         {
           id: "105",
-          title: "Front-end",
+          title: "Front",
           color: "#E76F51",
         },
         {

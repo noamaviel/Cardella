@@ -1,47 +1,46 @@
 <template>
-    <section class="checklists">
-        <ul v-if="checklists.length">
-            <h3 class="edit-card-title"><i class="fas fa-check"></i>Checklists</h3>
-            <li class="check-list-li"
-                v-for="(checklist, index) in checklists"
-                :index="index"
-                :key="checklist.id"
-            >
-                <card-checklist
-                    :checklist="checklist"
-                    @updateCard="onUpdateCard"
-                />
-                <button class="delete-btn" @click="onRemoveChecklist(index)">
-                     <i class="el-icon-delete"></i>
-                </button>
-            </li>
-        </ul>
-    </section>
+  <section class="checklists">
+    <ul v-if="checklists.length">
+      <li
+        class="check-list-li flex"
+        v-for="(checklist, index) in checklists"
+        :index="index"
+        :key="checklist.id"
+      >
+        <card-checklist :checklist="checklist" @updateCard="onUpdateCard" />
+        <button class="delete-btn clr-btn" @click="onRemoveChecklist(index)">
+          <h5>
+            <i class="el-icon-delete"></i>
+          </h5>
+        </button>
+      </li>
+    </ul>
+  </section>
 </template>
 
 <script>
 import cardChecklist from "../card/card-checklist.cmp";
 
 export default {
-    props: {
-        checklists: Array,
+  props: {
+    checklists: Array,
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    onRemoveChecklist(index) {
+      console.log("onRemoveCheclist", index);
+      this.checklists.splice(index, 1);
+      this.$emit("updateCard");
     },
-    data() {
-        return {};
+    onUpdateCard() {
+      this.$emit("updateCard");
     },
-    methods: {
-        onRemoveChecklist(index) {
-            console.log("onRemoveCheclist", index);
-            this.checklists.splice(index, 1);
-            this.$emit("updateCard");
-        },
-        onUpdateCard() {
-            this.$emit("updateCard");
-        },
-    },
-    components: {
-        cardChecklist,
-    },
-    created() {},
+  },
+  components: {
+    cardChecklist,
+  },
+  created() {},
 };
 </script>

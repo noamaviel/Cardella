@@ -5,6 +5,7 @@
     top: 0;
     left: 0;
     background: rgba(68, 68, 68, 0.555);
+    z-index: 90;
 }
 
 .modal-route .modal-content {
@@ -20,7 +21,6 @@
 }
 
 .card-edit-container {
-
     margin: 48px 0 80px;
     width: 768px;
     color: $clr1;
@@ -30,24 +30,20 @@
     @include scrollbar1;
     max-height: 86vh;
     border-radius: rem(8px);
-    background-color: #f0f0f0;
-    position: relative;
+    background-color: #f3f3f3;
+    position: absolute;
     z-index: 100;
     padding-top: rem(30px);
+    padding-bottom: rem(30px);
     justify-content: space-between;
     gap: rem(30px);
 
-
     .main-area {
-
         flex-basis: 80%;
-        // border: 1px solid black;
         margin-left: rem(18px);
-
 
         .edit-card-title {
             align-items: center;
-            // border: 1px solid black;
             margin-bottom: rem(15px);
             font-size: 18px;
             font-weight: 600;
@@ -56,14 +52,15 @@
         i {
             font-size: rem(25px);
             width: rem(30px);
-            margin-right: 5px;
         }
 
         .contenteditable-title {
-            // border: 1px solid black;
+            align-items: center;
+            height: rem(72px);
             font-weight: 600;
             margin-bottom: 0;
-            font-size: 25px;
+            margin-left: 5px;
+            font-size: 23px;
 
             &:hover {
                 transition-duration: 150ms;
@@ -71,8 +68,6 @@
             }
         }
 
-
-        // border: 1px solid black;
         .edit-card-in-list {
 
             margin-bottom: rem(20px);
@@ -88,15 +83,12 @@
             }
         }
 
-
         .card-preview-labels {
-            // border: 1px solid black;
             margin-bottom: rem(20px);
             margin-left: rem(38px);
         }
 
         .members-dueDate-container {
-            // border: 1px solid black;
             flex-wrap: wrap;
             margin-bottom: rem(20px);
             margin-left: rem(38px);
@@ -108,12 +100,9 @@
 
             .due-date-container {
                 margin-right: rem(20px);
-
             }
 
             .members-container {
-                // border: 1px solid rgb(194, 16, 16);
-                // flex-wrap: wrap;
                 justify-content: space-between;
                 height: rem(60px);
 
@@ -132,8 +121,6 @@
 
             margin-bottom: rem(15px);
 
-
-
             textarea {
                 width: 90%;
                 min-height: 50px;
@@ -145,28 +132,28 @@
                 border-radius: 5px;
                 resize: none;
 
-
-                &:focus {
-                    min-height: 150px;
-
-                }
-
                 &:hover {
                     transition-duration: 150ms;
                     background-color: rgb(219, 219, 219);
                 }
+
+                &:focus {
+                    min-height: 150px;
+                }
+
             }
 
         }
 
         .edit-card-img {
+            margin-bottom: rem(15px);
 
             .img-delete-container {
-                align-items: flex-end;
+                align-items: flex-start;
             }
 
             .uploaded-img {
-                width:60%;
+                width: 60%;
                 max-height: 50%;
                 margin-left: rem(38px);
                 margin-right: rem(10px);
@@ -175,30 +162,29 @@
             h5 {
                 margin-bottom: 0;
                 border-radius: 4px;
-
+                color: transparent;
 
                 i {
                     padding: 5px;
                     border-radius: 3px;
                     width: auto;
 
-
                     &:hover {
-                        // background-color: rgba(65, 65, 65, 0.123);
+                        color: $clr1;
+                        background-color: rgba(65, 65, 65, 0.123);
                         transition-duration: 150ms;
                     }
                 }
 
                 cursor: pointer;
-
-
             }
-
-
-
-
         }
 
+        .edit-card-checklist {
+            align-items: center;
+            margin-bottom: rem(15px);
+            font-size: 18px;
+        }
     }
 
     .edit-card-buttons-area {
@@ -208,8 +194,12 @@
 
         .edit-card-buttons-container {
             .main-btn-card-edit {
-                @include card-edit-btns;
+                i {
+                    margin-right: 10px;
+                }
 
+                align-items: center;
+                @include card-edit-btns;
             }
         }
 
@@ -220,17 +210,32 @@
         }
 
         .edit-label {
-            position: relative;
-            font-size: rem(14px);
+            justify-content: space-between;
+            align-items: center;
+            font-size: rem(18px);
             margin-bottom: rem(8px);
-            width: rem(100px);
-            text-align: right;
+            width: rem(150px);
+            text-align: left;
             border-radius: 3px;
             cursor: pointer;
+            color: whitesmoke;
+
+            p {
+                margin-bottom: 0;
+                padding: 0 5px 3px 5px;
+            }
 
             .edit-label-btn {
-                position: absolute;
+                font-size: rem(18px);
+
+                &:hover {
+                    color: whitesmoke;
+                }
             }
+        }
+
+        .card-edit-labels-list {
+            @include menu;
 
         }
 
@@ -239,7 +244,6 @@
 
             .member-name {
                 font-size: 12px;
-
             }
 
             .edit-card-member {
@@ -251,36 +255,8 @@
                 border-radius: 2px;
                 box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
                 cursor: pointer;
-
             }
-
-            .el-date-editor {
-                .el-input {
-                    width: 100%;
-                }
-            }
-
-            .colors-container {
-                // margin-top: 10px;
-                // align-items: center;
-                // justify-content: space-around;
-                // width: 120px;
-                // padding-right: 40px;
-
-                // .color {
-                //     cursor: pointer;
-                //     width: 18px;
-                //     height: 18px;
-                //     border-radius: 50%;
-                //     border: 1px solid rgb(59, 59, 59);
-                //     margin-bottom: 3px;
-                // }
-            }
-
-
 
         }
-
-
     }
 }

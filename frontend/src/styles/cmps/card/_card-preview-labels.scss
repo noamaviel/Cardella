@@ -4,12 +4,9 @@
     display: inline-block;
     transition: .2s ease-in;
 
-
     ul {
         flex-wrap: wrap;
         justify-content: space-around;
-        
-
 
     }
 
@@ -31,17 +28,20 @@
 
 .li-label {
     justify-content: center;
-    align-items: center;
-    font-size: rem(15px);
     color: white;
     text-align: center;
-    padding: 0 10px;
+    padding: 0;
     border-radius: 8px;
-    margin: 0 4px 4px 0;
+    margin: 0 5px 5px 0;
+    font-size: 16px;
+    padding: 3px 5px 0 6px;
+    width: 80px;
+    transition: width 0.2s;
 
-
-    i {
+    .remove-label {
+        font-size: 10px;
         color: white;
-        margin-top: 5.5px;
+        padding-right: 0;
     }
+
 }
