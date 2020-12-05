@@ -16,7 +16,7 @@
             <div>Position:</div>
             <select v-model="selectedIdxToMoveTo">
                 <option
-                    v-for="i in cardsCountOfCurrlist"
+                    v-for="i in cardsCountToshow"
                     :key="i - 1"
                     :value="i - 1"
                 >
@@ -30,8 +30,6 @@
 </template>
 
 <script>
-import { utilService } from "../../services/util-service.js";
-
 export default {
     props: {
         board: Object,
@@ -45,52 +43,45 @@ export default {
         };
     },
     computed: {
-        cardsCountOfCurrlist() {
-            return this.list.cards.length;
-        },
-        cardsCountPerList() {
-            const cardsCountPerList = this.board.lists.map(
-                (list) => list.cards.length
-            );
-            return cardsCountPerList;
+        cardsCountToshow() {
+            if (this.selectedListToMoveTo.id === this.list.id) {
+                return this.list.cards.length;
+            } else {
+                const selectedListToMoveToIdx = this.board.lists.indexOf(
+                    this.selectedListToMoveTo
+                );
+                return this.board.lists[selectedListToMoveToIdx].cards.length;
+            }
         },
         cardIdxInCurrlist() {
             return this.list.cards.indexOf(this.card);
         },
     },
     methods: {
-        onMoveCard() {
-            //Remove card from origin idx
-            let moveResult = {
-                removedIndex: this.cardIdxInCurrlist,
-                payload: this.card,
-            };
-            this.list.cards = utilService.applyDrag(
-                this.list.cards,
-                moveResult
+        removeCardFromCurrIdx() {
+            const removedCard = this.list.cards.splice(
+                this.cardIdxInCurrlist,
+                1
+            )[0];
+            return removedCard;
+        },
+        addCardToSelectedListIdx() {
+            const selectedListToMoveToIdx = this.board.lists.indexOf(
+                this.selectedListToMoveTo
             );
-            //Move card to another idx of the same list
-            if (this.selectedListToMoveTo.id === this.list.id) {
-                moveResult = {
-                    addedIndex: this.selectedIdxToMoveTo,
-                    payload: this.card,
-                };
-                const selectedListToMoveToIdx = this.board.lists.indexOf(
-                    this.selectedListToMoveTo
-                );
-                this.board.lists[
-                    selectedListToMoveToIdx
-                ].cards = utilService.applyDrag(
-                    this.board.lists[selectedListToMoveToIdx].cards,
-                    moveResult
-                );
-                this.$store.dispatch({
-                    type: "updateBoardV2",
-                    board: this.board,
-                });
-                this.$router.push(`/board/${this.board._id}`);
-            }
-            //TO DO - Add card to other list
+            const addedCard = this.board.lists[
+                selectedListToMoveToIdx
+            ].cards.splice(this.selectedIdxToMoveTo, 0, this.card);
+            return addedCard;
+        },
+        onMoveCard() {
+            this.removeCardFromCurrIdx();
+            this.addCardToSelectedListIdx();
+            this.$store.dispatch({
+                type: "updateBoardV2",
+                board: this.board,
+            });
+            this.$router.push(`/board/${this.board._id}`);
         },
     },
     created() {

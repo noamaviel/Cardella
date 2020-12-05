@@ -64,7 +64,7 @@ export default {
         },
         {
           id: "105",
-          title: "TBD",
+          title: "QA",
           color: "#E76F51",
         },
         {
