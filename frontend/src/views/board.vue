@@ -85,6 +85,7 @@ export default {
         },
         onWindowWidthChange() {
             if (mediaQuery.matches) {
+                 console.log("onWindowWidthChange - if");
                 this.preventDrag = true;
             } else {
                 console.log("onWindowWidthChange - else");

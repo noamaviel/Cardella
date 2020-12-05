@@ -2,7 +2,7 @@
     <section class="home">
         <div class="hero-container flex">
             <div class="hero-title flex">
-                <h1>Putting the pieces together can be rewarding. Cardella is here to help lead your team on the path to success! </h1>
+                <h1>Putting the pieces together can be truly rewarding. Cardella is here to help lead your team on the path to success! </h1>
                 <router-link class="link flex" to="/board/5fc4ba9114c9a871c81fe2bb"
                     ><h4>Let's Get Started</h4></router-link
                 >
@@ -29,10 +29,9 @@
                 <div class="text">
                     <h2 class="title">Cardella loves cards!</h2>
                     <p class="desc">
-                        You can post, edit, choose labels, add members,
-                        additional task descriptions, and check-lists. A card
-                        can be moved, copied, saved, deleted and added
-                        attachments.
+                        You can post, edit, choose labels, and add check-lists. 
+                        Cardella's cards can do just about everything! Move them, copy, save, 
+                        delete and add any photo you like.
                     </p>
                 </div>
                 <img
@@ -44,7 +43,7 @@
                     <h2 class="title">Just like stickers...</h2>
                     <p class="desc">
                         Drag and drop a selected card or even an entire list in order to re-arrange
-                        tasks.
+                        your assignments.
                     </p>
                 </div>
                 <img

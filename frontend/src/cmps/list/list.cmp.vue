@@ -25,6 +25,7 @@
         /> -->
 
       <Container
+        :non-drag-area-selector="pauseDrag"
         group-name="list"
         @drop="(dropResult) => onDrop(dropResult)"
         :get-child-payload="getCardPayload(list.id)"
@@ -33,6 +34,7 @@
         <Draggable v-for="card in list.cards" :key="card.id">
           <router-link :to="`list/${list.id}/card/${card.id}`" append>
             <card-preview
+              class="drag-component"
               v-bind:style="{ backgroundColor: card.style.bgColor }"
               :card="card"
               @removeCard="removeCard"
@@ -77,6 +79,7 @@ import cardPreview from "../card/card-preview.cmp";
 import listMenu from "../list/list-menu.cmp";
 import Swal from "sweetalert2";
 
+const mediaQuery = window.matchMedia("(max-width: 770px)");
 export default {
     props: {
         board: Object,
@@ -89,9 +92,18 @@ export default {
             isNew: false,
             newCardTitle: "",
             isMenuOpen: false,
+             preventDrag: false,
         };
     },
-    computed: {},
+    computed: {
+         pauseDrag() {
+            if (this.preventDrag) {
+                return ".drag-component";
+            } else {
+                return "";
+            }
+        },
+    },
     methods: {
         toggleOpenListMenu() {
             this.isMenuOpen = !this.isMenuOpen;
@@ -163,6 +175,15 @@ export default {
             let updtBoard = JSON.parse(JSON.stringify(this.board));
             this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
         },
+         onWindowWidthChange() {
+            if (mediaQuery.matches) {
+                 console.log("onWindowWidthChange - if");
+                this.preventDrag = true;
+            } else {
+                console.log("onWindowWidthChange - else");
+                this.preventDrag = false;
+            }
+        },
     },
     components: {
         Container,
@@ -170,6 +191,11 @@ export default {
         cardPreview,
         listMenu,
     },
-    created() {},
+    created() {
+         mediaQuery.addEventListener("change", () => {
+            this.onWindowWidthChange();
+        });
+        this.onWindowWidthChange();
+    },
 };
 </script>
