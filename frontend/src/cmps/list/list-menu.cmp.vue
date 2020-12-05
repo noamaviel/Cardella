@@ -14,10 +14,12 @@
             placeholder="Enter a title for this card..."
             @keyup.enter="addCard"
           />
-          <button class="clr-btn" @click="addCard">Add card</button>
-          <button class="clr-btn" @click="onCloseNewCard">
-            <i class="< class=fas fa-times"></i>
-          </button>
+          <div class="list-menu-add-btn-container">
+            <button class="clr-btn" @click="addCard">Add card</button>
+            <button class="clr-btn" @click="onCloseNewCard">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
         </div>
 
         <!-- <li>Sort by</li> -->

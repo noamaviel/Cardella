@@ -6,11 +6,23 @@
     .hero-container {
         margin: auto;
         justify-content: center;
+        width: rem(1100px);
+        margin-bottom: 150px;
+
+        .logo {
+            width: 300px;
+            margin-bottom: 50px;
+            margin: 0 auto;
+        }
 
         .hero-title {
             flex-direction: column;
             text-align: center;
             align-self: center;
+
+            h1 {
+                line-height: 30px;
+            }
 
             .link {
                 width: 400px;
@@ -22,6 +34,8 @@
                 align-items: center;
                 cursor: pointer;
                 transition: all 0.1s ease-in-out;
+                margin: 0 auto;
+
 
                 &:hover {
                     opacity: 0.6;
@@ -33,15 +47,18 @@
                     opacity: 1;
                     box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5),
                         inset 8px 8px 16px rgba(0, 0, 0, 0.1);
+                    // color: #79e3b6;
                 }
             }
         }
     }
 
-    img {
-        width: 61.5rem;
-        border: white solid 1px;
-    }
+    // img {
+    // width: 61.5rem;
+    // margin-top: 100px;
+    // margin-left: 30px;
+    // width: 33rem;
+    // }
 
     h4 {
         font-size: rem(50px);
@@ -55,7 +72,7 @@
 
 .main-container {
 
-    max-width: 960px;
+    max-width: 1000px;
     padding-top: 50px;
     flex-direction: column;
     margin: auto;
@@ -73,11 +90,11 @@
     .couple {
 
         img {
-            width: 40%;
+            width: 50%;
         }
 
         .text {
-            margin: 0 10px;
+            margin: 0 40px;
             align-self: center;
 
             .title {
@@ -88,6 +105,7 @@
             .desc {
                 font-size: rem(20px);
                 line-height: 30px;
+                // max-width: 42ch;
             }
         }
     }

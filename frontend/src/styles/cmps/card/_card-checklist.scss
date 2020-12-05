@@ -1,4 +1,6 @@
 .checklists {
+    cursor: pointer;
+
     .delete-btn {
         h5 {
             margin-bottom: 0;
@@ -9,15 +11,16 @@
                 padding: 5px;
                 border-radius: 3px;
                 width: auto;
-
-                &:hover {
-                    background-color: rgba(65, 65, 65, 0.123);
-                    transition-duration: 150ms;
-                    color: $clr1;
-                }
             }
+        }
+    }
 
-            cursor: pointer;
+    &:hover {
+
+        h5 i {
+            background-color: rgba(65, 65, 65, 0.123);
+            transition-duration: 150ms;
+            color: $clr1;
         }
     }
 }

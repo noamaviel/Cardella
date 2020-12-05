@@ -41,37 +41,39 @@ export default {
       customLabelIndex: 0,
       customLabelTitle: "",
       labelsPallette: [
+  
         {
           id: "101",
-          title: "Fun",
+          title: "Clinical",
           color: "#43798f",
         },
         {
           id: "102",
-          title: "High",
+          title: "Database",
           color: "#2A9D8F",
         },
         {
           id: "103",
-          title: "Low",
+          title: "DM",
           color: "#E9C46A",
         },
         {
           id: "104",
-          title: "Back",
+          title: "Design",
           color: "#F4A261",
         },
         {
           id: "105",
-          title: "Front",
+          title: "TBD",
           color: "#E76F51",
         },
         {
           id: "106",
-          title: "Extra",
+          title: "TBD",
           color: "#bdbdbd",
         },
       ],
+    
     };
   },
   methods: {

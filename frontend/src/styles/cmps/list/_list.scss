@@ -13,11 +13,13 @@
         min-width: 30px;
         flex: 1;
         overflow-y: auto;
+        .smooth-dnd-draggable-wrapper{
+            position: relative;
+        }
     }
 }
 
 .list-container {
-    position: relative;
     background-color: #ebecf0;
     white-space: normal;
     max-height: calc(100vh - 140px);

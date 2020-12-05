@@ -6,6 +6,8 @@
     box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
     cursor: pointer;
     margin-bottom: 8px;
+    
+    
 
     img {
         width: 100%;
@@ -18,6 +20,10 @@
         padding: 6px 8px 2px;
         font-size: 14px;
         font-weight: 400;
+        &:hover{
+            
+            background-color: rgb(240, 240, 240); 
+         }
 
         .card-title-delete {
             justify-content: space-between;

@@ -2,6 +2,7 @@
     <section class="home">
         <div class="hero-container flex">
             <div class="hero-title flex">
+                <img class="logo" src="https://res.cloudinary.com/morshva/image/upload/v1607179956/logo-black_bl4s9d.png">
                 <h1>Putting the pieces together can be truly rewarding. Cardella is here to help lead your team on the path to success! </h1>
                 <router-link class="link flex" to="/board/5fc4ba9114c9a871c81fe2bb"
                     ><h4>Let's Get Started</h4></router-link
@@ -22,7 +23,7 @@
                     </p>
                 </div>
                 <img
-                    src="https://res.cloudinary.com/shimrit/image/upload/v1606993715/cardella/5ead1b0f-648e-4dd0-9141-f93d3937ae4d_inlnte.jpg"
+                    src="https://res.cloudinary.com/morshva/image/upload/v1607178261/1_hlgyzw.png"
                 />
             </div>
             <div class="couple flex">
@@ -35,7 +36,7 @@
                     </p>
                 </div>
                 <img
-                    src="https://res.cloudinary.com/shimrit/image/upload/v1606997140/cardella/a36f23e8-dbaf-4d2a-adf4-3087acff22bd_uro36a.jpg"
+                    src="https://res.cloudinary.com/morshva/image/upload/v1607178261/2_wsibtx.png"
                 />
             </div>
             <div class="couple flex">
@@ -47,7 +48,7 @@
                     </p>
                 </div>
                 <img
-                    src="https://res.cloudinary.com/shimrit/image/upload/v1606997799/cardella/e3a838ef-60ee-4b94-8377-2df85b4efabc_krcvry.jpg"
+                    src="https://res.cloudinary.com/morshva/image/upload/v1607178261/3_oyfdys.png"
                 />
             </div>
         </div>

@@ -3,7 +3,7 @@
     flex-direction: column;
     position: absolute;
     top: 39px;
-    right: 0px;
+    right: -20px;
     width: 256px;
     padding: 6px 8px 2px;
     font-size: 14px;
@@ -51,7 +51,7 @@
             }
 
             button:first-of-type {
-                width: 230px;
+                width: 100px;
                 padding: 5px;
                 color: #e2e2e2;
                 border-radius: 4px;

@@ -56,10 +56,10 @@
       <input
         class="checklist-input"
         type="text"
-        placeholder="Add your todo"
+        placeholder="Add an item"
         v-model="tmpTodo.title"
       />
-      <button class="checklist-btn-add-todo clr-btn">Add Todo</button>
+      <button class="checklist-btn-add-todo clr-btn">Add</button>
       <button class="checklist-btn close-add-todo close" @click="onCloseAddTodo">
         <i class="el-icon-close"></i>
       </button>

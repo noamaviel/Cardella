@@ -100,7 +100,6 @@
       <div class="edit-card-buttons-container flex f-col">
         <button class="main-btn-card-edit flex clr-btn" @click="onLabelsEdit">
           <i class="el-icon-collection-tag"></i>Labels
-        </button>
         <section class="card-edit-labels-list">
           <labels-editor
             v-if="isLabelsEdit"
@@ -108,6 +107,8 @@
             @updateCard="updateCard"
           />
         </section>
+        </button>
+        
 
         <button class="main-btn-card-edit flex clr-btn" @click="onAddMembers">
           <i class="el-icon-user"></i>Members
@@ -162,9 +163,10 @@
         </button>
         <card-color v-if="isDisplayColorPallette" @setColor="changeColor" />
 
-        <button class="main-btn-card-edit clr-btn" @click="onOpenMoveTo">
-          Move To
+        <button class="main-btn-card-edit flex clr-btn" @click="onOpenMoveTo">
+          <i class="el-icon-right"></i>Move To
         </button>
+
         <card-move-to
           v-if="isDisplayMoveTo"
           :board="board"

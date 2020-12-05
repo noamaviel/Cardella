@@ -3,7 +3,7 @@
     <!-- <h1>Filtered List CMP {{ filteredList }}</h1> -->
     <div class="search-results flex">
       <div class="search-results-title flex">
-        <h3 v-if="filteredList.length > 0">search-results</h3>
+        <h3 v-if="filteredList.length > 0">Search Results</h3>
       </div>
       <ul>
         <li

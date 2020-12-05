@@ -150,41 +150,50 @@
 
             .img-delete-container {
                 align-items: flex-start;
-            }
 
-            .uploaded-img {
-                width: 60%;
-                max-height: 50%;
-                margin-left: rem(38px);
-                margin-right: rem(10px);
-            }
+                .uploaded-img {
+                    width: 60%;
+                    max-height: 50%;
+                    margin-left: rem(38px);
+                    margin-right: rem(10px);
+                    cursor: pointer;
 
-            h5 {
-                margin-bottom: 0;
-                border-radius: 4px;
-                color: transparent;
+                    // &:hover + h5 {
+                    //     color: $clr1;
 
-                i {
-                    padding: 5px;
-                    border-radius: 3px;
-                    width: auto;
-
-                    &:hover {
-                        color: $clr1;
-                        background-color: rgba(65, 65, 65, 0.123);
-                        transition-duration: 150ms;
-                    }
+                    // }
                 }
 
-                cursor: pointer;
-            }
-        }
+                h5 {
+                    margin-bottom: 0;
+                    border-radius: 4px;
+                    color: transparent;
+                    cursor: pointer;
 
-        .edit-card-checklist {
-            align-items: center;
-            margin-bottom: rem(15px);
-            font-size: 18px;
+                    i {
+                        padding: 5px;
+                        border-radius: 3px;
+                        width: auto;
+                
+                    }
+                }
+                 &:hover {
+                           
+                            h5{
+                                color: $clr1;
+                            background-color: rgba(65, 65, 65, 0.123);
+                            transition-duration: 150ms;
+                            }
+                        }
+
+            }
+
         }
+                .edit-card-checklist {
+          align-items: center;
+          margin-bottom: rem(15px);
+          font-size: 18px;
+      }
     }
 
     .edit-card-buttons-area {
@@ -193,6 +202,7 @@
         width: rem(180px);
 
         .edit-card-buttons-container {
+            position: relative;
             .main-btn-card-edit {
                 i {
                     margin-right: 10px;
@@ -235,6 +245,8 @@
         }
 
         .card-edit-labels-list {
+            position: absolute;
+            right: -50px;
             @include menu;
 
         }
@@ -259,4 +271,5 @@
 
         }
     }
+
 }
