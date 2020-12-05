@@ -3,13 +3,12 @@ const dbService = require('../../services/db.service')
 const ObjectId = require('mongodb').ObjectId
 
 
-async function query(filterBy = {}) {
+async function query(filterBy = {}) {                            
     let boards;
     const collection = await dbService.getCollection('board');
     let keys = Object.keys(filterBy);
     try {
         if (keys.length > 0) {
-
             boards = await collection.aggregate([
                 {
                     $match: {

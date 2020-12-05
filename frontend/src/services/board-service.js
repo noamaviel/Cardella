@@ -15,12 +15,10 @@ function getBoards(filterBy = {}) {
     let qs = '';
     let keys = Object.keys(filterBy);
     if (keys.length > 0) {
-        // console.log('board-service getBoards filterBy', filterBy)
         qs = '?' + keys
             .map(key => `${key}=${filterBy[key]}`)
             .join('&');
     }
-    // console.log('board service, getBoards, QS', qs);
     return HttpService.get(`board/${qs}`)
 }
 function getBoardById(boardId) {

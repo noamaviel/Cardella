@@ -9,7 +9,6 @@ async function getBoard(req, res) {
 }
 
 async function getBoards(req, res) {
-    console.log('getBoards request.query', req.query)
     try {
         const boards = await boardService.query(req.query)
         res.json(boards)
