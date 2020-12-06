@@ -8,6 +8,10 @@
         max-width: 65.75rem;
         margin: 44px auto 10px;
 
+        @include for-mobile-layout {
+            flex-wrap: wrap;
+        }
+
         .logo {
             width: 300px;
             margin-bottom: 50px;
@@ -35,7 +39,6 @@
                 transition: all 0.1s ease-in-out;
                 margin: 0 auto;
 
-
                 &:hover {
                     opacity: 0.6;
                     box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
@@ -62,7 +65,6 @@
 }
 
 .main-container {
-
     max-width: 1000px;
     padding-top: 50px;
     flex-direction: column;
@@ -79,14 +81,26 @@
     }
 
     .couple {
+        @include for-mobile-layout {
+            flex-wrap: wrap;
+        }
 
         img {
             width: 50%;
+
+            @include for-mobile-layout {
+                width: 80%;
+                margin: 0 auto;
+            }
         }
 
         .text {
             margin: 0 40px;
             align-self: center;
+
+            @include for-mobile-layout {
+                margin: o auto;
+            }
 
             .title {
                 align-self: center;

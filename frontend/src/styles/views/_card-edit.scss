@@ -23,8 +23,8 @@
 .card-edit-container {
     @include for-mobile-layout {
         margin: 70px 12px 40px 20px;
-        padding-top: 20px;
         padding: rem(15px);
+        padding-top: 30px;
     }
 
     user-select: none;
@@ -244,6 +244,7 @@
 
             .edit-card-buttons-container {
                 .main-btn-card-edit {
+                    
                     color: transparent;
                     width: 50px;
 
@@ -388,10 +389,13 @@
         .upload-image-input {
             color: transparent;
             z-index: 2;
+            position: absolute;
+            left: -20px;
+            top: 144px;
+
 
             @include for-mobile-layout {
-                position: absolute;
-                right: -176px;
+                left: -30px;
                 top: 190px;
             }
         }
@@ -422,5 +426,42 @@
             border-radius: 50%;
             border: 1px solid rgb(59, 59, 59);
         }
+
+        .card-move-to-menu {
+
+            position: absolute;
+            right: 100px;
+            top: 245px;
+            z-index: 2;
+            background-color: #fff;
+            width: 160px;
+            box-shadow: 0 12px 24px -6px rgba(47, 52, 59, 0.25), 0 0 0 1px rgba(9, 30, 66, .08);
+            padding: 5px;
+
+            @include for-mobile-layout {
+                right: 27px;
+                top: 326px;
+            }
+
+        }
+
+        .add-checklist-container {
+
+            position: absolute;
+            right: 99px;
+            top: 171px;
+            z-index: 2;
+            background-color: #fff;
+            width: 175px;
+            box-shadow: 0 12px 24px -6px rgba(47, 52, 59, 0.25), 0 0 0 1px rgba(9, 30, 66, .08);
+            padding: 5px;
+
+            @include for-mobile-layout {
+                right: 27px;
+                top: 232px;
+            }
+        }
+
+
     }
 }

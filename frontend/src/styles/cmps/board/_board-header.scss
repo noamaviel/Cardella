@@ -18,6 +18,17 @@
             margin-bottom: 0;
             padding: 0 10px 0 3px;
             border-radius: 4px;
+            font-size: 1.3rem;
+
+            @include for-mobile-layout {
+                
+                align-items: center;
+                // border: 1px solid white;
+                height: 34px;
+                font-size: 14px;;
+                line-height: 16px;
+            }
+
             &:hover {
                 background-color: $clr4;
                 transition-duration: 150ms;
@@ -35,8 +46,13 @@
         justify-content: center;
         align-items: center;
 
+        @include for-mobile-layout {
+            transform: scale(0.8);
+        }
+
         .avatar-list {
             margin: 4px;
+
 
             .avatar {
                 margin: 1px;

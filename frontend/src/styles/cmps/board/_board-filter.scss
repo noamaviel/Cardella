@@ -10,6 +10,10 @@
     justify-content: center;
     align-items: center;
 
+    @include for-mobile-layout {
+        width: 100px;
+    }
+
     &:hover {
         background-color: rgba(255, 255, 255, 0.377);
         transition-duration: 150ms;
@@ -17,6 +21,9 @@
 
     ::placeholder {
         color: whitesmoke;
+        @include for-mobile-layout {
+            color: transparent;
+        }
     }
 
 
@@ -24,6 +31,9 @@
         color: whitesmoke;
         @include input;
         margin-right: 4px;
+        @include for-mobile-layout {
+            width: 50px;
+        }
     }
 
     .close-search-btn {

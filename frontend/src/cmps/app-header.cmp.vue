@@ -11,9 +11,10 @@
         <router-link to="/"> <img src="@/assets/img/logo.png" /></router-link>
       </div>
       <div class="main-header-right">
+        
+        
         <button class="clr-btn board-open-menu" @click="toggleBoardsMenu">
-          <i class="fas fa-th"></i>
-          Boards
+          <i class="fas fa-th"></i> Boards
         </button>
 
         <boards-menu

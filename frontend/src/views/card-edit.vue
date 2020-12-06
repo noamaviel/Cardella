@@ -154,6 +154,7 @@
           v-if="isDisplayUploadImg"
           @change="onUploadImg"
         />
+
         <button class="main-btn-card-edit flex clr-btn" @click="onAddChecklist">
           <i class="el-icon-document-checked"></i>Checklist
         </button>
