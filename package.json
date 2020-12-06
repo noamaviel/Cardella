@@ -1,7 +1,7 @@
 {
     "name": "cardella",
     "scripts": {
-        "heroku-prebuild": "cd frontend && npm install && npm run build && cd ../backend && npm install",
+        "heroku-prebuild": "cd backend && npm install",
         "start": "cd backend && npm run server:prod"
     }
 }
