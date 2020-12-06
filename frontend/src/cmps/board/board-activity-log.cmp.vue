@@ -8,7 +8,7 @@
             >
                 <div class="activity-content">
                     <div class="activity-line flex">
-                        <avatar
+                        <!-- <avatar
                             class="avatar"
                             :src="activity.createdBy.imgUrl"
                             :username="activity.createdBy.fullName"
@@ -16,7 +16,7 @@
                             :size="30"
                             background-color="#f15656"
                             color="#172b4d"
-                        />
+                        /> -->
                         <div class="activity-line-text">
                             <span class="name">{{
                                 activity.createdBy.fullname
@@ -38,7 +38,7 @@
 
 <script>
 import moment from "moment";
-import Avatar from "vue-avatar";
+// import Avatar from "vue-avatar";
 export default {
     props: {
         activities: Array,
@@ -55,7 +55,7 @@ export default {
         },
     },
     components: {
-        Avatar,
+        // Avatar,
     },
 };
 </script>
