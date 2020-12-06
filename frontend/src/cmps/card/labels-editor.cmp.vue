@@ -1,11 +1,13 @@
 <template>
   <section>
-    <form @submit.prevent="onCustomLabel" v-if="isCustomEdit">
+    <form class="label-form" @submit.prevent="onCustomLabel" v-if="isCustomEdit">
       <input type="text" v-model="customLabelTitle" />
+      <div class="labels-form-btn flex">
       <button>Save</button>
       <button @click.prevent="onCloseCustomEdit">
         <i class="el-icon-close"></i>
       </button>
+      </div>
     </form>
     <ul class="labels-list flex f-center f-col">
       <li

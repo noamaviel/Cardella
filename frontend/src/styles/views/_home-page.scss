@@ -4,10 +4,9 @@
     overflow-x: hideen;
 
     .hero-container {
-        margin: auto;
         justify-content: center;
-        width: rem(1100px);
-        margin-bottom: 150px;
+        max-width: rem(900px);
+        margin: 44px auto 10px;
 
         .logo {
             width: 300px;
@@ -47,18 +46,10 @@
                     opacity: 1;
                     box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5),
                         inset 8px 8px 16px rgba(0, 0, 0, 0.1);
-                    // color: #79e3b6;
                 }
             }
         }
     }
-
-    // img {
-    // width: 61.5rem;
-    // margin-top: 100px;
-    // margin-left: 30px;
-    // width: 33rem;
-    // }
 
     h4 {
         font-size: rem(50px);
@@ -105,7 +96,6 @@
             .desc {
                 font-size: rem(20px);
                 line-height: 30px;
-                // max-width: 42ch;
             }
         }
     }

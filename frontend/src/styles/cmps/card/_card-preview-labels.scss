@@ -15,7 +15,6 @@
         width: 30px;
         border-radius: 4px;
         color: transparent;
-
     }
 }
 
@@ -23,25 +22,18 @@
     justify-content: flex-start;
     flex-wrap: wrap;
     margin: 0;
-
 }
 
 .li-label {
     justify-content: center;
     color: white;
     text-align: center;
-    padding: 0;
     border-radius: 8px;
     margin: 0 5px 5px 0;
-    font-size: 16px;
-    padding: 3px 5px 0 6px;
-    width: 80px;
-    transition: width 0.2s;
+    padding: 3px 6px 0px 8px;
 
     .remove-label {
-        font-size: 10px;
         color: white;
         padding-right: 0;
     }
-
 }

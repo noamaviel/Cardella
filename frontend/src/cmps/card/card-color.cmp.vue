@@ -1,6 +1,6 @@
 <template>
     <section>
-        <ul class="colors-container flex">
+        <ul class="colors-container flex ">
             <li
                 class="color"
                 style="background-color: #bfe4dd"
@@ -44,22 +44,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.colors-container {
-    display: flex;
-    margin-top: 10px;
-    align-items: center;
-    justify-content: space-around;
-    width: 120px;
-    padding-right: 40px;
-}
-
-.color {
-    cursor: pointer;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 1px solid rgb(59, 59, 59);
-    margin-bottom: 3px;
-}
-</style>

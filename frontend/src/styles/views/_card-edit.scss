@@ -21,30 +21,42 @@
 }
 
 .card-edit-container {
+    @include for-mobile-layout {
+        margin: 70px 12px 40px 20px;
+        padding-top: 20px;
+        padding: rem(15px);
+    }
+
+    user-select: none;
     margin: 48px 0 80px;
-    width: 768px;
+    width: rem(850px);
     color: $clr1;
-    min-height: rem(600px);
+    height: rem(900px);
     overflow-x: hidden;
     overflow-y: auto;
     @include scrollbar1;
     max-height: 86vh;
     border-radius: rem(8px);
     background-color: #f3f3f3;
-    position: absolute;
     z-index: 100;
-    padding-top: rem(30px);
-    padding-bottom: rem(30px);
-    justify-content: space-between;
-    gap: rem(30px);
+    padding: rem(30px);
 
     .main-area {
-        flex-basis: 80%;
+        flex-basis: 90%;
         margin-left: rem(18px);
 
+        @include for-mobile-layout {
+            width: 80px;
+        }
+
         .edit-card-title {
+            @include for-mobile-layout {
+                margin-bottom: rem(15px);
+                margin-right: rem(10px);
+            }
+
             align-items: center;
-            margin-bottom: rem(15px);
+            margin-bottom: rem(5px);
             font-size: 18px;
             font-weight: 600;
         }
@@ -100,17 +112,18 @@
 
             .due-date-container {
                 margin-right: rem(20px);
+                height: 76px;
             }
 
             .members-container {
                 justify-content: space-between;
-                height: rem(60px);
+                height: 76px;
 
                 .avatar-list {
                     margin: 0px;
 
                     .avatar {
-                        margin: 1px;
+                        padding: 1px 1px 6px;
 
                     }
                 }
@@ -118,10 +131,13 @@
         }
 
         .edit-card-desc {
-
             margin-bottom: rem(15px);
 
             textarea {
+                @include for-mobile-layout {
+                    width: 70%;
+                }
+
                 width: 90%;
                 min-height: 50px;
                 border: none;
@@ -140,9 +156,7 @@
                 &:focus {
                     min-height: 150px;
                 }
-
             }
-
         }
 
         .edit-card-img {
@@ -157,11 +171,6 @@
                     margin-left: rem(38px);
                     margin-right: rem(10px);
                     cursor: pointer;
-
-                    // &:hover + h5 {
-                    //     color: $clr1;
-
-                    // }
                 }
 
                 h5 {
@@ -170,30 +179,34 @@
                     color: transparent;
                     cursor: pointer;
 
+                    @include for-mobile-layout {
+                        background-color: rgba(65, 65, 65, 0.123);
+                        color: $clr1;
+                    }
+
                     i {
                         padding: 5px;
                         border-radius: 3px;
                         width: auto;
-                
                     }
                 }
-                 &:hover {
-                           
-                            h5{
-                                color: $clr1;
-                            background-color: rgba(65, 65, 65, 0.123);
-                            transition-duration: 150ms;
-                            }
-                        }
 
+                &:hover {
+
+                    h5 {
+                        color: $clr1;
+                        background-color: rgba(65, 65, 65, 0.123);
+                        transition-duration: 150ms;
+                    }
+                }
             }
-
         }
-                .edit-card-checklist {
-          align-items: center;
-          margin-bottom: rem(15px);
-          font-size: 18px;
-      }
+
+        .edit-card-checklist {
+            align-items: center;
+            margin-bottom: rem(15px);
+            font-size: 18px;
+        }
     }
 
     .edit-card-buttons-area {
@@ -203,13 +216,43 @@
 
         .edit-card-buttons-container {
             position: relative;
+
             .main-btn-card-edit {
+                @include for-mobile-layout {
+                    margin-top: 20px;
+
+                }
+
+                label {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
                 i {
                     margin-right: 10px;
                 }
 
                 align-items: center;
                 @include card-edit-btns;
+            }
+        }
+
+        @include for-mobile-layout {
+            z-index: 10;
+            width: 50px;
+
+            .edit-card-buttons-container {
+                .main-btn-card-edit {
+                    color: transparent;
+                    width: 50px;
+
+                    i {
+                        display: block;
+                        color: $clr1;
+                        font-size: 20px;
+                    }
+                }
             }
         }
 
@@ -221,7 +264,6 @@
 
         .edit-label {
             justify-content: space-between;
-            align-items: center;
             font-size: rem(18px);
             margin-bottom: rem(8px);
             width: rem(150px);
@@ -237,39 +279,148 @@
 
             .edit-label-btn {
                 font-size: rem(18px);
+                color: whitesmoke;
 
                 &:hover {
-                    color: whitesmoke;
+                    color: #5d5d5d;
                 }
             }
         }
 
         .card-edit-labels-list {
             position: absolute;
-            right: -50px;
-            @include menu;
+            right: 98px;
+            top: 37px;
+            padding: 6px 8px 0;
+            z-index: 2;
+            color: $clr1;
+            display: flex;
+            flex-direction: column;
+            background-color: #f4f5f7;
 
+            @include for-mobile-layout {
+                right: 26px;
+                top: 49px;
+            }
+
+            .label-form {
+                background-color: #f4f5f7;
+                padding-bottom: 8px;
+                top: 32px;
+
+                input {
+                    width: rem(150px);
+                    margin-bottom: 8px;
+                }
+
+                .labels-form-btn {
+
+                    justify-content: space-between;
+
+                    .el-icon-close {
+                        padding-left: 5px;
+                    }
+
+                    i {
+                        align-items: center;
+                    }
+
+                    :first-child {
+                        flex: 1;
+                        margin-right: 8px;
+                    }
+                }
+            }
         }
 
         .add-members {
-            margin-bottom: rem(20px);
+            position: absolute;
+            right: 98px;
+            top: 48px;
+            // border: 1px solid black;
+            background-color: #f4f5f7;
+            width: 120%;
+            z-index: 2;
+            color: $clr1;
+            padding: 8px 8px 4px;
+            @include menu;
+
+            @include for-mobile-layout {
+                width: 250px;
+                right: 26px;
+                top: 75px
+            }
 
             .member-name {
                 font-size: 12px;
             }
 
             .edit-card-member {
-                justify-content: space-around;
-                padding: 3px;
+                justify-content: space-between;
+                padding: 3px 10px;
                 align-items: center;
                 background-color: rgb(255, 255, 255);
                 margin-bottom: rem(8px);
                 border-radius: 2px;
                 box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
                 cursor: pointer;
-            }
 
+                &:hover {
+                    background-color: #f0f0f0;
+                }
+            }
+        }
+
+        .card-edit-due-date {
+            width: 300px;
+            position: absolute;
+            right: 20px;
+            top: 100px;
+            z-index: 2;
+
+            @include for-mobile-layout {
+                width: 240px;
+                right: 0px;
+                top: 140px
+            }
+        }
+
+        .upload-image-input {
+            color: transparent;
+            z-index: 2;
+
+            @include for-mobile-layout {
+                position: absolute;
+                right: -176px;
+                top: 190px;
+            }
+        }
+
+        .card-edit-color {
+            .colors-container {
+                position: absolute;
+                right: 100px;
+                top: 196px;
+                display: flex;
+                align-items: center;
+                padding: 3px;
+                background-color: #fff;
+                z-index: 5;
+                box-shadow: 0 12px 24px -6px rgba(47, 52, 59, 0.25), 0 0 0 1px rgba(9, 30, 66, .08);
+
+                @include for-mobile-layout {
+                    right: 27px;
+                    top: 270px;
+                }
+            }
+        }
+
+        .color {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1px solid rgb(59, 59, 59);
         }
     }
-
 }

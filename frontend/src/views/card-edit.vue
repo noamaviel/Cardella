@@ -100,6 +100,8 @@
       <div class="edit-card-buttons-container flex f-col">
         <button class="main-btn-card-edit flex clr-btn" @click="onLabelsEdit">
           <i class="el-icon-collection-tag"></i>Labels
+        </button>
+
         <section class="card-edit-labels-list">
           <labels-editor
             v-if="isLabelsEdit"
@@ -107,8 +109,17 @@
             @updateCard="updateCard"
           />
         </section>
+
+      <!-- <div class="edit-card-buttons-container flex f-col">
+        <button class="main-btn-card-edit flex clr-btn" @click="onLabelsEdit">
+          <i class="el-icon-collection-tag"></i>Labels
         </button>
-        
+
+        <labels-editor
+          v-if="isLabelsEdit"
+          :labels="card.labels"
+          @updateCard="updateCard"
+        /> -->
 
         <button class="main-btn-card-edit flex clr-btn" @click="onAddMembers">
           <i class="el-icon-user"></i>Members
@@ -120,10 +131,7 @@
           @setCardMembers="setCardMembers"
         />
 
-        <button
-          class="main-btn-card-edit flex clr-btn"
-          @click="onOpenDatePicker"
-        >
+        <button class="main-btn-card-edit flex clr-btn" @click="onOpenDatePicker" >
           <i class="el-icon-time"></i>Due Date
         </button>
         <card-due-date
@@ -135,10 +143,11 @@
 
         <button class="main-btn-card-edit flex clr-btn">
           <label for="imgUploader" @click.prevent="onOpenUploadImgField"
-            ><i class="el-icon-picture-outline"></i>Upload Image</label
-          >
+            ><i class="el-icon-picture-outline"></i>Upload Image</label>
         </button>
-        <input
+
+
+        <input class="upload-image-input flex f-col"
           type="file"
           name="img-uploader"
           id="imgUploader"
@@ -161,7 +170,7 @@
         >
           <i class="el-icon-brush"></i>Card Color
         </button>
-        <card-color v-if="isDisplayColorPallette" @setColor="changeColor" />
+        <card-color class="card-edit-color" v-if="isDisplayColorPallette" @setColor="changeColor" />
 
         <button class="main-btn-card-edit flex clr-btn" @click="onOpenMoveTo">
           <i class="el-icon-right"></i>Move To

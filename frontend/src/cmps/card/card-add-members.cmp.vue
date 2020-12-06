@@ -6,6 +6,7 @@
       :key="user._id"
       @click="toggleMember(user._id)"
     >
+    
       <div class="avatar-img">
         <avatar
           class="avatar"
@@ -17,8 +18,9 @@
           color="#172b4d"
         />
       </div>
-      <span class="member-name"> {{ user.fullName }}</span>
       <i v-if="user.isSelected" class="fas fa-check"></i>
+      <span class="member-name"> {{ user.fullName }}</span>
+      
     </li>
   </ul>
 </template>

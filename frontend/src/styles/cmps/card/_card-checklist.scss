@@ -7,6 +7,11 @@
             border-radius: 4px;
             color: transparent;
 
+            @include for-mobile-layout {
+                background-color: rgba(65, 65, 65, 0.123);
+                color: $clr1;
+            }
+
             i {
                 padding: 5px;
                 border-radius: 3px;
@@ -29,6 +34,10 @@
     height: 25px;
     width: 66.5%;
 
+    @include for-mobile-layout {
+        width: 73.5%;
+    }
+
     .progress-bar-container {
         justify-content: center;
         align-items: center;
@@ -42,7 +51,6 @@
         }
 
         .progress-bar {
-
             width: rem(300px);
             background: rgba(9, 30, 66, .08);
             border-radius: 4px;
@@ -51,7 +59,6 @@
             margin: 0 0 0 20px;
             overflow: hidden;
             position: relative;
-
         }
 
         .progress-bar-percent {
@@ -64,7 +71,6 @@
             transition-duration: .14s;
             transition-timing-function: ease-in;
         }
-
     }
 
     .checklist-list-container {
@@ -77,14 +83,11 @@
             height: 20px;
             width: 20px;
             transition: .2s;
-
         }
-
 
         li {
             font-size: rem(19px);
             margin-bottom: 10px;
-
 
             label {
                 cursor: pointer;
@@ -96,7 +99,6 @@
                 }
             }
         }
-
     }
 
 
@@ -110,20 +112,12 @@
             transition-duration: 150ms;
             background-color: rgb(219, 219, 219);
         }
-
     }
-
-
-
-
-
-
 
     .check-list-li {
         display: flex;
         align-items: center;
         margin: 0;
-
     }
 
     .checklist-input {
@@ -133,7 +127,6 @@
         height: 25px;
         margin-left: rem(38px);
         border: 1px solid grey;
-
     }
 
     .checklist-btn-remove-todo {
@@ -141,17 +134,13 @@
         margin-left: em(15px);
         border: none;
         cursor: pointer;
-        // margin-bottom: px;
         padding-right: 1px;
-        // border: 1px solid green;
         background-color: transparent;
 
         i {
             font-size: 15px;
             margin-right: 0;
         }
-
-
     }
 
 
@@ -182,13 +171,11 @@
             border-radius: 4px;
             background-color: #5699b4;
 
-
             &:hover {
                 border-radius: 3px;
                 background-color: #2e6880;
                 transition-duration: 150ms;
             }
-
         }
 
         .checklist-btn {
@@ -208,11 +195,5 @@
                 margin-left: rem(10px);
             }
         }
-
     }
-
-
-
-
-
 }
