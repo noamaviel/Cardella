@@ -108,7 +108,7 @@ export default {
             this.board.style.backgroundColor = color;
             this.board.style.backgroundImgUrl = "";
             this.$store.dispatch({
-                type: "updateBoardV2",
+                type: "updateBoard",
                 board: this.board,
             });
             this.isClose = true;
@@ -117,7 +117,7 @@ export default {
             this.board.style.backgroundImgUrl = imgUrl;
             this.board.style.backgroundColor = "";
             this.$store.dispatch({
-                type: "updateBoardV2",
+                type: "updateBoard",
                 board: this.board,
             });
             this.isClose = true;

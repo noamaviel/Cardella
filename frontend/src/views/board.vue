@@ -73,7 +73,7 @@ export default {
             inLists = utilService.applyDrag(inLists, dropResult);
             this.board.lists = inLists;
             let updtBoard = JSON.parse(JSON.stringify(this.board));
-            this.$store.dispatch({ type: "updateBoardV2", board: updtBoard });
+            this.$store.dispatch({ type: "updateBoard", board: updtBoard });
         },
         loadBoard() {
             const boardId = this.$route.params.boardId;
@@ -85,7 +85,7 @@ export default {
         },
         onWindowWidthChange() {
             if (mediaQuery.matches) {
-                 console.log("onWindowWidthChange - if");
+                console.log("onWindowWidthChange - if");
                 this.preventDrag = true;
             } else {
                 console.log("onWindowWidthChange - else");

@@ -3,7 +3,7 @@
         <div class="list-drop-down">
             <div>List:</div>
 
-            <select v-model="selectedListToMoveTo">
+            <select v-model="selectedListToMoveTo" @change="onListSelected">
                 <option
                     v-for="currList in board.lists"
                     :key="currList.id"
@@ -44,14 +44,12 @@ export default {
     },
     computed: {
         cardsCountToshow() {
-            if (this.selectedListToMoveTo.id === this.list.id) {
+            if (this.selectedListToMoveTo.id === this.list.id)
                 return this.list.cards.length;
-            } else {
-                const selectedListToMoveToIdx = this.board.lists.indexOf(
-                    this.selectedListToMoveTo
-                );
-                return this.board.lists[selectedListToMoveToIdx].cards.length;
-            }
+            const selectedListToMoveToIdx = this.board.lists.indexOf(
+                this.selectedListToMoveTo
+            );
+            return this.board.lists[selectedListToMoveToIdx].cards.length + 1;
         },
         cardIdxInCurrlist() {
             return this.list.cards.indexOf(this.card);
@@ -59,29 +57,33 @@ export default {
     },
     methods: {
         removeCardFromCurrIdx() {
-            const removedCard = this.list.cards.splice(
-                this.cardIdxInCurrlist,
-                1
-            )[0];
-            return removedCard;
+            return this.list.cards.splice(this.cardIdxInCurrlist, 1)[0];
         },
         addCardToSelectedListIdx() {
             const selectedListToMoveToIdx = this.board.lists.indexOf(
                 this.selectedListToMoveTo
             );
-            const addedCard = this.board.lists[
-                selectedListToMoveToIdx
-            ].cards.splice(this.selectedIdxToMoveTo, 0, this.card);
-            return addedCard;
+            return this.board.lists[selectedListToMoveToIdx].cards.splice(
+                this.selectedIdxToMoveTo,
+                0,
+                this.card
+            );
         },
         onMoveCard() {
             this.removeCardFromCurrIdx();
             this.addCardToSelectedListIdx();
             this.$store.dispatch({
-                type: "updateBoardV2",
+                type: "updateBoard",
                 board: this.board,
             });
             this.$router.push(`/board/${this.board._id}`);
+        },
+        onListSelected() {
+            if (this.selectedListToMoveTo.id === this.list.id) {
+                this.selectedIdxToMoveTo = this.cardIdxInCurrlist;
+            } else {
+                this.selectedIdxToMoveTo = 0;
+            }
         },
     },
     created() {

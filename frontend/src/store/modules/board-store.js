@@ -87,8 +87,8 @@ export const boardStore = {
         setFilteredList(state, { filteredList }) {
             state.filteredList = filteredList;
         },
-        setFilterBy(state, {filterBy}) {
-          state.filterBy = filterBy;
+        setFilterBy(state, { filterBy }) {
+            state.filterBy = filterBy;
         },
         addBoard(state, { newBoard }) {
             state.boards.push(newBoard);
@@ -162,7 +162,7 @@ export const boardStore = {
         },
         async query({ commit }, { filterBy }) {
             // console.log('filterBy - query action', filterBy)
-            commit({type: 'setFilteredList', filteredList: []})
+            commit({ type: 'setFilteredList', filteredList: [] })
             commit({ type: 'setFilterBy', filterBy: filterBy })
             let res = await boardService.getBoards(filterBy)
             // console.log('action query getBoards RESULT', res);
@@ -195,10 +195,7 @@ export const boardStore = {
                 })
             }
         },
-        // async updateBoard({ state }) {
-        //     await boardService.updateBoard(state.currBoard);
-        // },
-        async updateBoardV2({ commit }, { board }) {
+        async updateBoard({ commit }, { board }) {
             try {
                 await boardService.updateBoard(board);
                 commit({ type: 'updateBoard', board });

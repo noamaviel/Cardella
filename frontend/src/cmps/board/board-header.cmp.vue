@@ -52,7 +52,7 @@ export default {
             // console.log("store title after:", this.$store.getters.getCurrBoard.title)
             ev.target.blur();
             this.$store.dispatch({
-                type: "updateBoardV2",
+                type: "updateBoard",
                 board: this.board,
             });
         },

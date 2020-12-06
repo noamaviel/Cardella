@@ -20,6 +20,13 @@
         margin: 0 6px 0 12px;
         border-bottom: 1px solid rgba(9, 30, 66, .13);
 
+        .list-menu-close-btn {
+            &:hover {
+                background-color: rgba(65, 65, 65, 0.109);
+                transition-duration: 150ms;
+            }
+        }
+
         h3 {
             line-height: 20px;
             font-size: 1rem;

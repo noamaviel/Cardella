@@ -13,6 +13,13 @@
         }
 
         .board-line {
+            cursor: pointer;
+
+            &:hover {
+                border-radius: 3px;
+                background-color: rgba(65, 65, 65, 0.109);
+                transition-duration: 150ms;
+            }
 
             .link {
                 display: flex;
@@ -36,7 +43,17 @@
         .create-board-btn {
             margin: 10px;
             background-color: inherit;
-            color: $clr1;
+            color: #5d5d5d;
+            width: 100%;
+            padding: 4px 8px;
+            outline: none;
+            border-radius: 4px;
+            border: none;
+            background-color: rgba(65, 65, 65, 0.109);
+
+            &:hover {
+                background-color: rgba(65, 65, 65, 0.274);
+            }
         }
     }
 }

@@ -18,7 +18,7 @@
                 <div class="text">
                     <h2 class="title">Working together is easy!</h2>
                     <p class="desc">
-                       Who said teamwork can't be fun? With Cardella it is simple to organize your
+                       Who says teamwork can't be fun? With Cardella it is simple to organize your
                         project, keep together in progress, and achieve more. 
                     </p>
                 </div>
