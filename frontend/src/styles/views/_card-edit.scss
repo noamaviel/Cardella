@@ -356,7 +356,7 @@
 
             @include for-mobile-layout {
                 width: 250px;
-                right: 26px;
+                right: 39px;
                 top: 75px
             }
 
@@ -407,7 +407,7 @@
                 display: flex;
                 align-items: center;
                 padding: 3px;
-                background-color: #fff;
+                background-color: #f4f5f7;
                 z-index: 5;
                 box-shadow: 0 12px 24px -6px rgba(47, 52, 59, 0.25), 0 0 0 1px rgba(9, 30, 66, .08);
 
@@ -428,6 +428,7 @@
 
         .card-move-to-menu {
 
+
             @include for-mobile-layout {
                 right: 39px;
                 top: 326px;
@@ -438,39 +439,94 @@
             top: 245px;
             z-index: 2;
             background-color: #f4f5f7;
-            ;
             font-size: 14px;
             width: 160px;
             box-shadow: 0 12px 24px -6px rgba(47, 52, 59, 0.25),
             0 0 0 1px rgba(9, 30, 66, .08);
             padding: 5px;
 
-            .list-items-container {
+            .list-select {
+                width: 150px;
+                border: none;
+                background-color: rgba(9, 30, 66, 0.04);
+                margin: 5px 0;
+                border-radius: 3px;
 
-                background-color: white;
-                margin-bottom: 3px;
-
-                .list-select {
-                    width: 147px;
-                    border: none;
-                    background-color: white;
-                    // -webkit-appearance: none;
+                &:hover {
+                    background-color: rgba(65, 65, 65, 0.205);
+                    transition-duration: 300ms;
                 }
             }
 
-            .position-items-container {
-                background-color: white;
+            .position-title {
+                margin-bottom: 5px;
+            }
+
+            .position-container {
+                justify-content: space-between;
 
                 .position-select {
                     width: 45px;
                     border: none;
-                    background-color: white;
-                    // -webkit-appearance: none;
+                    background-color: rgba(1, 87, 235, 0.04);
+                    border-radius: 3px;
+
+                    &:hover {
+                        background-color: rgba(65, 65, 65, 0.205);
+                        transition-duration: 300ms;
+                    }
                 }
 
-                .position-container {
-                    margin-top: 7px;
-                    justify-content: space-between;
+
+
+                button {
+                    @include for-mobile-layout {
+                        background-color: rgba(7, 22, 47, 0.089);
+                    }
+
+                    border-radius: 3px;
+                    height: 25px;
+                    width: 100px;
+                    background-color: rgba(7, 22, 47, 0.089);
+
+                    &:hover {
+                        background-color: rgba(65, 65, 65, 0.205);
+                        transition-duration: 300ms;
+                    }
+                }
+
+            }
+
+
+        }
+
+        .add-checklist-container {
+
+            position: absolute;
+            right: 147px;
+            top: 171px;
+            z-index: 2;
+            background-color: #f4f5f7;
+            box-shadow: 0 12px 24px -6px rgba(47, 52, 59, 0.25),
+                0 0 0 1px rgba(9, 30, 66, .08);
+            width: 175px;
+            padding: 5px;
+
+            @include for-mobile-layout {
+                right: 26px;
+                top: 232px;
+            }
+
+            input {
+                width: 161px;
+                border: none;
+                background-color: rgba(9, 30, 66, 0.04);
+                margin: 5px 0;
+                border-radius: 3px;
+
+                &:hover {
+                    background-color: rgba(65, 65, 65, 0.205);
+                    transition-duration: 300ms;
                 }
             }
 
@@ -488,27 +544,6 @@
                     background-color: rgba(65, 65, 65, 0.205);
                     transition-duration: 300ms;
                 }
-            }
-        }
-
-        .add-checklist-container {
-
-            position: absolute;
-            right: 99px;
-            top: 171px;
-            z-index: 2;
-            background-color: #fff;
-            width: 175px;
-            box-shadow: 0 12px 24px -6px rgba(47, 52, 59, 0.25), 0 0 0 1px rgba(9, 30, 66, .08);
-            padding: 5px;
-
-            @include for-mobile-layout {
-                right: 27px;
-                top: 232px;
-            }
-
-            input {
-                width: 161px;
             }
         }
 

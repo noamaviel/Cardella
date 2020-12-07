@@ -6,7 +6,7 @@
                 v-model="tmpChecklist.title"
                 placeholder="Add checklist title"
             />
-            <button class="add-checklist-btn">Add</button>
+            <button class="add-checklist-btn clr-btn">Add</button>
         </form>
     </section>
 </template>

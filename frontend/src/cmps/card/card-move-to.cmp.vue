@@ -17,7 +17,7 @@
         </option>
       </select>
 
-      <div>Position:</div>
+      <div class="position-title">Position:</div>
       <div class="position-container flex">
         <select class="position-select flex" v-model="selectedIdxToMoveTo">
           <option v-for="i in cardsCountToshow" :key="i - 1" :value="i - 1">
