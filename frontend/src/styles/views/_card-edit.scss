@@ -21,6 +21,8 @@
 }
 
 .card-edit-container {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+
     @include for-mobile-layout {
         margin: 70px 12px 40px 20px;
         padding: rem(15px);
