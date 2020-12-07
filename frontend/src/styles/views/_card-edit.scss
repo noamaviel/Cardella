@@ -403,7 +403,7 @@
             .colors-container {
                 position: absolute;
                 right: 147px;
-                top: 196px;
+                top: 245px;
                 display: flex;
                 align-items: center;
                 padding: 3px;
@@ -413,7 +413,7 @@
 
                 @include for-mobile-layout {
                     right: 39px;
-                    top: 270px;
+                    top: 326px;
                 }
             }
         }
@@ -428,15 +428,14 @@
 
         .card-move-to-menu {
 
-
             @include for-mobile-layout {
                 right: 39px;
-                top: 326px;
+                top: 270px;
             }
 
             position: absolute;
             right: 147px;
-            top: 245px;
+            top: 196px;
             z-index: 2;
             background-color: #f4f5f7;
             font-size: 14px;

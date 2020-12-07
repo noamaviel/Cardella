@@ -183,18 +183,6 @@
 
                 <button
                     class="main-btn-card-edit flex clr-btn"
-                    @click="onOpenColorPallette"
-                >
-                    <i class="el-icon-brush"></i>Card Color
-                </button>
-                <card-color
-                    class="card-edit-color"
-                    v-if="isDisplayColorPallette"
-                    @setColor="changeColor"
-                />
-
-                <button
-                    class="main-btn-card-edit flex clr-btn"
                     @click="onOpenMoveTo"
                 >
                     <i class="el-icon-right"></i>Move To
@@ -205,6 +193,18 @@
                     :board="board"
                     :list="list"
                     :card="card"
+                />
+
+                <button
+                    class="main-btn-card-edit flex clr-btn"
+                    @click="onOpenColorPallette"
+                >
+                    <i class="el-icon-brush"></i>Card Color
+                </button>
+                <card-color
+                    class="card-edit-color"
+                    v-if="isDisplayColorPallette"
+                    @setColor="changeColor"
                 />
 
                 <button
