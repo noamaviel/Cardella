@@ -8,7 +8,9 @@ export const boardService = {
     removeBoard,
     updateBoard,
     getEmptyCard,
-    getEmptyList
+    getEmptyList,
+    getActivity
+
 }
 
 function getBoards(filterBy = {}) {
@@ -52,7 +54,8 @@ function addBoard() {
                     checklists: []
                 }],
                 // push the member
-            }]
+            }],
+            boardActivities: [],
     }
     console.log(board);
     return HttpService.post('board', board)
@@ -93,6 +96,28 @@ function getEmptyList(title = '') {
         cards: []
     }
     return list;
+}
+
+function getActivity(logEntry) {
+    let newActivity = {
+        id: utilService.makeId(),
+        txt: ' ' + logEntry.action + ': ',
+        createdAt: Date.now(),
+        createdBy: {
+            _id: "5fc4baf914c9a871c81fe2be",
+            fullname: "Shimrit Herbst",
+            imgUrl: "https://res.cloudinary.com/shimrit/image/upload/v1606511397/cardella/shimrit_idcy9l.jpg"
+        },
+        inCard: {
+            id: logEntry.cardId,
+            title: logEntry.cardTitle
+        },
+        inList: {
+            id: logEntry.listId,
+            title: logEntry.listTitle
+        }
+    }
+    return newActivity;
 }
 
 // function getEmptyActvitiy() {

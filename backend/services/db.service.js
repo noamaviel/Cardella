@@ -15,26 +15,6 @@ async function getCollection(collectionName) {
     return db.collection(collectionName);
 }
 
-// async function createTxtIndex() {
-//     const db = await connect()
-//     const collection = await getCollection('board')
-//     try {
-//         collection.createIndex({
-//             title: "text",
-//             "createdBy.fullName" : "text"
-
-//         })
-//         console.log('collection.getIndexes!', db.board.getIndexes());
-//     } catch (err) {
-//         console.log('Cannot create index in createTXTTINDEX', err)
-//         throw err;
-//     }
-// }
-
-// async function getTxtIndex() {
-
-// }
-
 async function connect() {
     if (dbConn) return dbConn;
     try {
@@ -43,9 +23,7 @@ async function connect() {
         dbConn = db;
         const collection = db.collection('board');
         const dropRes = await collection.dropIndexes();
-        console.log('dropRes', dropRes);
-        const result = await collection.createIndex({ "lists.cards.title": "text" , "lists.cards.description": "text"}, { default_language: "english" });
-        console.log(`Index created: ${result}`);
+        const result = await collection.createIndex({ "lists.cards.title": "text", "lists.cards.description": "text" }, { default_language: "english" });
         return db;
     } catch (err) {
         console.log('Cannot Connect to DB', err)
@@ -53,7 +31,7 @@ async function connect() {
     }
 }
 
-// console.log('dropRes', dropRes);
+
 
 
 

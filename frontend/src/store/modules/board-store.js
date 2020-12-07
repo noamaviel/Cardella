@@ -1,4 +1,5 @@
 import { boardService } from '@/services/board-service.js';
+// import { utilService } from '@/services/util-service.js';
 import socketService from '@/services/socket-service.js';
 import Swal from "sweetalert2";
 
@@ -24,10 +25,9 @@ export const boardStore = {
             var cardsList = [];
             if (state.filteredList.length > 0) {
                 //boards
-                state.filteredList.filter((board) => {
-                    // console.log("board", board);
+                state.filteredList.forEach((board) => {
                     //lists
-                    board.lists.filter((list) => {
+                    board.lists.forEach((list) => {
                         // console.log("list", list);
                         let cards = list.cards.filter((card) => {
                             // console.log("card", card);
@@ -61,16 +61,10 @@ export const boardStore = {
                                 card.listTitle = list.title;
                             }
                             return res;
-                        });
-                        // console.log("cards", cards);
-
+                        }); //end filter list
                         cardsList = cardsList.concat(cards);
-                        // console.log("cardsList", cardsList);
-
-                        return false;
-                    });
-                    return false;
-                });
+                    }); //end forEach list
+                }); //end forEach board
             }
             return cardsList;
         }
@@ -99,9 +93,6 @@ export const boardStore = {
             state.boards.splice(idx, 1, board);
             state.currBoard = board;
         },
-        addActivity(state, { activity }) {
-            state.currBoard.boardActivites.unshift(activity);
-        },
         removeBoard(state, { boardId }) {
             if (state.boards.length > 0) {
                 const idx = state.boards.findIndex(board => board._id === boardId);
@@ -114,33 +105,75 @@ export const boardStore = {
             const listIdx = state.currBoard.lists.findIndex(list => list.id === listId);
             const cards = state.currBoard.lists[listIdx].cards;
             cards.push(card);
+            let logEntry = {
+                action: 'added a card',
+                cardId: card.id,
+                cardTitle: card.title,
+                listId: listId,
+                listTitle: state.currBoard.lists[listIdx].title
+            }
+            state.currBoard.boardActivities.unshift(boardService.getActivity(logEntry));
         },
         updateCard(state, { list, card }) {
             const listIdx = state.currBoard.lists.findIndex(currList => currList.id === list.id);
             const cardIdx = state.currBoard.lists[listIdx].cards.findIndex(currCard => currCard.id === card.id);
             const cards = state.currBoard.lists[listIdx].cards;
             cards.splice(cardIdx, 1, card);
+            let logEntry = {
+                action: 'updated a card',
+                cardId: card.id,
+                cardTitle: card.title,
+                listId: list.id,
+                listTitle: state.currBoard.lists[listIdx].title
+            }
+            state.currBoard.boardActivities.unshift(boardService.getActivity(logEntry));
         },
         removeCard(state, { listId, cardId }) {
             const listIdx = state.currBoard.lists.findIndex(list => list.id === listId);
             const cardIdx = state.currBoard.lists[listIdx].cards.findIndex(card => card.id === cardId);
             const cards = state.currBoard.lists[listIdx].cards;
+            let logEntry = {
+                action: 'deleted a card',
+                cardId: cardId,
+                cardTitle: cards[cardIdx].title,
+                listId: listId,
+                listTitle: state.currBoard.lists[listIdx].title
+            }
             cards.splice(cardIdx, 1);
+            state.currBoard.boardActivities.unshift(boardService.getActivity(logEntry));
         },
         //LIST//
         addList(state, { list }) {
             const lists = state.currBoard.lists;
             lists.push(list);
+            let logEntry = {
+                action: 'added a list',
+                listId: list.id,
+                listTitle: list.title
+            }
+            state.currBoard.boardActivities.unshift(boardService.getActivity(logEntry));
         },
         updateList(state, { list }) {
             const listIdx = state.currBoard.lists.findIndex(currList => currList.id === list.id);
             const lists = state.currBoard.lists;
             lists.splice(listIdx, 1, list);
+            let logEntry = {
+                action: 'updated a list',
+                listId: list.id,
+                listTitle: list.title
+            }
+            state.currBoard.boardActivities.unshift(boardService.getActivity(logEntry));
         },
         removeList(state, { listId }) {
             const listIdx = state.currBoard.lists.findIndex(currList => currList.id === listId);
             const lists = state.currBoard.lists;
+            let logEntry = {
+                action: 'deleted a list',
+                listId: listId,
+                listTitle: lists[listIdx].title
+            }
             lists.splice(listIdx, 1);
+            state.currBoard.boardActivities.unshift(boardService.getActivity(logEntry));
         },
     },
     actions: {

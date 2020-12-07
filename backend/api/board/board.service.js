@@ -3,7 +3,7 @@ const dbService = require('../../services/db.service')
 const ObjectId = require('mongodb').ObjectId
 
 
-async function query(filterBy = {}) {                            
+async function query(filterBy = {}) {
     let boards;
     const collection = await dbService.getCollection('board');
     let keys = Object.keys(filterBy);
@@ -33,8 +33,6 @@ async function query(filterBy = {}) {
         } else {
             boards = await collection.find().toArray();
         }
-
-
         return boards
     } catch (err) {
         console.log('ERROR: cannot find boards', err);
