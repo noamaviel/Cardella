@@ -136,6 +136,7 @@
                 }
             }
         }
+
         .edit-card-desc {
             margin-bottom: rem(15px);
 
@@ -143,6 +144,7 @@
                 @include for-mobile-layout {
                     width: 70%;
                 }
+
                 width: 90%;
                 min-height: 50px;
                 border: none;
@@ -392,20 +394,6 @@
             }
         }
 
-        .upload-image-input {
-            color: transparent;
-            z-index: 2;
-            position: absolute;
-            left: -20px;
-            top: 144px;
-
-
-            @include for-mobile-layout {
-                left: -30px;
-                top: 190px;
-            }
-        }
-
         .card-edit-color {
             .colors-container {
                 position: absolute;
@@ -496,6 +484,10 @@
             @include for-mobile-layout {
                 right: 27px;
                 top: 232px;
+            }
+
+            input {
+                width: 161px;
             }
         }
 
