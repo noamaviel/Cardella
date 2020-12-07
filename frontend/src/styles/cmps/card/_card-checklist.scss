@@ -1,34 +1,32 @@
 .checklists {
     cursor: pointer;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    .check-list-li{
 
-    .delete-btn {
-        h5 {
-            margin-bottom: 0;
-            border-radius: 4px;
-            color: transparent;
 
-            @include for-mobile-layout {
-                background-color: rgba(65, 65, 65, 0.123);
+        .delete-btn {
+            h5 {
+                margin-bottom: 0;
+                border-radius: 4px;
+                color: transparent;
+    
+                @include for-mobile-layout {
+                    background-color: rgba(39, 41, 44, 0.04);
+                    color: $clr1;
+                }
+    
+            }
+        }
+        &:hover:first-child {
+            h5 {
+                background-color: rgba(9, 30, 66, 0.04);
+                transition-duration: 150ms;
                 color: $clr1;
             }
-
-            i {
-                padding: 5px;
-                border-radius: 3px;
-                width: auto;
-            }
         }
     }
 
-    &:hover {
-
-        h5 i {
-            background-color: rgba(65, 65, 65, 0.123);
-            transition-duration: 150ms;
-            color: $clr1;
-        }
-    }
+   
 }
 
 .card-checklist {

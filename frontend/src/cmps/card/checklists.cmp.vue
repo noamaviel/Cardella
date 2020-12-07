@@ -9,9 +9,7 @@
       >
         <card-checklist :checklist="checklist" @updateCard="onUpdateCard" />
         <button class="delete-btn clr-btn" @click="onRemoveChecklist(index)">
-          <h5>
-            <i class="el-icon-delete"></i>
-          </h5>
+          <h5>Delete</h5>
         </button>
       </li>
     </ul>
