@@ -71,7 +71,7 @@ export default {
         },
         {
           id: "106",
-          title: "TBD",
+          title: "CRO",
           color: "#bdbdbd",
         },
       ],
