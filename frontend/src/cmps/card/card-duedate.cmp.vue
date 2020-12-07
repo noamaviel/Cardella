@@ -1,6 +1,7 @@
 <template>
     <div class="block">
         <el-date-picker
+            ref="picker"
             v-model="newDueDate"
             type="datetime"
             placeholder="Select date and time"
@@ -14,7 +15,7 @@
 <script>
 export default {
     props: {
-        currTimestemp: Number, 
+        currTimestemp: Number,
     },
     data() {
         return {
@@ -27,6 +28,11 @@ export default {
         emitDueDateChange() {
             this.$emit("setDueDate", this.newDueDate.getTime());
         },
+    },
+    mounted() {
+        this.$refs.picker.focus();
+        this.$refs.picker.$el.getElementsByTagName("input")[0].style.display =
+            "none";
     },
 };
 </script>

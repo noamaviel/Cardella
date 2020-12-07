@@ -301,10 +301,6 @@ export default {
         },
         onOpenDatePicker() {
             this.isDisplayDatePicker = !this.isDisplayDatePicker;
-            // const pickerElement = document.getElementsByClassName(
-            //     "el-picker-panel el-date-picker el-popper has-time"
-            // )[0];
-            // pickerElement.style.dis
         },
         onAddChecklist() {
             this.isAddChecklist = !this.isAddChecklist;

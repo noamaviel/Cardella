@@ -384,8 +384,13 @@
             width: 300px;
             position: absolute;
             right: 20px;
-            top: 100px;
+            top: 82px;
             z-index: 2;
+
+            .el-picker-panel {
+                top: 208px;
+                margin: none;
+            }
 
             @include for-mobile-layout {
                 width: 240px;
