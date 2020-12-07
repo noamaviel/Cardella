@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.a024a7f415f3f99e726a79902989c2b9.js"
+  "/precache-manifest.3ade3b4068f1b503bac2f014fe14fee4.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "cardella"});
