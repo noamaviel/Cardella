@@ -432,25 +432,41 @@
             right: 147px;
             top: 245px;
             z-index: 2;
-            background-color: #fff;
+            background-color: #f4f5f7;
+            ;
+            font-size: 14px;
             width: 160px;
             box-shadow: 0 12px 24px -6px rgba(47, 52, 59, 0.25),
             0 0 0 1px rgba(9, 30, 66, .08);
             padding: 5px;
 
-            .list-select {
-                width: 147px;
-                margin: 7px 0;
+            .list-items-container {
 
+                background-color: white;
+                margin-bottom: 3px;
+
+                .list-select {
+                    width: 147px;
+                    border: none;
+                    background-color: white;
+                    // -webkit-appearance: none;
+                }
             }
 
-            .position-select {
-                width: 45px;
-            }
+            .position-items-container {
+                background-color: white;
 
-            .position-container {
-                margin-top: 7px;
-                justify-content: space-between;
+                .position-select {
+                    width: 45px;
+                    border: none;
+                    background-color: white;
+                    // -webkit-appearance: none;
+                }
+
+                .position-container {
+                    margin-top: 7px;
+                    justify-content: space-between;
+                }
             }
 
             button {
