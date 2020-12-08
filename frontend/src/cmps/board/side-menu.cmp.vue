@@ -21,7 +21,7 @@
                 >
                     <img
                         @click="toggleImgPicker"
-                        src="https://res.cloudinary.com/shimrit/image/upload/v1606928149/cardella/WhatsApp_Image_2020-12-02_at_18.46.19_nezql1.jpg"
+                        src="https://res.cloudinary.com/morshva/image/upload/v1607417104/pictures_ksbogz.png"
                     />
                     <h5>Photos</h5>
                 </div>
@@ -32,7 +32,7 @@
                 >
                     <img
                         @click="toggleColorPicker"
-                        src="https://res.cloudinary.com/shimrit/image/upload/v1606928144/cardella/WhatsApp_Image_2020-12-02_at_18.46.20_et9hgk.jpg"
+                        src="https://res.cloudinary.com/morshva/image/upload/v1607417101/colors_jnbhzi.png"
                     />
                     <h5>Colors</h5>
                 </div>

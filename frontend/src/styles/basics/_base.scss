@@ -74,12 +74,20 @@ ul {
     padding: 0;
 }
 
-.swal2-styled.swal2-confirm {
-    background-color: #2A9D8F;
-}
+.swal2-popup {
+    width: 22em;
 
-.swal2-styled.swal2-deny {
-    background-color: #E76F51;
+    .swal2-title{
+        font-size: 18px;
+    }
+    .swal2-styled.swal2-confirm {
+        background-color: #2A9D8F;
+    }
+
+    .swal2-styled.swal2-deny {
+        background-color: #E76F51;
+    }
+
 }
 
 .el-input__icon {
