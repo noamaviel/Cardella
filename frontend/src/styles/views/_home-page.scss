@@ -8,14 +8,18 @@
         max-width: 65.75rem;
         margin: 44px auto 10px;
 
-        @include for-mobile-layout {
-            flex-wrap: wrap;
+        .hero-img {
+            width: 920px;
+            margin-top: 0;
         }
 
-        .logo {
-            width: 300px;
-            margin-bottom: 50px;
-            margin: 0 auto;
+        @include for-mobile-layout {
+            flex-wrap: wrap;
+
+            .hero-img {
+                width: 342px;
+                margin-top: 35px;
+            }
         }
 
         .hero-title {
@@ -23,11 +27,19 @@
             text-align: center;
             align-self: center;
 
+            .logo {
+                width: 300px;
+                margin-bottom: 60px;
+                margin: 0 auto;
+            }
+
             h1 {
                 line-height: 30px;
             }
 
             .link {
+                flex-grow: 1;
+                justify-content: center;
                 width: 400px;
                 height: 100px;
                 background: #f6f9fe;
@@ -38,6 +50,7 @@
                 cursor: pointer;
                 transition: all 0.1s ease-in-out;
                 margin: 0 auto;
+                font-size: rem(50px);
 
                 &:hover {
                     opacity: 0.6;
@@ -51,16 +64,33 @@
                         inset 8px 8px 16px rgba(0, 0, 0, 0.1);
                 }
             }
+
+            @include for-mobile-layout {
+                .logo {
+                    width: 287px;
+                    margin-bottom: 30px;
+                }
+
+                flex-direction: column;
+                text-align: center;
+                align-self: center;
+
+                h1 {
+                    line-height: 30px;
+                    margin: 0 35px 30px;
+                }
+
+                .link {
+                    width: 265px;
+                    height: 70px;
+                    font-size: rem(30px);
+                    margin: 0 auto;
+                    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+                        6px 6px 10px rgba(0, 0, 0, 0.2);
+
+                }
+            }
         }
-    }
-
-    h4 {
-        font-size: rem(50px);
-    }
-
-    a {
-        flex-grow: 1;
-        justify-content: center;
     }
 }
 
@@ -72,17 +102,19 @@
 
     .couple:nth-child(2) {
         flex-direction: row-reverse;
-        margin: 50px auto;
 
         .text {
-            margin: 0 25px;
             align-self: center;
         }
     }
 
     .couple {
+        gap: 30px;
+        margin-bottom: 50px;
+
         @include for-mobile-layout {
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         img {
@@ -90,21 +122,27 @@
 
             @include for-mobile-layout {
                 width: 80%;
-                margin: 0 auto;
+
             }
         }
 
         .text {
-            margin: 0 40px;
             align-self: center;
+            width: 50%;
 
             @include for-mobile-layout {
-                margin: o auto;
+                text-align: center;
+                width: 80%;
             }
 
             .title {
-                align-self: center;
                 font-size: rem(35px);
+
+                @include for-mobile-layout {
+                    font-size: rem(30px);
+                    margin-bottom: 20px;
+
+                }
             }
 
             .desc {

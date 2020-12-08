@@ -1,6 +1,6 @@
 <template>
     <section class="home">
-        <div class="hero-container flex">
+        <div class="hero-container flex"> 
             <div class="hero-title flex">
                 <img
                     class="logo"
@@ -16,8 +16,7 @@
                     ><h4>Let's Get Started</h4></router-link
                 >
             </div>
-            <img
-                flex
+            <img class="hero-img flex"
                 src="https://res.cloudinary.com/shimrit/image/upload/v1606990002/cardella/9814_szxc5a.jpg"
             />
         </div>

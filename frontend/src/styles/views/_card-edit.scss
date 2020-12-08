@@ -214,7 +214,6 @@
 
         .edit-card-checklist {
             align-items: center;
-            // margin-bottom: rem(16px);
             font-size: 18px;
         }
     }
@@ -271,6 +270,11 @@
             font-size: rem(25px);
             justify-content: flex-end;
             margin-bottom: rem(20px);
+
+            @include for-mobile-layout {
+                justify-content: center;
+
+            }
         }
 
         .edit-label {
@@ -365,7 +369,7 @@
             }
 
             .edit-card-member {
-                justify-content: space-between;
+                justify-content: space-around;
                 padding: 3px 10px;
                 align-items: center;
                 background-color: rgb(255, 255, 255);
@@ -373,9 +377,36 @@
                 border-radius: 2px;
                 box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
                 cursor: pointer;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-areas: "avatarImg faCheck memberName";
 
                 &:hover {
                     background-color: #f0f0f0;
+                }
+
+                .avatar-img {
+                    display: flex;
+                    justify-content: flex-start;
+                    grid-area: avatarImg;
+                    align-self: center;
+                    width: 40px;
+                }
+
+                .fa-check {
+                    display: flex;
+                    justify-content: center;
+                    grid-area: faCheck;
+                    align-self: center;
+                    width: 30px;
+                }
+
+                .member-name {
+                    display: flex;
+                    justify-content: flex-end;
+                    grid-area: memberName;
+                    align-self: center;
+                    width: 80px;
                 }
             }
         }
@@ -411,7 +442,19 @@
                 z-index: 5;
                 box-shadow: 0 12px 24px -6px rgba(47, 52, 59, 0.25), 0 0 0 1px rgba(9, 30, 66, .08);
 
+                .color {
+                    margin: 3px;
+                    width: 20px;
+                    height: 20px;
+                }
+
                 @include for-mobile-layout {
+                    .color {
+                        width: 30px;
+                        height: 30px;
+                        margin-left: 5px;
+                    }
+
                     right: 39px;
                     top: 270px;
                 }
