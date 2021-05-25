@@ -1,5 +1,7 @@
 # Cardella!
 
+![cardella](https://user-images.githubusercontent.com/71779002/119476759-09d9b880-bd57-11eb-840d-f5207b7c7785.jpg)
+
 ## Project setup
 ```
 npm install
